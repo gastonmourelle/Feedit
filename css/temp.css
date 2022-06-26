@@ -1,0 +1,17 @@
+body{
+    background-color: #121212;
+    color: whitesmoke;
+}
+
+a{
+    color: rgb(201, 57, 57);
+}
+
+table{
+    text-align: center;
+}
+
+table th, table td{
+    padding: 10px;
+    border:rgb(121, 43, 43) 1px solid;
+}

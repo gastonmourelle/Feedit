@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
+
+:root {
+  --negro: #212529;
+  --gris: #717171;
+  --bordes_tablas: #5f5f5f20;
+  --fondo_tablas: #fff;
+  --fondo: rgb(239, 241, 252);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    background-color: var(--fondo);
+}
+
+.titulo{
+  margin-left: 20px;
+  font-size: 24px;
+  color: var(--negro);
+  font-weight: 300;
+}
+
+.titulo i{
+  margin-right: 30px;
+}
+
+thead th{
+  color: var(--negro);
+}
+
+.tabla{
+  margin-top: 100px;
+  padding-top: 40px;
+  background-color: var(--fondo_tablas);
+  border-radius: 20px;
+  border: var(--bordes_tablas) 1px solid;
+  box-shadow: rgba(149, 157, 165, 0.1) 0px 0px 40px;
+}
+
+.table {
+  color: var(--gris);
+  font-size: 14px;
+  text-align: center;
+}
+
+.btn{
+  border-radius: 5px;
+  padding: 7px 20px;
+}
+
+.nuevo, .verificar{
+  margin-bottom: 25px;
+}
+
+.table tr th{
+  padding: 20px 0;
+}
+
+.table tr td{
+  padding: 30px 0;
+}
+
+.table tr td i{
+  color: var(--negro);
+}
+
+thead{
+  border-bottom: var(--bordes_tablas) 1px solid;
+}
+
+.table tr:not(:last-child){
+  border-bottom: 1px solid var(--bordes_tablas);
+}
+
+.formulario{
+  margin-left: 75px;
+  padding-top: 50px;
+  padding-bottom: 100px;
+}
+
+.formulario input{
+  margin-bottom: 25px;
+}
+
+.formulario h1{
+  color: var(--negro);
+  font-weight: 300;
+}
+
+.formulario label{
+  color:var(--gris);
+  font-size: 14px;
+}
+
+/* .formulario h4{
+  margin: 25px 0;
+  font-size: 18px;
+  color: var(--gris);
+  font-weight: 300;
+} */
