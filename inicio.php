@@ -59,7 +59,7 @@
                         <th>Turnos diarios</th>
                         <th>Tiempo de espera</th>
                         <th>Veces que ya comió</th>
-                        <th>Última comida</th>
+                        <th>Última comidaaaaaa</th>
   					  <th>Acciones</th>
                       </tr>
                     </thead>
