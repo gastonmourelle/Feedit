@@ -1,3 +1,5 @@
 - resetear veces con crone? o interval?
 
 - como registrar la hora de salida del perro?
+
+- imagenes en el crud

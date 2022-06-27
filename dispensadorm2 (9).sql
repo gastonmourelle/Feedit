@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-06-2022 a las 05:13:08
+-- Tiempo de generación: 27-06-2022 a las 05:56:41
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -43,7 +43,12 @@ INSERT INTO `logs` (`identificador`, `nombre`, `rfid`, `horaEntrada`, `horaSalid
 (1, 'Rex', '99F5FCB8', '2022-06-27 03:10:59', '2022-06-27 03:10:59'),
 (2, 'Rex', '99F5FCB8', '2022-06-27 03:11:14', '2022-06-27 03:11:14'),
 (3, 'Luna', '33159002', '2022-06-27 03:11:18', '2022-06-27 03:11:18'),
-(4, 'Rex', '99F5FCB8', '2022-06-27 03:12:02', '2022-06-27 03:12:02');
+(4, 'Rex', '99F5FCB8', '2022-06-27 03:12:02', '2022-06-27 03:12:02'),
+(5, 'Rex', '99F5FCB8', '2022-06-27 03:31:11', '2022-06-27 03:31:11'),
+(6, 'Luna', '33159002', '2022-06-27 03:36:18', '2022-06-27 03:36:18'),
+(7, 'Rex', '99F5FCB8', '2022-06-27 03:36:20', '2022-06-27 03:36:20'),
+(8, 'Luna', '33159002', '2022-06-27 03:39:07', '2022-06-27 03:39:07'),
+(9, 'Rex', '99F5FCB8', '2022-06-27 03:39:09', '2022-06-27 03:39:09');
 
 -- --------------------------------------------------------
 
@@ -72,8 +77,8 @@ CREATE TABLE `perros` (
 --
 
 INSERT INTO `perros` (`identificador`, `id`, `nombre`, `foto`, `sexo`, `raza`, `edad`, `peso`, `racion`, `turnos`, `cooldown`, `veces`, `ultima`) VALUES
-(2, '99F5FCB8', 'Rex', '', 'Macho', 'Doberman', 6, 40, 500, 3, 6, '3', '2022-06-27 03:12:02'),
-(10, '33159002', 'Luna', '', 'Hembra', 'Caniche', 6, 10, 300, 3, 4, '1', '2022-06-27 03:11:18');
+(1, '99F5FCB8', 'Rex', '', 'Macho', 'Doberman', 6, 40, 500, 3, 6, '0', '2022-06-27 03:39:09'),
+(2, '33159002', 'Luna', '', 'Hembra', 'Caniche', 6, 10, 300, 3, 4, '0', '2022-06-27 03:39:07');
 
 -- --------------------------------------------------------
 
@@ -124,13 +129,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `identificador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `identificador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `perros`
 --
 ALTER TABLE `perros`
-  MODIFY `identificador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `identificador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
