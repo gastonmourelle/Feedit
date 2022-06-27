@@ -20,6 +20,7 @@
     $turnos = ($datos['turnos']);
     $cooldown = ($datos['cooldown']);
     $veces = ($datos['veces']);
+    $ultima = strtotime(($datos['ultima'])) + 7200;
 
     $tiempoActualUnix = time() - 10800;
     $horaActual = gmdate('H:i:s', $tiempoActualUnix);
@@ -27,7 +28,7 @@
     $horaConsulta = gmdate('H:i:s', $tiempoConsultaUnix);
     $tiempoConsulta = gmdate('Y-m-d H:i:s', $tiempoConsultaUnix);
     
-    $diferenciaTiempoUnix = $tiempoActualUnix - $tiempoConsultaUnix;
+    $diferenciaTiempoUnix = $tiempoActualUnix - $ultima;
     $cooldownUnix = $cooldown + 10; /* <--- cambiarlo por *3600 */
 
     c("Nombre: " . $nombre);
@@ -37,8 +38,9 @@
     c("----UNIX----");
     c("Diferencia: " . $diferenciaTiempoUnix);
     c("Cooldown: " . $cooldownUnix);
+    c("Ultima: " . $ultima);
 
-    if ($veces < $turnos){
+    if ($turnos >= $veces AND $diferenciaTiempoUnix >= $cooldownUnix){
         c("puede comer");
 
 	    $sql1 = "UPDATE perros SET ultima = '$tiempoConsulta' WHERE id = '$UIDresultado'";
@@ -46,6 +48,14 @@
 
         $sql2 = "UPDATE perros SET veces = '$veces' + 1 WHERE id = '$UIDresultado'";
         $exito2 = mysqli_query($conex,$sql2);
+    }
+    else if ($turnos < $veces)
+    {
+        c("comiste muchas veces");
+    }
+    else if ($diferenciaTiempoUnix < $cooldownUnix)
+    {
+        c("no esperaste el cooldown");
     }
 
 
