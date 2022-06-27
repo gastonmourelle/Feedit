@@ -58,8 +58,8 @@
                         <th>Ración diaria</th>
                         <th>Turnos diarios</th>
                         <th>Tiempo de espera</th>
-                        <th>Veces que ya comio</th>
-                        <th>Última comid</th>
+                        <th>Veces que ya comió</th>
+                        <th>Última comida</th>
   					  <th>Acciones</th>
                       </tr>
                     </thead>
