@@ -12,15 +12,33 @@
 	</head>
 	
 	<body>
+<!-- <h1>CRUD</h1>
+<div id="search-bar">
+  <label for="search">Buscar: </label>
+  <input type="text" name="search" id="search">
+</div>
+<table id="main">
+  <tr>
+    <th style="width:5%">#</th>
+    <th>Nombre</th>
+    <th>Código</th>
+    <th>Sexo</th>
+    <th>Raza</th>
+    <th>Edad (aprox)</th>
+    <th>Peso</th>
+    <th>Ración diaria</th>
+    <th>Turnos diarios</th>
+    <th>Tiempo de espera</th>
+    <th>Veces que ya comió</th>
+    <th>Última comida</th>
+    <th>Acciones</th>
+  </tr> 
+  <tr>
+    <td id="table-data">
 
-  <div class="dBus">
-    <label for="caja_busqueda">Buscar</label>
-    <input type="text" name="caja_busqueda" id="caja_busqueda">
-  </div>
-
-  <div id="datos">
-    
-  </div>
+    </td>
+  </tr>
+</table> -->
 
   <div class="container">
             <div>
@@ -121,8 +139,7 @@
 				</table>
 			</div>
 		</div>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/busqueda.js"></script>
+    <script  type="text/javascript" src="js/jquery.min.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script> -->
 	</body>
 </html>
