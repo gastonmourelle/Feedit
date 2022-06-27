@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-06-2022 a las 04:29:36
+-- Tiempo de generación: 27-06-2022 a las 05:13:08
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -20,6 +20,30 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `dispensadorm2`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `logs`
+--
+
+CREATE TABLE `logs` (
+  `identificador` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `rfid` varchar(255) NOT NULL,
+  `horaEntrada` timestamp NOT NULL DEFAULT current_timestamp(),
+  `horaSalida` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `logs`
+--
+
+INSERT INTO `logs` (`identificador`, `nombre`, `rfid`, `horaEntrada`, `horaSalida`) VALUES
+(1, 'Rex', '99F5FCB8', '2022-06-27 03:10:59', '2022-06-27 03:10:59'),
+(2, 'Rex', '99F5FCB8', '2022-06-27 03:11:14', '2022-06-27 03:11:14'),
+(3, 'Luna', '33159002', '2022-06-27 03:11:18', '2022-06-27 03:11:18'),
+(4, 'Rex', '99F5FCB8', '2022-06-27 03:12:02', '2022-06-27 03:12:02');
 
 -- --------------------------------------------------------
 
@@ -48,8 +72,8 @@ CREATE TABLE `perros` (
 --
 
 INSERT INTO `perros` (`identificador`, `id`, `nombre`, `foto`, `sexo`, `raza`, `edad`, `peso`, `racion`, `turnos`, `cooldown`, `veces`, `ultima`) VALUES
-(1, '33159002', 'Luna', '', 'Hembra', 'Labrador', 8, 15, 200, 4, 2, '0', '2022-06-22 05:41:15'),
-(2, '99F5FCB8', 'Rex', '', 'Macho', 'Doberman', 6, 40, 500, 2, 6, '0', '2022-06-22 03:00:00');
+(2, '99F5FCB8', 'Rex', '', 'Macho', 'Doberman', 6, 40, 500, 3, 6, '3', '2022-06-27 03:12:02'),
+(10, '33159002', 'Luna', '', 'Hembra', 'Caniche', 6, 10, 300, 3, 4, '1', '2022-06-27 03:11:18');
 
 -- --------------------------------------------------------
 
@@ -75,6 +99,12 @@ INSERT INTO `usuarios` (`id`, `user`, `pass`) VALUES
 --
 
 --
+-- Indices de la tabla `logs`
+--
+ALTER TABLE `logs`
+  ADD PRIMARY KEY (`identificador`);
+
+--
 -- Indices de la tabla `perros`
 --
 ALTER TABLE `perros`
@@ -91,10 +121,16 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `logs`
+--
+ALTER TABLE `logs`
+  MODIFY `identificador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de la tabla `perros`
 --
 ALTER TABLE `perros`
-  MODIFY `identificador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `identificador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`

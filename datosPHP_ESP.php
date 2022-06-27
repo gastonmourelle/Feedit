@@ -17,6 +17,7 @@
     $datos = $q->fetch(PDO::FETCH_ASSOC);
 
     $nombre = ($datos['nombre']);
+    $id = ($datos['id']);
     $turnos = ($datos['turnos']);
     $cooldown = ($datos['cooldown']);
     $veces = ($datos['veces']);
@@ -29,7 +30,7 @@
     $tiempoConsulta = gmdate('Y-m-d H:i:s', $tiempoConsultaUnix);
     
     $diferenciaTiempoUnix = $tiempoActualUnix - $ultima;
-    $cooldownUnix = 60; /* <--- cambiarlo por *3600 */
+    $cooldownUnix = 30; /* <--- cambiarlo por *3600 */
 
     c("Nombre: " . $nombre);
     c("----FORMATEADO----");
@@ -43,11 +44,14 @@
     if ($turnos >= $veces AND $diferenciaTiempoUnix >= $cooldownUnix){
         c("puede comer");
 
-	    $sql1 = "UPDATE perros SET ultima = '$tiempoConsulta' WHERE id = '$UIDresultado'";
-        $exito1 = mysqli_query($conex,$sql1);
+	    $query1 = "UPDATE perros SET ultima = '$tiempoConsulta' WHERE id = '$UIDresultado'";
+        mysqli_query($conex,$query1);
 
-        $sql2 = "UPDATE perros SET veces = '$veces' + 1 WHERE id = '$UIDresultado'";
-        $exito2 = mysqli_query($conex,$sql2);
+        $query2 = "UPDATE perros SET veces = '$veces' + 1 WHERE id = '$UIDresultado'";
+        mysqli_query($conex,$query2);
+
+        $query3 = "INSERT INTO logs (nombre, rfid) values ('$nombre', '$id')";
+        mysqli_query($conex,$query3);
     }
     else if ($turnos < $veces){
         c("comiste muchas veces");
