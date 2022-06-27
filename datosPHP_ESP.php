@@ -30,7 +30,7 @@
     $tiempoConsulta = gmdate('Y-m-d H:i:s', $tiempoConsultaUnix);
     
     $diferenciaTiempoUnix = $tiempoActualUnix - $ultima;
-    $cooldownUnix = 10; /* <--- cambiarlo por *3600 */
+    $cooldownUnix = 5; /* <--- cambiarlo por *3600 */
 
     c("Nombre: " . $nombre);
     c("----FORMATEADO----");
@@ -41,7 +41,7 @@
     c("Cooldown: " . $cooldownUnix);
     c("Ultima: " . $ultima);
 
-    if ($turnos >= $veces AND $diferenciaTiempoUnix >= $cooldownUnix){
+    if ($turnos > $veces AND $diferenciaTiempoUnix >= $cooldownUnix){
         c("puede comer");
 
 	    $query1 = "UPDATE perros SET ultima = '$tiempoConsulta' WHERE id = '$UIDresultado'";
