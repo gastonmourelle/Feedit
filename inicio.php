@@ -12,6 +12,16 @@
 	</head>
 	
 	<body>
+
+  <div class="dBus">
+    <label for="caja_busqueda">Buscar</label>
+    <input type="text" name="caja_busqueda" id="caja_busqueda">
+  </div>
+
+  <div id="datos">
+    
+  </div>
+
   <div class="container">
             <div>
                 <div class="tabla">
@@ -46,10 +56,9 @@
   </div>
 </div>
 <thead>
-                      <tr>
-                        <!-- <th>Foto</th> -->
+                      <!-- <tr>
                         <th style="width:5%">#</th>
-                        <th>Nombre</th>
+                        <th><a >Nombre</a></th>
                         <th>Código</th>
   					  <th>Sexo</th>
   					  <th>Raza</th>
@@ -61,13 +70,31 @@
                         <th>Veces que ya comió</th>
                         <th>Última comida</th>
   					  <th>Acciones</th>
-                      </tr>
+                      </tr> 
                     </thead>
-                    <tbody>
+                    <tbody>-->
                   <?php
                    include 'db.php';
                    $pdo = Base::connect();
                    $sql = 'SELECT * FROM perros ORDER BY identificador DESC';
+                   echo '<tr>
+                   <th style="width:5%">#</th>
+                   <th>Nombre</th>
+                   <th>Código</th>
+                  <th>Sexo</th>
+         <th>Raza</th>
+         <th>Edad (aprox)</th>
+                   <th>Peso</th>
+                   <th>Ración diaria</th>
+                   <th>Turnos diarios</th>
+                   <th>Tiempo de espera</th>
+                   <th>Veces que ya comió</th>
+                   <th>Última comida</th>
+         <th>Acciones</th>
+                 </tr> 
+               </thead>
+               <tbody>
+               ';
                    foreach ($pdo->query($sql) as $row) {
                             echo '<tr>';
                             echo '<td><b>'. $row['identificador'] . '</b></td>';
@@ -94,6 +121,8 @@
 				</table>
 			</div>
 		</div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/busqueda.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script> -->
 	</body>
 </html>

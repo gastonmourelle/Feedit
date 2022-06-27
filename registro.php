@@ -6,7 +6,7 @@
 		<meta charset="utf-8">
 		<!-- <link rel="stylesheet" href="css/estilos.css"> -->
 		<link rel="stylesheet" href="css/temp.css">
-		<script src="jquery.min.js"></script>
+		<script src="js/jquery.min.js"></script>
 		<script>
 			$(document).ready(function(){
 				 $("#obtenerUID").load("uid.php");

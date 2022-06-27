@@ -30,7 +30,7 @@
     $tiempoConsulta = gmdate('Y-m-d H:i:s', $tiempoConsultaUnix);
     
     $diferenciaTiempoUnix = $tiempoActualUnix - $ultima;
-    $cooldownUnix = 30; /* <--- cambiarlo por *3600 */
+    $cooldownUnix = 10; /* <--- cambiarlo por *3600 */
 
     c("Nombre: " . $nombre);
     c("----FORMATEADO----");
