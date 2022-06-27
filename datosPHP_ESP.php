@@ -29,7 +29,7 @@
     $tiempoConsulta = gmdate('Y-m-d H:i:s', $tiempoConsultaUnix);
     
     $diferenciaTiempoUnix = $tiempoActualUnix - $ultima;
-    $cooldownUnix = $cooldown + 10; /* <--- cambiarlo por *3600 */
+    $cooldownUnix = 60; /* <--- cambiarlo por *3600 */
 
     c("Nombre: " . $nombre);
     c("----FORMATEADO----");
@@ -49,12 +49,10 @@
         $sql2 = "UPDATE perros SET veces = '$veces' + 1 WHERE id = '$UIDresultado'";
         $exito2 = mysqli_query($conex,$sql2);
     }
-    else if ($turnos < $veces)
-    {
+    else if ($turnos < $veces){
         c("comiste muchas veces");
     }
-    else if ($diferenciaTiempoUnix < $cooldownUnix)
-    {
+    else if ($diferenciaTiempoUnix < $cooldownUnix){
         c("no esperaste el cooldown");
     }
 
