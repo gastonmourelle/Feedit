@@ -155,7 +155,6 @@ void enviarRfid()
             String payloadGet = http.getString();
             Serial.println(payloadGet);
             Serial.println("");
-            Serial.println(data);
             datosArduino();
         }
 
@@ -184,14 +183,12 @@ void array_to_string(byte array[], unsigned int len, char buffer[])
 void datosArduino()
 {
   guardarSerial = recibirSerial.readStringUntil('\r');
-  int delimitador, delimitador1, delimitador2, delimitador3;
+  int delimitador, delimitador1, delimitador2;
   delimitador = guardarSerial.indexOf("%");
   delimitador1 = guardarSerial.indexOf("%", delimitador + 1);
   delimitador2 = guardarSerial.indexOf("%", delimitador1 +1);
-  delimitador3 = guardarSerial.indexOf("%", delimitador2 +1);
 
-  String first = guardarSerial.substring(delimitador + 1, delimitador1);
-  String second = guardarSerial.substring(delimitador1 + 1, delimitador2);
-  String third = guardarSerial.substring(delimitador2 + 1, delimitador3);
-  Serial.println(first);
+  String bal = guardarSerial.substring(delimitador + 1, delimitador1);
+  String ultra = guardarSerial.substring(delimitador1 + 1, delimitador2);
+  Serial.println("Ultrasonido: "+ultra);
 }
