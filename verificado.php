@@ -27,7 +27,7 @@
 		$datos['turnos']="--------";
 		$datos['cooldown']="--------";
 		$datos['veces']="--------";
-		$datos['ultima']="--------";
+		$datos['ultimaSalida']="--------";
 	} else {
 		$mensaje = null;
 	}
@@ -99,7 +99,7 @@
 								</tr>
 								<tr>
 									<td>Última comida</td>
-									<td><?php echo $datos['ultima'];?></td>
+									<td><?php echo $datos['ultimaSalida'];?></td>
 								</tr>
 							</table>
 						</td>

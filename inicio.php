@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <html>
-
 <head>
+  <!-- https://stackoverflow.com/questions/11497611/php-auto-refreshing-page#:~:text=%3Cmeta%20http%2Dequiv%3D%22refresh%22%20content%3D%22%3C%3Fphp%20echo%20%24sec%3F%3E%3BURL%3D%27%3C%3Fphp%20echo%20%24page%3F%3E%27%22%3E -----RECARGAR PAGINA CADA 10 SEG -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
   <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">

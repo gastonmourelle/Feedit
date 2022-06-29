@@ -15,13 +15,13 @@
         $turnos = $_POST['turnos'];
         $cooldown = $_POST['cooldown'];
         $veces = $_POST['veces'];
-        $ultima = $_POST['ultima'];
+        $ultimaSalida = $_POST['ultimaSalida'];
         
         $pdo = Base::connect();
 		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$sql = "INSERT INTO perros (identificador,nombre,id,sexo,raza,edad,peso,racion,turnos,cooldown,veces,ultima) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE id=id;";
+		$sql = "INSERT INTO perros (identificador,nombre,id,sexo,raza,edad,peso,racion,turnos,cooldown,veces,ultimaSalida) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE id=id;";
 		$q = $pdo->prepare($sql);
-		$q->execute(array($identificador,$nombre,$id,$sexo,$raza,$edad,$peso,$racion,$turnos,$cooldown,$veces,$ultima));
+		$q->execute(array($identificador,$nombre,$id,$sexo,$raza,$edad,$peso,$racion,$turnos,$cooldown,$veces,$ultimaSalida));
 		Base::disconnect();
 		header("Location: inicio.php");
     }

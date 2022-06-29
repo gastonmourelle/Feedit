@@ -110,7 +110,7 @@
 					<div>
 						<label>Última comida</label>
 						<div>
-							<input name="ultima" type="date"  placeholder="" value="<?php echo $datos['ultima'];?>" required>
+							<input name="ultimaSalida" type="date"  placeholder="" value="<?php echo $datos['ultimaSalida'];?>" required>
 						</div>
 					</div>
 

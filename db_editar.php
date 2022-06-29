@@ -17,13 +17,13 @@
         $turnos = $_POST['turnos'];
         $cooldown = $_POST['cooldown'];
         $veces = $_POST['veces'];
-        $ultima = $_POST['ultima'];
+        $ultimaSalida = $_POST['ultimaSalida'];
          
         $pdo = Base::connect();
 		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$sql = "UPDATE perros  set nombre = ?, sexo =?, raza =?, edad =?, peso =?, racion =?, turnos =?, cooldown =?, veces =?, ultima =? WHERE id = ?";
+		$sql = "UPDATE perros  set nombre = ?, sexo =?, raza =?, edad =?, peso =?, racion =?, turnos =?, cooldown =?, veces =?, ultimaSalida =? WHERE id = ?";
 		$q = $pdo->prepare($sql);
-		$q->execute(array($nombre,$sexo,$raza,$edad,$peso,$racion,$turnos,$cooldown,$veces,$ultima,$id));
+		$q->execute(array($nombre,$sexo,$raza,$edad,$peso,$racion,$turnos,$cooldown,$veces,$ultimaSalida,$id));
 		Base::disconnect();
 		header("Location: inicio.php");
     }
