@@ -21,15 +21,14 @@
     $turnos = ($datos['turnos']);
     $cooldown = ($datos['cooldown']);
     $veces = ($datos['veces']);
+    $ultimaSalidaUnix = strtotime(($datos['ultimaSalida'])) + 7200;
     $ultimaEntrada = gmdate('Y-m-d H:i:s', (strtotime(($datos['ultimaEntrada'])) + 7200));
-    $ultimaSalida = gmdate('Y-m-d H:i:s', (strtotime(($datos['ultimaSalida'])) + 7200));
     $entro = ($datos['entro']);
 
     $tiempoActualUnix = time() - 10800;
     $tiempoActual = gmdate('Y-m-d H:i:s', $tiempoActualUnix);
-    $tiempoConsulta = gmdate('Y-m-d H:i:s', $tiempoConsultaUnix);
     
-    $diferenciaTiempoUnix = $tiempoActualUnix - $ultimaSalida;
+    $diferenciaTiempoUnix = $tiempoActualUnix - $ultimaSalidaUnix;
     $cooldownUnix = 10; /* <--- cambiarlo por *3600 */
 
     if ($entro == 0 AND $turnos > $veces AND $diferenciaTiempoUnix >= $cooldownUnix){
