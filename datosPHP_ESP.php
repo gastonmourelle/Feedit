@@ -22,6 +22,7 @@
     $cooldown = ($datos['cooldown']);
     $veces = ($datos['veces']);
     $ultima = strtotime(($datos['ultima'])) + 7200;
+    $entro = ($datos['entro']);
 
     $tiempoActualUnix = time() - 10800;
     $horaActual = gmdate('H:i:s', $tiempoActualUnix);
@@ -30,7 +31,7 @@
     $tiempoConsulta = gmdate('Y-m-d H:i:s', $tiempoConsultaUnix);
     
     $diferenciaTiempoUnix = $tiempoActualUnix - $ultima;
-    $cooldownUnix = 5; /* <--- cambiarlo por *3600 */
+    $cooldownUnix = 20; /* <--- cambiarlo por *3600 */
 
     c("Nombre: " . $nombre);
     c("----FORMATEADO----");
@@ -41,7 +42,7 @@
     c("Cooldown: " . $cooldownUnix);
     c("Ultima: " . $ultima);
 
-    if ($turnos > $veces AND $diferenciaTiempoUnix >= $cooldownUnix){
+    if ($entro == 0 AND $turnos > $veces AND $diferenciaTiempoUnix >= $cooldownUnix){
         c("puede comer");
 
 	    $query1 = "UPDATE perros SET ultima = '$tiempoConsulta' WHERE id = '$UIDresultado'";
@@ -52,6 +53,20 @@
 
         $query3 = "INSERT INTO logs (nombre, rfid) values ('$nombre', '$id')";
         mysqli_query($conex,$query3);
+
+        $query4 = "UPDATE perros SET entro = 1 WHERE id = '$UIDresultado'";
+        mysqli_query($conex,$query4);
+
+        $query7 = "UPDATE perros SET foto = 'entra' WHERE id = '$UIDresultado'";
+        mysqli_query($conex,$query7);
+    }
+    else if ($entro == 1){
+
+        $query5 = "UPDATE perros SET foto = 'sale' WHERE id = '$UIDresultado'";
+        mysqli_query($conex,$query5);
+
+        $query6 = "UPDATE perros SET entro = 0 WHERE id = '$UIDresultado'";
+        mysqli_query($conex,$query6);
     }
     else if ($turnos < $veces){
         c("comiste muchas veces");
@@ -75,13 +90,3 @@
     
     Base::disconnect();
 ?>
-
-<!DOCTYPE html>
-<html lang="es">
-<html>
-	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta charset="utf-8">
-    <link rel="stylesheet" href="css/temp.css">
-		<title>Datos enviados al ESP</title>
-	</head>
