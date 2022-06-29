@@ -7,12 +7,19 @@
 #include <SPI.h>
 #include <MFRC522.h>
 
+//--- Recibir serial de Arduino
+#include <SoftwareSerial.h>
+
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
+//--- Puertos RFID
 #define SS_PIN D2
 #define RST_PIN D1
-MFRC522 mfrc522(SS_PIN, RST_PIN);
 #define ON_Board_LED 2
+MFRC522 mfrc522(SS_PIN, RST_PIN);
+
+//--- Puertos de la conexión serial con arduino
+SoftwareSerial recibirSerial (D3);
 
 //---------------------------------------------------------------------------------------------DATOS CONEXIÓN-------------------------------------------------------------------------------//
 
@@ -20,7 +27,7 @@ ESP8266WebServer server(80);
 
 const char *ssid = "arroz con atun";
 const char *password = "gastonmourelle99";
-const char *host = "http://192.168.0.104/dispensadorm2/";
+const char *host = "http://192.168.0.105/dispensadorm2/";
 
 /*const char *ssid = "iPhone de Gaston";
 const char *password = "gastonmourelle";
@@ -32,12 +39,14 @@ int readsuccess;
 byte readcard[4];
 char str[32] = "";
 String StrUID;
+String guardarSerial;
 
 //-----------------------------------------------------------------------------------------------SETUP--------------------------------------------------------------------------------------//
 
 void setup()
 {
     Serial.begin(115200);
+    recibirSerial.begin(9600);
     SPI.begin();
     mfrc522.PCD_Init();
 
@@ -146,6 +155,8 @@ void enviarRfid()
             String payloadGet = http.getString();
             Serial.println(payloadGet);
             Serial.println("");
+            Serial.println(data);
+            datosArduino();
         }
 
         http.end();
@@ -166,4 +177,21 @@ void array_to_string(byte array[], unsigned int len, char buffer[])
         buffer[i * 2 + 1] = nib2 < 0xA ? '0' + nib2 : 'A' + nib2 - 0xA;
     }
     buffer[len * 2] = '\0';
+}
+
+//-------------------------------------Recibir datos de Arduino desde el serial-------------------------------------------------------------------------------------------------------------//
+
+void datosArduino()
+{
+  guardarSerial = recibirSerial.readStringUntil('\r');
+  int delimitador, delimitador1, delimitador2, delimitador3;
+  delimitador = guardarSerial.indexOf("%");
+  delimitador1 = guardarSerial.indexOf("%", delimitador + 1);
+  delimitador2 = guardarSerial.indexOf("%", delimitador1 +1);
+  delimitador3 = guardarSerial.indexOf("%", delimitador2 +1);
+
+  String first = guardarSerial.substring(delimitador + 1, delimitador1);
+  String second = guardarSerial.substring(delimitador1 + 1, delimitador2);
+  String third = guardarSerial.substring(delimitador2 + 1, delimitador3);
+  Serial.println(first);
 }
