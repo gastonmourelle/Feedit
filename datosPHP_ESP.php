@@ -25,48 +25,37 @@
     $entro = ($datos['entro']);
 
     $tiempoActualUnix = time() - 10800;
-    $horaActual = gmdate('H:i:s', $tiempoActualUnix);
     $tiempoActual = gmdate('Y-m-d H:i:s', $tiempoActualUnix);
-    $horaConsulta = gmdate('H:i:s', $tiempoConsultaUnix);
     $tiempoConsulta = gmdate('Y-m-d H:i:s', $tiempoConsultaUnix);
     
     $diferenciaTiempoUnix = $tiempoActualUnix - $ultima;
-    $cooldownUnix = 20; /* <--- cambiarlo por *3600 */
-
-    c("Nombre: " . $nombre);
-    c("----FORMATEADO----");
-    c("Hora actual: " . $horaActual);
-    c("Consulta: " . $horaConsulta);
-    c("----UNIX----");
-    c("Diferencia: " . $diferenciaTiempoUnix);
-    c("Cooldown: " . $cooldownUnix);
-    c("Ultima: " . $ultima);
+    $cooldownUnix = 10; /* <--- cambiarlo por *3600 */
 
     if ($entro == 0 AND $turnos > $veces AND $diferenciaTiempoUnix >= $cooldownUnix){
         c("puede comer");
 
-	    $query1 = "UPDATE perros SET ultima = '$tiempoConsulta' WHERE id = '$UIDresultado'";
+        $query1 = "INSERT INTO logs (nombre, rfid) values ('$nombre', '$id')";
         mysqli_query($conex,$query1);
 
-        $query2 = "UPDATE perros SET veces = '$veces' + 1 WHERE id = '$UIDresultado'";
+        $query2 = "UPDATE perros SET entro = 1 WHERE id = '$UIDresultado'";
         mysqli_query($conex,$query2);
 
-        $query3 = "INSERT INTO logs (nombre, rfid) values ('$nombre', '$id')";
+        $query3 = "UPDATE perros SET foto = 'entra' WHERE id = '$UIDresultado'";
         mysqli_query($conex,$query3);
-
-        $query4 = "UPDATE perros SET entro = 1 WHERE id = '$UIDresultado'";
-        mysqli_query($conex,$query4);
-
-        $query7 = "UPDATE perros SET foto = 'entra' WHERE id = '$UIDresultado'";
-        mysqli_query($conex,$query7);
     }
     else if ($entro == 1){
+        
+        /* $query1 = "UPDATE logs SET horaSalida = NOW() (SELECT horaSalida FROM logs WHERE id = '$UIDresultado') ORDER BY identificador DESC LIMIT 1";
+        mysqli_query($conex,$query1); */
 
-        $query5 = "UPDATE perros SET foto = 'sale' WHERE id = '$UIDresultado'";
-        mysqli_query($conex,$query5);
+        $query2 = "UPDATE perros SET ultima = NOW() WHERE id = '$UIDresultado'";
+        mysqli_query($conex,$query2);
 
-        $query6 = "UPDATE perros SET entro = 0 WHERE id = '$UIDresultado'";
-        mysqli_query($conex,$query6);
+        $query3 = "UPDATE perros SET veces = '$veces' + 1 WHERE id = '$UIDresultado'";
+        mysqli_query($conex,$query3);
+
+        $query4 = "UPDATE perros SET entro = 0 WHERE id = '$UIDresultado'";
+        mysqli_query($conex,$query4);
     }
     else if ($turnos < $veces){
         c("comiste muchas veces");
