@@ -108,6 +108,13 @@
 					</div>
 
 					<div>
+						<label for="foto">Foto</label>
+						<div>
+							<input name="foto" id="foto" type="file" accept="image/*" value="<?php echo $datos['foto'];?>">
+						</div>
+					</div>
+
+					<div>
 						<button type="submit">Actualizar</button>
 						<a href="listado.php">Volver</a>
 					</div>

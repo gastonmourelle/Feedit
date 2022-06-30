@@ -35,6 +35,7 @@
     <thead>
       <tr>
         <th>#</th>
+        <th>Foto</th>
         <th>Nombre</th>
         <th>Código</th>
         <th>Sexo</th>
@@ -57,6 +58,7 @@
       foreach ($pdo->query($sql) as $row) {
         echo '<tr>';
         echo '<td><b>'. $row['identificador'] . '</b></td>';
+        echo '<td><img src="img/'.$row['foto'].'" alt="" height="100px"></td>';
         echo '<td><b>'. $row['nombre'] . '</b></td>';
         echo '<td>'. $row['id'] . '</td>';
         echo '<td>'. $row['sexo'] . '</td>';
