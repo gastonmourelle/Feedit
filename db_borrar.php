@@ -15,7 +15,7 @@
         $q = $pdo->prepare($sql);
         $q->execute(array($id));
         Base::disconnect();
-        header("Location: inicio.php");
+        header("Location: listado.php");
          
     }
 ?>
@@ -38,7 +38,7 @@
 				<p>¿Está seguro que desea eliminar este registro?</p>
 				<div>
 					<button type="submit">Si</button>
-					<a href="inicio.php">No</a>
+					<a href="listado.php">No</a>
 				</div>
 			</form>
 		</div>

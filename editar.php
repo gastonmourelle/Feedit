@@ -109,7 +109,7 @@
 
 					<div>
 						<button type="submit">Actualizar</button>
-						<a href="inicio.php">Volver</a>
+						<a href="listado.php">Volver</a>
 					</div>
 				</form>
 			</div>               

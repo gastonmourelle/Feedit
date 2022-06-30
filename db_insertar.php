@@ -23,6 +23,6 @@
 		$q = $pdo->prepare($sql);
 		$q->execute(array($identificador,$nombre,$id,$sexo,$raza,$edad,$peso,$racion,$turnos,$cooldown,$veces,$ultimaSalida));
 		Base::disconnect();
-		header("Location: inicio.php");
+		header("Location: listado.php");
     }
 ?>

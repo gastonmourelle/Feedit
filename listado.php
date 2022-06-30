@@ -10,7 +10,7 @@
     <script src="https://kit.fontawesome.com/df00b792cc.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/estilos.css"> -->
   <link rel="stylesheet" href="css/temp.css">
-  <title>Inicio</title>
+  <title>Listado</title>
 </head>
 
 <body>

@@ -24,6 +24,6 @@
 		$q = $pdo->prepare($sql);
 		$q->execute(array($nombre,$sexo,$raza,$edad,$peso,$racion,$turnos,$cooldown,$veces,$id));
 		Base::disconnect();
-		header("Location: inicio.php");
+		header("Location: listado.php");
     }
 ?>

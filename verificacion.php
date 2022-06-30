@@ -25,7 +25,7 @@
 	
 	<body>
 		<ul>
-			<li><a href="inicio.php">Inicio</a></li>
+			<li><a href="listado.php">Listado</a></li>
 			<li><a href="registro.php">Registro</a></li>
 			<li><a href="verificacion.php">Verificación</a></li>
 		</ul>
