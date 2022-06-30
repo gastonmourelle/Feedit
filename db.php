@@ -4,8 +4,8 @@
 	{
 		private static $db = 'dispensadorm2' ;
 		private static $dbHost = 'localhost' ;
-		private static $dbUser = 'gaston';
-		private static $dbUserPass = 'dispensadorm2';
+		private static $dbUser = 'root';
+		private static $dbUserPass = '';
 		 
 		private static $cont  = null;
 		 

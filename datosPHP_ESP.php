@@ -2,7 +2,7 @@
     include 'db.php';
     include 'uid.php';
     include 'tiempo.php';
-    $conex = mysqli_connect("localhost", "gaston", "dispensadorm2", "dispensadorm2");
+    include "config.php";
 
     $tiempoActualUnix = time() - 10800;
     $tiempoActual = gmdate('Y-m-d H:i:s', $tiempoActualUnix);

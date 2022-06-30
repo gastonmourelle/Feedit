@@ -5,11 +5,11 @@ $output = "";
 
 if(isset($_POST['query'])){
     $search = $_POST['query'];
-    $stmt=$conn->prepare("SELECT * FROM perros WHERE nombre LIKE CONCAT('%',?,'%') OR raza LIKE CONCAT('%',?,'%') ORDER BY identificador DESC");
+    $stmt=$conex->prepare("SELECT * FROM perros WHERE nombre LIKE CONCAT('%',?,'%') OR raza LIKE CONCAT('%',?,'%') ORDER BY identificador DESC");
     $stmt->bind_param("ss",$search,$search);
 }
 else{
-    $stmt=$conn->prepare("SELECT * FROM perros");
+    $stmt=$conex->prepare("SELECT * FROM perros");
 }
 $stmt->execute();
 $result = $stmt->get_result();

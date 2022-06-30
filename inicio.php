@@ -18,7 +18,7 @@
   <a class="nuevo btn btn-dark btn-sm me-md-2" href="registro.php"><i style="color: white" class="fa-solid fa-plus"></i> Nuevo</a>
   <h1>CRUD</h1>
   <?php
-  $conex = mysqli_connect("localhost", "gaston", "dispensadorm2", "dispensadorm2");
+  include "config.php";
   $tiempoActualUnix = time() - 10800;
   $horaActual = gmdate('H:i:s', $tiempoActualUnix);
   echo '<p>Hora actual: ' . $horaActual . '</p>';
@@ -26,7 +26,7 @@
   <input type="text" name="search" id="search_text">
   <?php
   include "config.php";
-  $stmt = $conn->prepare('SELECT * FROM perros ORDER BY identificador DESC');
+  $stmt = $conex->prepare('SELECT * FROM perros ORDER BY identificador DESC');
   $stmt->execute();
   $result = $stmt->get_result();
   ?>

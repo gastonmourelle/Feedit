@@ -1,8 +1,8 @@
 <?php
 
-$conn = new mysqli("localhost","root","","dispensadorm2");
-if($conn -> connect_error){
-    die("Conexión fallida".$conn->connect_error);
+$conex = new mysqli("localhost","root","","dispensadorm2");
+if($conex -> connect_error){
+    die("Conexión fallida".$conex->connect_error);
 }
 
 ?>
