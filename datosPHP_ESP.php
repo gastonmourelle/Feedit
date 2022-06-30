@@ -19,7 +19,7 @@
     $q = $pdo->prepare($sql);
     $q->execute();
     $datos = $q->fetch(PDO::FETCH_ASSOC);
-    $sql2 = "SELECT COUNT(*) AS total FROM logs WHERE rfid = '$UIDresultado' AND horaSalida >= '$diaActual 00:00:01' AND horaSalida <= '$diaActual 23:59:59'";
+    $sql2 = "SELECT COUNT(*)+1 AS total FROM logs WHERE rfid = '$UIDresultado' AND horaSalida BETWEEN '$diaActual 00:00:01' AND '$diaActual 23:59:59'";
     $result = $conex->query($sql2);
     $logs =  $result->fetch_assoc();
 
