@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <html>
+
 <head>
   <!-- https://stackoverflow.com/questions/11497611/php-auto-refreshing-page#:~:text=%3Cmeta%20http%2Dequiv%3D%22refresh%22%20content%3D%22%3C%3Fphp%20echo%20%24sec%3F%3E%3BURL%3D%27%3C%3Fphp%20echo%20%24page%3F%3E%27%22%3E -----RECARGAR PAGINA CADA 10 SEG -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,46 +24,75 @@
   $horaActual = gmdate('H:i:s', $tiempoActualUnix);
   echo '<p>Hora actual: ' . $horaActual . '</p>';
   ?>
-  <input type="text" name="search" id="search_text">
+  <input type="text" name="buscar" id="buscar">
   <?php
   include "config.php";
   $stmt = $conex->prepare('SELECT * FROM perros ORDER BY identificador DESC');
   $stmt->execute();
   $result = $stmt->get_result();
   ?>
-  <table id="table_data">
+  <table id="datos-tabla">
     <thead>
       <tr>
         <th>#</th>
         <th>Nombre</th>
         <th>Código</th>
+        <th>Sexo</th>
+        <th>Raza</th>
+        <th>Edad</th>
+        <th>Peso</th>
+        <th>Ración diaria</th>
+        <th>Turnos diarios</th>
+        <th>Tiempo de espera</th>
+        <th>Veces que ya comió</th>
+        <th>Última comida</th>
+        <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
-      <?php while ($row = $result->fetch_assoc()) { ?>
-        <tr>
-          <td><?= $row['identificador'] ?></td>
-          <td><?= $row['nombre'] ?></td>
-          <td><?= $row['id'] ?></td>
-        </tr>
-      <?php } ?>
-    </tbody>
-  </table>
+      <?php
+      include 'db.php';
+      $pdo = Base::connect();
+      $sql = 'SELECT * FROM perros ORDER BY identificador DESC';
+      foreach ($pdo->query($sql) as $row) {
+        echo '<tr>';
+        echo '<td><b>'. $row['identificador'] . '</b></td>';
+        echo '<td><b>'. $row['nombre'] . '</b></td>';
+        echo '<td>'. $row['id'] . '</td>';
+        echo '<td>'. $row['sexo'] . '</td>';
+        echo '<td>'. $row['raza'] . '</td>';
+        echo '<td>'. $row['edad'] . '</td>';
+        echo '<td>'. $row['peso'] . 'kg</td>';
+        echo '<td>'. $row['racion'] . 'g</td>';
+        echo '<td>'. $row['turnos'] . '</td>';
+        echo '<td>'. $row['cooldown'] . 'hs</td>';
+        echo '<td>'. $row['veces'] . '</td>';
+        echo '<td>'. $row['ultimaSalida'] . '</td>';
+        echo '<td><a href="editar.php?id='.$row['id'].'"><i style="font-size:16px;margin-right:20px;" class="fa-solid fa-pen">Editar</i></a>';
+  			echo ' ';
+  			echo '<a href="db_borrar.php?id='.$row['id'].'"><i style="font-size:16px;" class="fa-solid fa-trash-can">Borrar</i></a>';
+				echo '</td>';
+        echo '</tr>';
+      }
+      Base::disconnect();
+      ?>
+      </tbody>
+    </table>
 
   <script type="text/javascript" src="js/jquery.min.js"></script>
   <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script> -->
   <script type="text/javascript">
     $(document).ready(function() {
-      $("#search_text").keyup(function() {
-        var search = $(this).val();
+      $("#buscar").keyup(function() {
+        var consulta = $(this).val();
         $.ajax({
-          url: 'action.php',
+          url: 'buscar.php',
           method: 'POST',
           data: {
-            query: search
+            query: consulta
           },
-          success: function(response) {
-            $("#table_data").html(response);
+          success: function(respuesta) {
+            $("#datos-tabla").html(respuesta);
           }
         });
       });
