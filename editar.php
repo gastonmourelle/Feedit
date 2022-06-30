@@ -108,13 +108,6 @@
 					</div>
 
 					<div>
-						<label>Última comida</label>
-						<div>
-							<input name="ultimaSalida" type="date"  placeholder="" value="<?php echo $datos['ultimaSalida'];?>" required>
-						</div>
-					</div>
-
-					<div>
 						<button type="submit">Actualizar</button>
 						<a href="inicio.php">Volver</a>
 					</div>
