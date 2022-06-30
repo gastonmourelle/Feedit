@@ -29,7 +29,7 @@
     $tiempoActual = gmdate('Y-m-d H:i:s', $tiempoActualUnix);
     
     $diferenciaTiempoUnix = $tiempoActualUnix - $ultimaSalidaUnix;
-    $cooldownUnix = 10; /* <--- cambiarlo por *3600 */
+    $cooldownUnix = 20; /* <--- cambiarlo por $cooldown*3600 */
 
     if ($entro == 0 AND $turnos > $veces AND $diferenciaTiempoUnix >= $cooldownUnix){
         c("puede comer");
@@ -39,9 +39,6 @@
 
         $query2 = "UPDATE perros SET entro = 1 WHERE id = '$UIDresultado'";
         mysqli_query($conex,$query2);
-
-        $query3 = "UPDATE perros SET foto = 'entra' WHERE id = '$UIDresultado'";
-        mysqli_query($conex,$query3);
     }
     else if ($entro == 1){
 

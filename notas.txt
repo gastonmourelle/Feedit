@@ -1,7 +1,3 @@
 - resetear veces con crone? o interval?
 
-- como registrar la hora de salida del perro?
-
 - imagenes en el crud
-
-- busqueda con ajax en inicio, filtros y ordenar por
