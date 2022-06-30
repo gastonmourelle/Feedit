@@ -24,15 +24,33 @@ if($result->num_rows>0){
         <th>#</th>
         <th>Nombre</th>
         <th>Código</th>
+        <th>Sexo</th>
+        <th>Raza</th>
+        <th>Edad</th>
+        <th>Peso</th>
+        <th>Ración diaria</th>
+        <th>Turnos diarios</th>
+        <th>Tiempo de espera</th>
+        <th>Veces que ya comió</th>
+        <th>Última comida</th>
         <th>Acciones</th>
       </tr>
     </thead>
     <tbody>";
     while($row=$result->fetch_assoc()){
         $salida .= "<tr>
-        <td>" . $row['identificador']."</td>
-        <td>" . $row['nombre']."</td>
+        <td><b>" . $row['identificador']."</b></td>
+        <td><b>" . $row['nombre']."</b></td>
         <td>" . $row['id']."</td>
+        <td>" . $row['sexo']."</td>
+        <td>" . $row['raza']."</td>
+        <td>" . $row['edad']."</td>
+        <td>" . $row['peso']."kg</td>
+        <td>" . $row['racion']."g</td>
+        <td>" . $row['turnos']."h</td>
+        <td>" . $row['cooldown']."</td>
+        <td>" . $row['veces']."</td>
+        <td>" . $row['ultimaSalida']."</td>
         <td>
         <a href='editar.php?id=".$row['id']."'><i style='font-size:16px;margin-right:20px;' class='fa-solid fa-pen'>Editar</i></a>
   			<a href='db_borrar.php?id=".$row['id']."'><i style='font-size:16px;' class='fa-solid fa-trash-can'>Borrar</i></a>

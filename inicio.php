@@ -65,7 +65,7 @@
         echo '<td>'. $row['peso'] . 'kg</td>';
         echo '<td>'. $row['racion'] . 'g</td>';
         echo '<td>'. $row['turnos'] . '</td>';
-        echo '<td>'. $row['cooldown'] . 'hs</td>';
+        echo '<td>'. $row['cooldown'] . 'h</td>';
         echo '<td>'. $row['veces'] . '</td>';
         echo '<td>'. $row['ultimaSalida'] . '</td>';
         echo '<td><a href="editar.php?id='.$row['id'].'"><i style="font-size:16px;margin-right:20px;" class="fa-solid fa-pen">Editar</i></a>';
