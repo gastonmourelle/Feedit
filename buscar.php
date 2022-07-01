@@ -22,6 +22,7 @@ if($result->num_rows>0){
     $salida = "<thead>
       <tr>
         <th>#</th>
+        <th>Foto</th>
         <th>Nombre</th>
         <th>Código</th>
         <th>Sexo</th>
@@ -40,6 +41,7 @@ if($result->num_rows>0){
     while($row=$result->fetch_assoc()){
         $salida .= "<tr>
         <td><b>" . $row['identificador']."</b></td>
+        <td><img src='img/" . $row['foto'] . "' height='100px'></td>
         <td><b>" . $row['nombre']."</b></td>
         <td>" . $row['id']."</td>
         <td>" . $row['sexo']."</td>

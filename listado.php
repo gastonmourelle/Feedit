@@ -27,12 +27,6 @@
   <a class="verificar btn btn-outline-dark btn-sm" href="verificacion.php"><i class="fa-solid fa-check"></i> Verificar</a>
   <a class="nuevo btn btn-dark btn-sm me-md-2" href="registro.php"><i style="color: white" class="fa-solid fa-plus"></i> Nuevo</a>
   <h1>CRUD</h1>
-  <?php
-  include "config.php";
-  $tiempoActualUnix = time() - 10800;
-  $horaActual = gmdate('H:i:s', $tiempoActualUnix);
-  echo '<p>Hora actual: ' . $horaActual . '</p>';
-  ?>
   <input type="text" name="buscar" id="buscar">
   <?php
   include "config.php";
