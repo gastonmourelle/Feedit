@@ -20,8 +20,8 @@ $result = $stmt->get_result();
 if($result->num_rows>0){
     $salida = "<thead>
       <tr>
-      <th>#</th>
-      <th>Foto</th>
+      <th style='width:5%'>#</th>
+      <th></th>
       <th>Nombre</th>
       <th>Código</th>
       <th>Sexo</th>

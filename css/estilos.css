@@ -21,18 +21,18 @@ body {
 a {
   color: inherit;
   text-decoration: none;
-} 
+}
 
-.table {
+.table{
   text-align: center;
 }
 
 .table tr th{
-  padding: 20px 0;
+  padding: 20px;
 }
 
 .table tr td{
-  padding: 30px 0;
+  padding: 20px;
 }
 
 .feather {
