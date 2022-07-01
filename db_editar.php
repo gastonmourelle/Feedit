@@ -19,11 +19,6 @@
         $cooldown = $_POST['cooldown'];
         $veces = $_POST['veces'];
          
-        $validar_img = $_FILES['foto']['type']=="image/jpg" || 
-        $_FILES['foto']['type']=="image/jpeg" || 
-        $_FILES['foto']['type']=="image/png"
-        ;
-        if($validar_img){
         $sql1 = "SELECT * FROM perros WHERE id='$id'";
         $query1 = mysqli_query($conex, $sql1);
         foreach($query1 as $row){
@@ -56,10 +51,5 @@
             $_SESSION['exito'] = "No se pudo editar el registro";
             header("Location: listado.php");
         }
-    }
-    else{
-        $_SESSION['error'] = "Formato de archivo no soportado";
-        header("Location: listado.php");
-    }
     }
 ?>
