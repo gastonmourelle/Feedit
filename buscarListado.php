@@ -39,9 +39,9 @@ if($result->num_rows>0){
     <tbody>";
     while($row=$result->fetch_assoc()){
         $salida .= "<tr style='vertical-align: middle;'>
-        <td><b>" . $row['identificador']."</b></td>
-        <td><img src='img/" . $row['foto'] . "' alt='' style='object-fit: cover;height:100px;width:100px' class='rounded-circle'></td>
-        <td><b>" . $row['nombre']."</b></td>
+        <td><a href='ampliacion.php?identificador=" . $row['identificador'] . "'><b>" . $row['identificador'] . "</b></a></td>
+        <td><a href='ampliacion.php?identificador=" . $row['identificador'] . "'><img src='img/" . $row['foto'] . "' alt='' style='object-fit: cover;height:100px;width:100px' class='rounded-circle'></a></td>
+        <td><a href='ampliacion.php?identificador=" . $row['identificador'] . "'><b>" . $row['nombre']."</b></a></td>
         <td>" . $row['id']."</td>
         <td>" . $row['sexo']."</td>
         <td>" . $row['raza']."</td>

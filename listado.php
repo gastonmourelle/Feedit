@@ -69,9 +69,9 @@
           $sql = 'SELECT * FROM perros ORDER BY identificador DESC';
           foreach ($pdo->query($sql) as $row) {
             echo '<tr style="vertical-align: middle;">';
-            echo '<td><b>' . $row['identificador'] . '</b></td>';
-            echo '<td><img src="img/' . $row['foto'] . '" alt="" style="object-fit: cover;height:100px;width:100px" class="rounded-circle"></td>';
-            echo '<td><b>' . $row['nombre'] . '</b></td>';
+            echo '<td><a href="ampliacion.php?identificador=' . $row['identificador'] . '"><b>' . $row['identificador'] . '</b></a></td>';
+            echo '<td><a href="ampliacion.php?identificador=' . $row['identificador'] . '"><img src="img/' . $row['foto'] . '" alt="" style="object-fit: cover;height:100px;width:100px" class="rounded-circle"></a></td>';
+            echo '<td><a href="ampliacion.php?identificador=' . $row['identificador'] . '"><b>' . $row['nombre'] . '</b></a></td>';
             echo '<td>' . $row['id'] . '</td>';
             echo '<td>' . $row['sexo'] . '</td>';
             echo '<td>' . $row['raza'] . '</td>';
