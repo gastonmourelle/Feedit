@@ -90,7 +90,7 @@
           }
           Base::disconnect();
           ?>
-        </tbody>
+      </table>
     </div>
 
   </main>

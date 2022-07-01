@@ -40,24 +40,24 @@
     </div>
 
     <div class="row row-cols-1 row-cols-md-5 g-4">
-    <?php
-    include 'db.php';
-    $pdo = Base::connect();
-    $sql = 'SELECT * FROM perros ORDER BY identificador DESC';
-    foreach ($pdo->query($sql) as $row) {
-      echo '<div class="col">';
-      echo '<div class="card h-100">';
-      echo '<img src="img/'.$row['foto'].'" class="card-img-top" alt="">';
-      echo '<div class="card-body">';
-      echo '<h5 class="card-title">'.$row['nombre'].'</h5>';
-      echo '<p class="card-text">- '.$row['raza'].'</p>';
-      echo '</div>';
-      echo '<div class="card-footer">';
-      echo '<small class="text-muted">Código: '.$row['id'].'<a href="db_borrar.php?id=' . $row['id'] . '"><span data-feather="trash-2"></span></a><a href="editar.php?id=' . $row['id'] . '"><span style="margin-right:20px;" data-feather="edit-2"></span></a></small>';
-      echo '</div></div></div>';
-    }
-    Base::disconnect();
-    ?>
+      <?php
+      include 'db.php';
+      $pdo = Base::connect();
+      $sql = 'SELECT * FROM perros ORDER BY identificador DESC';
+      foreach ($pdo->query($sql) as $row) {
+        echo '<div class="col">';
+        echo '<div class="card h-100">';
+        echo '<img src="img/' . $row['foto'] . '" class="card-img-top" alt="">';
+        echo '<div class="card-body">';
+        echo '<h5 class="card-title">' . $row['nombre'] . '</h5>';
+        echo '<p class="card-text">- ' . $row['raza'] . '</p>';
+        echo '</div>';
+        echo '<div class="card-footer">';
+        echo '<small class="text-muted">Código: ' . $row['id'] . '<a href="db_borrar.php?id=' . $row['id'] . '"><span data-feather="trash-2"></span></a><a href="editar.php?id=' . $row['id'] . '"><span style="margin-right:20px;" data-feather="edit-2"></span></a></small>';
+        echo '</div></div></div>';
+      }
+      Base::disconnect();
+      ?>
     </div>
 
   </main>
