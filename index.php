@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <html>
-
 <head>
-  <!-- https://stackoverflow.com/questions/11497611/php-auto-refreshing-page#:~:text=%3Cmeta%20http%2Dequiv%3D%22refresh%22%20content%3D%22%3C%3Fphp%20echo%20%24sec%3F%3E%3BURL%3D%27%3C%3Fphp%20echo%20%24page%3F%3E%27%22%3E -----RECARGAR PAGINA CADA 10 SEG -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
-  <link rel="stylesheet" href="css/estilos.css"> -->
+  <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.7/dist/flowbite.min.css" />
   <title>Listado</title>
 </head>
 
@@ -22,6 +20,7 @@
     unset($_SESSION['error']);
   }
   ?>
+
   <a class="verificar btn btn-outline-dark btn-sm" href="verificacion.php"><i class="fa-solid fa-check"></i> Verificar</a>
   <a class="nuevo btn btn-dark btn-sm me-md-2" href="registro.php"><i style="color: white" class="fa-solid fa-plus"></i> Nuevo</a>
   <h1>CRUD</h1>
@@ -83,6 +82,7 @@
   </table>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
       $("#buscar").keyup(function() {

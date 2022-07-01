@@ -12,16 +12,6 @@ file_put_contents('uid.php', $escribir);
 	<meta charset="utf-8">
 	<!-- <link rel="stylesheet" href="css/estilos.css"> -->
 	<link rel="stylesheet" href="css/temp.css">
-	<script src="js/jquery.min.js"></script>
-	<script>
-		$(document).ready(function() {
-			$("#obtenerUID").load("uid.php");
-			setInterval(function() {
-				$("#obtenerUID").load("uid.php");
-			}, 500);
-		});
-	</script>
-
 	<title>Registro</title>
 </head>
 
@@ -135,6 +125,16 @@ file_put_contents('uid.php', $escribir);
 
 	</div>
 	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$("#obtenerUID").load("uid.php");
+			setInterval(function() {
+				$("#obtenerUID").load("uid.php");
+			}, 500);
+		});
+	</script>
 </body>
 
 </html>

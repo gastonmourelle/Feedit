@@ -9,17 +9,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta charset="utf-8">
 		<!-- <link rel="stylesheet" href="css/estilos.css"> -->
-		<link rel="stylesheet" href="css/temp.css">
-		<script src="js/jquery.min.js"></script>
-		<script>
-			$(document).ready(function(){
-				 $("#obtenerUID").load("uid.php");
-				setInterval(function() {
-					$("#obtenerUID").load("uid.php");	
-				}, 500);
-			});
-		</script>
-		
+		<link rel="stylesheet" href="css/temp.css">		
 		<title>Verificación</title>
 	</head>
 	
@@ -99,7 +89,15 @@
 				</table>
 			</form>
 		</div>
-
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script>
+			$(document).ready(function(){
+				 $("#obtenerUID").load("uid.php");
+				setInterval(function() {
+					$("#obtenerUID").load("uid.php");	
+				}, 500);
+			});
+		</script>
 		<script>
 			var var1 = setInterval(tiempo1, 1000);
 			var var2 = setInterval(tiempo2, 1000);
