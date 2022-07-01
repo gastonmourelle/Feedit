@@ -18,10 +18,9 @@
         $veces = $_POST['veces'];
         $ultimaSalida = $_POST['ultimaSalida'];
 
-        $validar_img = $_FILES['foto']['type']=="image/jpg" || 
-        $_FILES['foto']['type']=="image/jpeg" || 
-        $_FILES['foto']['type']=="image/png"
-        ;
+        $formatos = array('image/jpg','image/jpeg','image/png');
+        $validar_img = in_array($_FILES['foto']['type'],$formatos);
+
         if($validar_img){
             if(file_exists("img/" . $_FILES["foto"]["name"])){
             $guardar = $_FILES["foto"]["name"];

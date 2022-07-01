@@ -18,7 +18,7 @@
         $turnos = $_POST['turnos'];
         $cooldown = $_POST['cooldown'];
         $veces = $_POST['veces'];
-         
+        
         $sql1 = "SELECT * FROM perros WHERE id='$id'";
         $query1 = mysqli_query($conex, $sql1);
         foreach($query1 as $row){
