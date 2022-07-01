@@ -14,7 +14,16 @@
 </head>
 
 <body>
-
+  <?php
+  if (isset($_SESSION['exito']) && $_SESSION['exito'] != '') {
+    echo $_SESSION['exito'];
+    unset($_SESSION['exito']);
+  }
+  if (isset($_SESSION['error']) && $_SESSION['error'] != '') {
+    echo $_SESSION['error'];
+    unset($_SESSION['error']);
+  }
+  ?>
   <a class="verificar btn btn-outline-dark btn-sm" href="verificacion.php"><i class="fa-solid fa-check"></i> Verificar</a>
   <a class="nuevo btn btn-dark btn-sm me-md-2" href="registro.php"><i style="color: white" class="fa-solid fa-plus"></i> Nuevo</a>
   <h1>CRUD</h1>
@@ -57,29 +66,29 @@
       $sql = 'SELECT * FROM perros ORDER BY identificador DESC';
       foreach ($pdo->query($sql) as $row) {
         echo '<tr>';
-        echo '<td><b>'. $row['identificador'] . '</b></td>';
-        echo '<td><img src="img/'.$row['foto'].'" alt="" height="100px"></td>';
-        echo '<td><b>'. $row['nombre'] . '</b></td>';
-        echo '<td>'. $row['id'] . '</td>';
-        echo '<td>'. $row['sexo'] . '</td>';
-        echo '<td>'. $row['raza'] . '</td>';
-        echo '<td>'. $row['edad'] . '</td>';
-        echo '<td>'. $row['peso'] . 'kg</td>';
-        echo '<td>'. $row['racion'] . 'g</td>';
-        echo '<td>'. $row['turnos'] . '</td>';
-        echo '<td>'. $row['cooldown'] . 'h</td>';
-        echo '<td>'. $row['veces'] . '</td>';
-        echo '<td>'. $row['ultimaSalida'] . '</td>';
-        echo '<td><a href="editar.php?id='.$row['id'].'"><i style="font-size:16px;margin-right:20px;" class="fa-solid fa-pen">Editar</i></a>';
-  			echo ' ';
-  			echo '<a href="db_borrar.php?id='.$row['id'].'"><i style="font-size:16px;" class="fa-solid fa-trash-can">Borrar</i></a>';
-				echo '</td>';
+        echo '<td><b>' . $row['identificador'] . '</b></td>';
+        echo '<td><img src="img/' . $row['foto'] . '" alt="" height="100px"></td>';
+        echo '<td><b>' . $row['nombre'] . '</b></td>';
+        echo '<td>' . $row['id'] . '</td>';
+        echo '<td>' . $row['sexo'] . '</td>';
+        echo '<td>' . $row['raza'] . '</td>';
+        echo '<td>' . $row['edad'] . '</td>';
+        echo '<td>' . $row['peso'] . 'kg</td>';
+        echo '<td>' . $row['racion'] . 'g</td>';
+        echo '<td>' . $row['turnos'] . '</td>';
+        echo '<td>' . $row['cooldown'] . 'h</td>';
+        echo '<td>' . $row['veces'] . '</td>';
+        echo '<td>' . $row['ultimaSalida'] . '</td>';
+        echo '<td><a href="editar.php?id=' . $row['id'] . '"><i style="font-size:16px;margin-right:20px;" class="fa-solid fa-pen">Editar</i></a>';
+        echo ' ';
+        echo '<a href="db_borrar.php?id=' . $row['id'] . '"><i style="font-size:16px;" class="fa-solid fa-trash-can">Borrar</i></a>';
+        echo '</td>';
         echo '</tr>';
       }
       Base::disconnect();
       ?>
-      </tbody>
-    </table>
+    </tbody>
+  </table>
 
   <script type="text/javascript" src="js/jquery.min.js"></script>
   <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script> -->

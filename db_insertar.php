@@ -17,34 +17,35 @@
         $cooldown = $_POST['cooldown'];
         $veces = $_POST['veces'];
         $ultimaSalida = $_POST['ultimaSalida'];
-        
-        if(file_exists("img/" . $_FILES["foto"]["name"])){
+
+        $validar_img = $_FILES['foto']['type']=="image/jpg" || 
+        $_FILES['foto']['type']=="image/jpeg" || 
+        $_FILES['foto']['type']=="image/png"
+        ;
+        if($validar_img){
+            if(file_exists("img/" . $_FILES["foto"]["name"])){
             $guardar = $_FILES["foto"]["name"];
-            $_SESSION['status'] = "Esta imagen ya existe '.$guardar.'";
+            $_SESSION['error'] = "Esta imagen ya existe '.$guardar.'";
             header("Location: registro.php");
-        }
-        else{
+            }
+            else{
             $sql1 = "INSERT INTO perros (nombre,foto,id,sexo,raza,edad,peso,racion,turnos,cooldown,veces,ultimaSalida) VALUES ('$nombre','$foto','$id','$sexo','$raza','$edad','$peso','$racion','$turnos','$cooldown','$veces','$ultimaSalida') ON DUPLICATE KEY UPDATE id=id;";
             $query1 = mysqli_query($conex,$sql1);
 
             if($query1){
                 move_uploaded_file($_FILES["foto"]["tmp_name"], "img/".$_FILES["foto"]["name"]);
-                $_SESSION['success'] = "Registro añadido";
+                $_SESSION['exito'] = "Registro añadido";
                 header("Location: listado.php");
             }
             else{
-                $_SESSION['status'] = "Error al añadir registro";
+                $_SESSION['error'] = "Error al añadir registro";
                 header("Location: listado.php");
             }
-        }/* 
-
-        $pdo = Base::connect();
-		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$sql = "INSERT INTO perros (identificador,nombre,foto,id,sexo,raza,edad,peso,racion,turnos,cooldown,veces,ultimaSalida) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE id=id;";
-		$q = $pdo->prepare($sql);
-		$q->execute(array($identificador,$nombre,$foto,$id,$sexo,$raza,$edad,$peso,$racion,$turnos,$cooldown,$veces,$ultimaSalida));
-        move_uploaded_file($_FILES["foto"]["tmp_name"], "img/".$_FILES["foto"]["name"]);
-		Base::disconnect();
-		header("Location: listado.php"); */
+        }
     }
+    else{
+        $_SESSION['error'] = "Formato de archivo no soportado";
+        header("Location: listado.php");
+    }
+}
 ?>
