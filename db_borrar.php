@@ -9,11 +9,19 @@ if (!empty($_GET['id'])) {
 
 if (!empty($_POST)) {
     $id = $_POST['id'];
+    $foto = $_POST['foto'];
 
-    $sql1 = "DELETE FROM perros WHERE id = '$id'";
+    $sql1 = "SELECT * FROM perros WHERE id='$id'";
     $query1 = mysqli_query($conex, $sql1);
+    foreach($query1 as $row){
+        $ruta = "img/".$row['foto'];
+        }
 
-    if ($query1) {
+    $sql2 = "DELETE FROM perros WHERE id = '$id'";
+    $query2 = mysqli_query($conex, $sql2);
+
+    if ($query2) {
+        unlink($ruta);
         $_SESSION['exito'] = "Registro eliminado con éxito";
         header("Location: listado.php");
     } else {
