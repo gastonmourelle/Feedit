@@ -1,15 +1,15 @@
 <?php
     include 'db.php';
-    $id = null;
-    if ( !empty($_GET['id'])) {
-        $id = $_REQUEST['id'];
+    $identificador = null;
+    if ( !empty($_GET['identificador'])) {
+        $identificador = $_REQUEST['identificador'];
     }
      
     $pdo = Base::connect();
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	$sql = "SELECT * FROM perros where id = ?";
+	$sql = "SELECT * FROM perros where identificador = ?";
 	$q = $pdo->prepare($sql);
-	$q->execute(array($id));
+	$q->execute(array($identificador));
 	$datos = $q->fetch(PDO::FETCH_ASSOC);
 	Base::disconnect();
 ?>
@@ -33,7 +33,7 @@
 					<p id="porDefecto" hidden><?php echo $datos['sexo'];?></p>
 				</div>
 		 
-				<form action="db_editar.php?id=<?php echo $id?>" method="post" enctype="multipart/form-data">
+				<form action="db_editar.php?identificador=<?php echo $identificador?>" method="post" enctype="multipart/form-data">
 					<div>
 						<label>Código</label>
 						<div>

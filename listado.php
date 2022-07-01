@@ -82,9 +82,9 @@
             echo '<td>' . $row['cooldown'] . 'h</td>';
             echo '<td>' . $row['veces'] . '</td>';
             echo '<td>' . $row['ultimaSalida'] . '</td>';
-            echo '<td><a href="editar.php?id=' . $row['id'] . '"><span style="margin-right:20px;" data-feather="edit-2"></span></a>';
+            echo '<td><a href="editar.php?identificador=' . $row['identificador'] . '"><span style="margin-right:20px;" data-feather="edit-2"></span></a>';
             echo ' ';
-            echo '<a href="db_borrar.php?id=' . $row['id'] . '"><span data-feather="trash-2"></span></a>';
+            echo '<a href="db_borrar.php?identificador=' . $row['identificador'] . '"><span data-feather="trash-2"></span></a>';
             echo '</td>';
             echo '</tr>';
           }
@@ -102,7 +102,7 @@
       $("#buscar").keyup(function() {
         var consulta = $(this).val();
         $.ajax({
-          url: 'buscar.php',
+          url: 'buscarListado.php',
           method: 'POST',
           data: {
             query: consulta

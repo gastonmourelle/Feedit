@@ -1,9 +1,9 @@
 <?php
     include "config.php";
  
-    $id = null;
-    if ( !empty($_GET['id'])) {
-        $id = $_REQUEST['id'];
+    $identificador = null;
+    if ( !empty($_GET['identificador'])) {
+        $identificador = $_REQUEST['identificador'];
     }
      
     if ( !empty($_POST)) {
@@ -19,7 +19,7 @@
         $cooldown = $_POST['cooldown'];
         $veces = $_POST['veces'];
         
-        $sql1 = "SELECT * FROM perros WHERE id='$id'";
+        $sql1 = "SELECT * FROM perros WHERE identificador='$identificador'";
         $query1 = mysqli_query($conex, $sql1);
         foreach($query1 as $row){
             if ($foto == NULL){
@@ -33,7 +33,7 @@
             }
         }
 
-		$sql2 = "UPDATE perros SET nombre = '$nombre', foto = '$img_datos', sexo = '$sexo', raza = '$raza', edad ='$edad', peso ='$peso', racion ='$racion', turnos ='$turnos', cooldown ='$cooldown', veces ='$veces' WHERE id = '$id'";
+		$sql2 = "UPDATE perros SET nombre = '$nombre', foto = '$img_datos', sexo = '$sexo', raza = '$raza', edad ='$edad', peso ='$peso', racion ='$racion', turnos ='$turnos', cooldown ='$cooldown', veces ='$veces' WHERE identificador = '$identificador'";
         $query2 = mysqli_query($conex,$sql2);
 
         if($query2){

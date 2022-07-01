@@ -1,23 +1,23 @@
 <?php
 include 'db.php';
 include 'config.php';
-$id = 0;
+$identificador = 0;
 
-if (!empty($_GET['id'])) {
-    $id = $_REQUEST['id'];
+if (!empty($_GET['identificador'])) {
+    $identificador = $_REQUEST['identificador'];
 }
 
 if (!empty($_POST)) {
-    $id = $_POST['id'];
+    $identificador = $_POST['identificador'];
     $foto = $_POST['foto'];
 
-    $sql1 = "SELECT * FROM perros WHERE id='$id'";
+    $sql1 = "SELECT * FROM perros WHERE identificador='$identificador'";
     $query1 = mysqli_query($conex, $sql1);
     foreach($query1 as $row){
         $ruta = "img/".$row['foto'];
         }
 
-    $sql2 = "DELETE FROM perros WHERE id = '$id'";
+    $sql2 = "DELETE FROM perros WHERE identificador = '$identificador'";
     $query2 = mysqli_query($conex, $sql2);
 
     if ($query2) {
@@ -46,7 +46,7 @@ if (!empty($_POST)) {
 
         <div>
             <form action="db_borrar.php" method="post">
-                <input type="hidden" name="id" value="<?php echo $id; ?>" />
+                <input type="hidden" name="identificador" value="<?php echo $identificador; ?>" />
                 <p>¿Está seguro que desea eliminar este registro?</p>
                 <div>
                     <button type="submit">Si</button>

@@ -46,6 +46,7 @@
       $sql = 'SELECT * FROM perros ORDER BY identificador DESC';
       foreach ($pdo->query($sql) as $row) {
         echo '<div class="col">';
+        echo '<a href="ampliacion.php?identificador='.$row['identificador'].'">';
         echo '<div class="card h-100">';
         echo '<img src="img/' . $row['foto'] . '" class="card-img-top" alt="">';
         echo '<div class="card-body">';
@@ -53,8 +54,8 @@
         echo '<p class="card-text">- ' . $row['raza'] . '</p>';
         echo '</div>';
         echo '<div class="card-footer">';
-        echo '<small class="text-muted">Código: ' . $row['id'] . '<a href="db_borrar.php?id=' . $row['id'] . '"><span data-feather="trash-2"></span></a><a href="editar.php?id=' . $row['id'] . '"><span style="margin-right:20px;" data-feather="edit-2"></span></a></small>';
-        echo '</div></div></div>';
+        echo '<small class="text-muted">Código: ' . $row['id'] . '<a href="db_borrar.php?identificador=' . $row['identificador'] . '"><span data-feather="trash-2"></span></a><a href="editar.php?identificador=' . $row['identificador'] . '"><span style="margin-right:20px;" data-feather="edit-2"></span></a></small>';
+        echo '</div></div></a></div>';
       }
       Base::disconnect();
       ?>

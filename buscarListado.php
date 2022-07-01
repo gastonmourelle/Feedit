@@ -53,8 +53,8 @@ if($result->num_rows>0){
         <td>" . $row['veces']."</td>
         <td>" . $row['ultimaSalida']."</td>
         <td>
-        <a href='editar.php?id=".$row['id']."'><span style='margin-right:20px;' data-feather='edit-2'></span></a>
-  			<a href='db_borrar.php?id=".$row['id']."'><span data-feather='trash-2'></span></a>
+        <a href='editar.php?identificador=".$row['identificador']."'><span style='margin-right:20px;' data-feather='edit-2'></span></a>
+  			<a href='db_borrar.php?identificador=".$row['identificador']."'><span data-feather='trash-2'></span></a>
         </td>
       </tr>";
     }
