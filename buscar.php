@@ -1,5 +1,4 @@
 <?php
-
 include "config.php";
 $salida = "";
 
@@ -21,27 +20,27 @@ $result = $stmt->get_result();
 if($result->num_rows>0){
     $salida = "<thead>
       <tr>
-        <th>#</th>
-        <th>Foto</th>
-        <th>Nombre</th>
-        <th>Código</th>
-        <th>Sexo</th>
-        <th>Raza</th>
-        <th>Edad</th>
-        <th>Peso</th>
-        <th>Ración diaria</th>
-        <th>Turnos diarios</th>
-        <th>Tiempo de espera</th>
-        <th>Veces que ya comió</th>
-        <th>Última comida</th>
-        <th>Acciones</th>
+      <th data-type='number'>#</th>
+      <th>Foto</th>
+      <th>Nombre</th>
+      <th>Código</th>
+      <th>Sexo</th>
+      <th>Raza</th>
+      <th data-type='number'>Edad</th>
+      <th data-type='number'>Peso</th>
+      <th data-type='number'>Ración diaria</th>
+      <th data-type='number'>Turnos diarios</th>
+      <th data-type='number'>Tiempo de espera</th>
+      <th data-type='number'>Veces que ya comió</th>
+      <th data-type='date'>Última comida</th>
+      <th>Acciones</th>
       </tr>
     </thead>
     <tbody>";
     while($row=$result->fetch_assoc()){
-        $salida .= "<tr>
+        $salida .= "<tr style='vertical-align: middle;'>
         <td><b>" . $row['identificador']."</b></td>
-        <td><img src='img/" . $row['foto'] . "' height='100px'></td>
+        <td><img src='img/" . $row['foto'] . "' alt='' style='object-fit: cover;height:100px;width:100px' class='rounded-circle'></td>
         <td><b>" . $row['nombre']."</b></td>
         <td>" . $row['id']."</td>
         <td>" . $row['sexo']."</td>
@@ -54,8 +53,8 @@ if($result->num_rows>0){
         <td>" . $row['veces']."</td>
         <td>" . $row['ultimaSalida']."</td>
         <td>
-        <a href='editar.php?id=".$row['id']."'><i style='font-size:16px;margin-right:20px;' class='fa-solid fa-pen'>Editar</i></a>
-  			<a href='db_borrar.php?id=".$row['id']."'><i style='font-size:16px;' class='fa-solid fa-trash-can'>Borrar</i></a>
+        <a href='editar.php?id=".$row['id']."'><span style='margin-right:20px;' data-feather='edit-2'></span></a>
+  			<a href='db_borrar.php?id=".$row['id']."'><span data-feather='trash-2'></span></a>
         </td>
       </tr>";
     }
@@ -65,5 +64,4 @@ if($result->num_rows>0){
 else{
     echo "No se han encontrado resultados";
 }
-
 ?>
