@@ -46,19 +46,19 @@
       <table class="table table-striped table-sm table-hover tabla" id="datos-tabla" data-sorting="true">
         <thead>
           <tr>
-            <th data-type="number">#</th>
+            <th>#</th>
             <th>Foto</th>
             <th>Nombre</th>
             <th>Código</th>
             <th>Sexo</th>
             <th>Raza</th>
-            <th data-type="number">Edad</th>
-            <th data-type="number">Peso</th>
-            <th data-type="number">Ración diaria</th>
-            <th data-type="number">Turnos diarios</th>
-            <th data-type="number">Tiempo de espera</th>
-            <th data-type="number">Veces que ya comió</th>
-            <th data-type="date">Última comida</th>
+            <th>Edad</th>
+            <th>Peso</th>
+            <th>Ración diaria</th>
+            <th>Turnos diarios</th>
+            <th>Tiempo de espera</th>
+            <th>Veces que ya comió</th>
+            <th>Última comida</th>
             <th>Acciones</th>
           </tr>
         </thead>

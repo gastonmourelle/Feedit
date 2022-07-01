@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
   <title>Inicio</title>
-  <?php include 'comp/head.php'; include 'comp/estilos.php'?>
+  <?php include 'comp/head.php';
+  include 'comp/estilos.php' ?>
 </head>
 
 <body>
@@ -38,11 +39,31 @@
       </div>
     </div>
 
-    
+    <div class="row row-cols-1 row-cols-md-5 g-4">
+    <?php
+    include 'db.php';
+    $pdo = Base::connect();
+    $sql = 'SELECT * FROM perros ORDER BY identificador DESC';
+    foreach ($pdo->query($sql) as $row) {
+      echo '<div class="col">';
+      echo '<div class="card h-100">';
+      echo '<img src="img/'.$row['foto'].'" class="card-img-top" alt="">';
+      echo '<div class="card-body">';
+      echo '<h5 class="card-title">'.$row['nombre'].'</h5>';
+      echo '<p class="card-text">- '.$row['raza'].'</p>';
+      echo '</div>';
+      echo '<div class="card-footer">';
+      echo '<small class="text-muted">Código: '.$row['id'].'<a href="db_borrar.php?id=' . $row['id'] . '"><span data-feather="trash-2"></span></a><a href="editar.php?id=' . $row['id'] . '"><span style="margin-right:20px;" data-feather="edit-2"></span></a></small>';
+      echo '</div></div></div>';
+    }
+    Base::disconnect();
+    ?>
+    </div>
+
   </main>
 
 
-  <?php include 'comp/scripts.php';?>
+  <?php include 'comp/scripts.php'; ?>
   <script type="text/javascript">
     $(document).ready(function() {
       $("#buscar").keyup(function() {
