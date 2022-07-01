@@ -1,3 +1,0 @@
-- resetear veces con crone? o interval?
-
-- imagenes en el crud
