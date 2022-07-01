@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-06-2022 a las 02:51:59
+-- Tiempo de generación: 01-07-2022 a las 05:09:14
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -40,8 +40,18 @@ CREATE TABLE `logs` (
 --
 
 INSERT INTO `logs` (`identificador`, `nombre`, `rfid`, `horaEntrada`, `horaSalida`) VALUES
-(2, 'Rex', '99F5FCB8', '2022-06-29 23:28:00', '2022-06-29 23:28:08'),
-(3, 'Luna', '33159002', '2022-06-29 23:28:23', '2022-06-29 23:28:30');
+(1, 'Rex', '99F5FCB8', '2022-06-30 23:49:44', '2022-06-30 23:49:47'),
+(2, 'Luna', '33159002', '2022-06-30 23:49:56', '2022-06-30 23:49:59'),
+(3, 'Luna', '33159002', '2022-06-30 23:50:14', '2022-06-30 23:50:17'),
+(4, 'Luna', '33159002', '2022-06-30 23:50:30', '2022-06-30 23:50:33'),
+(5, 'Rex', '99F5FCB8', '2022-07-01 00:50:42', '2022-07-01 00:50:46'),
+(6, 'Rex', '99F5FCB8', '2022-07-01 00:50:56', '2022-07-01 00:50:58'),
+(7, 'Rex', '99F5FCB8', '2022-07-01 02:47:03', '2022-07-01 02:47:15'),
+(8, 'Luna', '33159002', '2022-07-01 03:01:15', '2022-07-01 03:01:19'),
+(9, 'Luna', '33159002', '2022-07-01 03:01:54', '2022-07-01 03:01:58'),
+(10, 'Luna', '33159002', '2022-07-01 03:03:01', '2022-07-01 03:03:04'),
+(11, 'Rex', '99F5FCB8', '2022-07-01 03:04:39', '2022-07-01 03:04:44'),
+(12, 'Rex', '99F5FCB8', '2022-07-01 03:06:51', '2022-07-01 03:06:57');
 
 -- --------------------------------------------------------
 
@@ -72,8 +82,8 @@ CREATE TABLE `perros` (
 --
 
 INSERT INTO `perros` (`identificador`, `id`, `nombre`, `foto`, `sexo`, `raza`, `edad`, `peso`, `racion`, `turnos`, `cooldown`, `veces`, `ultimaEntrada`, `ultimaSalida`, `entro`) VALUES
-(1, '99F5FCB8', 'Rex', '', 'Macho', 'Doberman', 6, 40, 500, 3, 6, '1', '2022-06-29 23:28:00', '2022-06-29 23:28:08', 0),
-(2, '33159002', 'Luna', '', 'Hembra', 'Caniche', 6, 10, 300, 3, 4, '1', '2022-06-29 23:28:23', '2022-06-29 23:28:30', 0);
+(1, '99F5FCB8', 'Rex', 'doberman.jpg', 'Macho', 'Doberman', 6, 40, 700, 4, 6, '2', '2022-07-01 03:06:51', '2022-07-01 03:06:57', 0),
+(13, '33159002', 'Luna', 'mascotas-perros-razas-caniche-668x400x80xX.jpg', 'Hembra', 'Caniche', 6, 7, 600, 3, 5, '0', '2022-07-01 03:03:01', '2022-07-01 03:03:04', 0);
 
 -- --------------------------------------------------------
 
@@ -124,13 +134,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `identificador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `identificador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `perros`
 --
 ALTER TABLE `perros`
-  MODIFY `identificador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `identificador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
