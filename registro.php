@@ -18,12 +18,30 @@ file_put_contents('uid.php', $escribir);
 
 <body>
 	<?php
+	session_start();
 	include 'comp/menu.php'; ?>
 
 	<h1 class="h2">Registro</h1>
 	</div>
 
 	<form class="row g-3" action="db_insertar.php" method="POST" enctype="multipart/form-data">
+
+	<?php
+        if (isset($_SESSION['exito'])) { ?>
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Perfecto! </strong> <?php echo $_SESSION['exito'];unset ($_SESSION['exito']); ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php
+        }
+        else if (isset($_SESSION['error'])) { ?>
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error: </strong> <?php echo $_SESSION['error'];unset ($_SESSION['error']); ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php
+        }
+        ?>
 
 		<input id="identificador" name="identificador" type="hidden" placeholder="">
 
@@ -119,6 +137,11 @@ file_put_contents('uid.php', $escribir);
 	<?php include 'comp/scripts.php'; ?>
 	<script>
 		$(document).ready(function() {
+
+			setTimeout(function() {
+          $(".alert").alert('close');
+        }, 4000);
+
 			$("#obtenerUID").load("uid.php");
 			setInterval(function() {
 				$("#obtenerUID").load("uid.php");

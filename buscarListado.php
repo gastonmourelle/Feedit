@@ -38,9 +38,16 @@ if ($result->num_rows > 0) {
     <tbody>";
   while ($row = $result->fetch_assoc()) {
     $estado = $row['entro'];
+    $turnos = $row['turnos'];
+    $veces = $row['veces'];
+    if ($turnos == $veces) {
+      $check = "<span data-feather='check'></span>";
+    } else {
+      $check = "";
+    }
     if ($estado == 0) {
       $color = "color:#adb5bd";
-      $tooltip = "Inactivo";
+      $tooltip = "";
     } else {
       $color = "color:#00AE25";
       $tooltip = "Comiendo";
@@ -52,16 +59,16 @@ if ($result->num_rows > 0) {
         <td>" . $row['id'] . "</td>
         <td>" . $row['sexo'] . "</td>
         <td>" . $row['raza'] . "</td>
-        <td>" . $row['edad'] . "</td>
+        <td>" . $row['edad'] . " años</td>
         <td>" . $row['peso'] . "kg</td>
         <td>" . $row['racion'] . "g</td>
         <td>" . $row['cooldown'] . "h</td>
-        <td>" . $row['veces'] . "<strong> / ".$row['turnos']."</strong></td>
+        <td>" . $check . $row['veces'] . "<strong> / " . $row['turnos'] . "</strong></td>
         <td>" . $row['ultimaSalida'] . "</td>
-        <td><span id='tooltip_comiendo' role='button' class='d-inline-block' tabindex='0' data-toggle='tooltip' title='".$tooltip."'><h4 style='" . $color . "'>●</h4></span></td>
+        <td><span id='tooltip_comiendo' role='button' class='d-inline-block' tabindex='0' data-toggle='tooltip' title='" . $tooltip . "'><h4 style='" . $color . "'>●</h4></span></td>
         <td>
-        <a href='editar.php?identificador=" . $row['identificador'] . "'><span style='margin-right:20px;' data-feather='edit-2'></span></a>
-  			<a class='borrar_btn' href=''><span data-feather='trash-2'></span></a>
+        <a href='editar.php?identificador=" . $row['identificador'] . "'><span style='margin: 0 10px;' data-feather='edit-2'></span></a>
+  			<a class='borrar_btn' href=''><span style='margin: 0 10px;' data-feather='trash-2'></span></a>
         <input class='buscar_id' type='hidden' value='" . $row['identificador'] . "'></input>
         </td>
       </tr>";
@@ -69,7 +76,7 @@ if ($result->num_rows > 0) {
   $salida .= "</tbody>";
   echo $salida;
 } else {
-  echo "No se han encontrado resultados";
+  echo "<h6>No se han encontrados resultados para tu búsqueda</h6>";
 }
 include 'comp/modalBorrar.php';
 include "comp/scripts.php";

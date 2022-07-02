@@ -75,7 +75,7 @@
 								</tr>
 								<tr>
 									<td>Edad (aprox)</td>
-									<td><?php echo $datos['edad'];?></td>
+									<td><?php echo $datos['edad'];?> años</td>
 								</tr>
 								<tr>
 									<td>Peso</td>

@@ -42,6 +42,13 @@
           </div>
         <?php
         }
+        else if (isset($_SESSION['error'])) { ?>
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error: </strong> <?php echo $_SESSION['error'];unset ($_SESSION['error']); ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php
+        }
         ?>
         <tr>
           <th style="width:5%">#</th>
@@ -67,9 +74,17 @@
         $sql = 'SELECT * FROM perros ORDER BY identificador DESC';
         foreach ($pdo->query($sql) as $row) {
           $estado = $row['entro'];
+          $turnos = $row['turnos'];
+          $veces = $row['veces'];
+          if($turnos == $veces){
+            $check = "<span data-feather='check'></span>";
+          }
+          else{
+            $check = "";
+          }
           if ($estado == 0) {
             $color = "color:#adb5bd";
-            $tooltip = "Inactivo";
+            $tooltip = "";
           } else {
             $color = "color:#00AE25";
             $tooltip = "Comiendo";
@@ -81,15 +96,15 @@
           echo '<td>' . $row['id'] . '</td>';
           echo '<td>' . $row['sexo'] . '</td>';
           echo '<td>' . $row['raza'] . '</td>';
-          echo '<td>' . $row['edad'] . '</td>';
+          echo '<td>' . $row['edad'] . ' años</td>';
           echo '<td>' . $row['peso'] . 'kg</td>';
           echo '<td>' . $row['racion'] . 'g</td>';
           echo '<td>' . $row['cooldown'] . 'h</td>';
-          echo '<td>' . $row['veces'] . '<strong> / ' . $row['turnos'] . '</strong></td>';
+          echo '<td>' . $check . $row['veces'] . '<strong> / ' . $row['turnos'] . '</strong></td>';
           echo '<td>' . $row['ultimaSalida'] . '</td>';
           echo '<td><span id="tooltip_comiendo" role="button" class="d-inline-block" tabindex="0" data-toggle="tooltip" title="' . $tooltip . '"><h4 style="' . $color . '">●</h4></span></td>';
-          echo '<td><a href="editar.php?identificador=' . $row['identificador'] . '"><span style="margin-right:20px;" data-feather="edit-2"></span></a>';
-          echo '<a class="borrar_btn" href=""><span data-feather="trash-2"></span></a>';
+          echo '<td><a href="editar.php?identificador=' . $row['identificador'] . '"><span style="margin: 0 10px;" data-feather="edit-2"></span></a>';
+          echo '<a class="borrar_btn" href=""><span style="margin: 0 10px;" data-feather="trash-2"></span></a>';
           echo '<input class="buscar_id" type="hidden" value="' . $row['identificador'] . '"></input>';
           echo '</td>';
           echo '</tr>';
@@ -107,7 +122,7 @@
 
         setTimeout(function() {
           $(".alert").alert('close');
-        }, 2000);
+        }, 4000);
 
         $(".borrar_btn").click(function(e) {
           e.preventDefault();

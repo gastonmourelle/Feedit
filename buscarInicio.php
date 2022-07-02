@@ -39,7 +39,7 @@ if ($result->num_rows > 0) {
   }
   echo $salida;
 } else {
-  echo "No se han encontrado resultados";
+  echo "<h6>No se han encontrados resultados para tu búsqueda</h6>";
 }
 
 include "comp/scripts.php";
