@@ -23,98 +23,95 @@ file_put_contents('uid.php', $escribir);
 	<h1 class="h2">Registro</h1>
 	</div>
 
-	<form action="db_insertar.php" method="POST" enctype="multipart/form-data">
-		
-		<div>
-			<input id="identificador" name="identificador" type="hidden" placeholder="">
+	<form class="row g-3" action="db_insertar.php" method="POST" enctype="multipart/form-data">
+
+		<input id="identificador" name="identificador" type="hidden" placeholder="">
+
+		<div class="input-group flex-nowrap">
+			<span class="input-group-text" id="addon-wrapping">Código UID</span>
+			<textarea class="form-control" name="id" id="obtenerUID" placeholder="Pase el collar por el lector para detectar el código" required></textarea>
 		</div>
-		<div>
-			<label>Código</label>
-			<div>
-				<textarea name="id" id="obtenerUID" placeholder="Pase el collar por el lector para detectar el código" required></textarea>
+
+		<div class="col-md-4">
+			<label for="div_refresh" class="form-label">Nombre</label>
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" id="div_refresh" name="nombre" placeholder="Introduzca el nombre del perro" required>
 			</div>
 		</div>
 
-		<div>
-			<label>Nombre</label>
-			<div>
-				<input id="div_refresh" name="nombre" type="text" placeholder="" required>
+		<div class="col-md-2">
+			<label class="form-label">Sexo</label>
+			<select name="sexo" class="form-select">
+				<option selected disabled></option>
+				<option value="Macho">Macho</option>
+				<option value="Hembra">Hembra</option>
+			</select>
+		</div>
+
+		<div class="col-md-4">
+			<label for="raza" class="form-label">Raza</label>
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" id="raza" name="raza" placeholder="Introduzca la raza del perro" required>
 			</div>
 		</div>
 
-		<div>
-			<label>Sexo</label>
-			<div>
-				<select name="sexo">
-					<option value="Macho">Macho</option>
-					<option value="Hembra">Hembra</option>
-				</select>
+		<div class="col-md-2">
+			<label for="edad" class="form-label">Edad (aproximada)</label>
+			<div class="input-group mb-3">
+				<input type="number" class="form-control" id="edad" name="edad" placeholder="" required>
 			</div>
 		</div>
 
-		<div>
-			<label for="raza">Raza</label>
-			<div>
-				<input name="raza" type="text" placeholder="" required>
+		<div class="col-md-2">
+			<label for="peso" class="form-label">Peso (kg)</label>
+			<div class="input-group mb-3">
+				<input type="number" class="form-control" id="peso" name="peso" placeholder="" required>
 			</div>
 		</div>
 
-		<div>
-			<label for="edad">Edad (aprox)</label>
-			<div>
-				<input name="edad" type="number" placeholder="" required>
+		<div class="col-md-2">
+			<label for="racion" class="form-label">Ración diaria (g)</label>
+			<div class="input-group mb-3">
+				<input type="number" class="form-control" id="racion" name="racion" placeholder="" required>
 			</div>
 		</div>
 
-		<div>
-			<label for="peso">Peso (kg)</label>
-			<div>
-				<input name="peso" type="number" placeholder="" required>
+		<div class="col-md-2">
+			<label for="turnos" class="form-label">Turnos diarios</label>
+			<div class="input-group mb-3">
+				<input type="number" class="form-control" id="turnos" name="turnos" placeholder="" required>
 			</div>
 		</div>
 
-		<div>
-			<label for="racion">Ración diaria (g)</label>
-			<div>
-				<input name="racion" type="number" placeholder="" required>
+		<div class="col-md-2">
+			<label for="cooldown" class="form-label">Tiempo de espera entre turnos (h)</label>
+			<div class="input-group mb-3">
+				<input type="number" class="form-control" id="cooldown" name="cooldown" placeholder="" required>
 			</div>
 		</div>
 
-		<div>
-			<label for="turnos">Turnos diarios</label>
-			<div>
-				<input name="turnos" type="number" placeholder="" required>
+		<div class="col-md-2">
+			<label for="veces" class="form-label">Veces que ya comió en el día</label>
+			<div class="input-group mb-3">
+				<input type="number" class="form-control" id="veces" name="veces" placeholder="" required>
 			</div>
 		</div>
 
-		<div>
-			<label for="cooldown">Tiempo de espera (hs)</label>
-			<div>
-				<input name="cooldown" type="number" placeholder="" required>
+		<div class="col-md-2">
+			<label for="ultimaSalida" class="form-label">Fecha y hora de su última comida</label>
+			<div class="input-group mb-3">
+				<input type="date" class="form-control" id="ultimaSalida" name="ultimaSalida" placeholder="" required>
 			</div>
 		</div>
 
-		<div>
-			<label for="veces">Veces que ya comió</label>
-			<div>
-				<input name="veces" type="number" placeholder="" value="<?php echo $datos['veces']; ?>" required>
+		<div class="col-md-5">
+			<label for="foto" class="form-label">Foto</label>
+			<div class="input-group mb-3">
+				<input type="file" class="form-control" id="foto" name="foto" accept="image/*" required>
 			</div>
 		</div>
 
-		<div>
-			<label for="ultimaSalida">Última comida</label>
-			<div>
-				<input name="ultimaSalida" type="date" placeholder="" value="<?php echo $datos['ultimaSalida']; ?>" required>
-			</div>
-		</div>
-
-		<div class="input-group mb-3">
-			<input type="file" class="form-control" id="inputGroupFile01" name="foto" accept="image/*" value="<?php echo $datos['foto']; ?>" required>
-		</div>
-
-		<div>
-			<button type="submit" class="btn btn-dark">Agregar</button>
-		</div>
+		<button type="submit" class="btn btn-dark">Agregar</button>
 	</form>
 
 
