@@ -13,14 +13,6 @@
 <body>
   <?php
   include 'comp/menu.php';
-  if (isset($_SESSION['exito']) && $_SESSION['exito'] != '') {
-    echo $_SESSION['exito'];
-    unset($_SESSION['exito']);
-  }
-  if (isset($_SESSION['error']) && $_SESSION['error'] != '') {
-    echo $_SESSION['error'];
-    unset($_SESSION['error']);
-  }
   ?>
 
   <?php

@@ -38,17 +38,14 @@
 
         if($query2){
             if ($foto == NULL){
-                $_SESSION['exito'] = "Registro editado con éxito";
                 header("Location: listado.php");
             }
             else{
                 move_uploaded_file($_FILES["foto"]["tmp_name"], "img/".$_FILES["foto"]["name"]);
-                $_SESSION['exito'] = "Registro editado con éxito";
                 header("Location: listado.php");
             }
         }
         else{
-            $_SESSION['exito'] = "No se pudo editar el registro";
             header("Location: listado.php");
         }
     }
