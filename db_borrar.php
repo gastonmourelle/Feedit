@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'config.php';
 
 if (isset($_POST['submit_borrar'])) {
@@ -16,8 +17,10 @@ if (isset($_POST['submit_borrar'])) {
 
     if ($query2) {
         unlink($ruta);
+        $_SESSION['exito'] = "Registro eliminado con éxito";
         header("Location: listado.php");
     } else {
+        $_SESSION['error'] = "Error al eliminar el registro";
         header("Location: listado.php");
     }
 }

@@ -1,5 +1,5 @@
 <?php
-     
+    session_start();
     include 'config.php';
  
 	if (!empty($_POST)) {
@@ -24,6 +24,7 @@
         if($validar_img){
             if(file_exists("img/" . $_FILES["foto"]["name"])){
             $guardar = $_FILES["foto"]["name"];
+            $_SESSION['error'] = "Esta imagen ya existe '.$guardar.'";
             header("Location: registro.php");
             }
             else{
@@ -32,14 +33,17 @@
 
             if($query1){
                 move_uploaded_file($_FILES["foto"]["tmp_name"], "img/".$_FILES["foto"]["name"]);
+                $_SESSION['exito'] = "Registro añadido con éxito";
                 header("Location: listado.php");
             }
             else{
+                $_SESSION['error'] = "Error al añadir registro";
                 header("Location: listado.php");
             }
         }
     }
     else{
+        $_SESSION['error'] = "Formato de archivo no soportado";
         header("Location: listado.php");
     }
 }

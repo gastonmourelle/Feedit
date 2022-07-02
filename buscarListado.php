@@ -28,9 +28,8 @@ if ($result->num_rows > 0) {
       <th>Edad</th>
       <th>Peso</th>
       <th>Ración diaria</th>
-      <th>Turnos diarios</th>
       <th>Tiempo de espera</th>
-      <th>Comidas de hoy</th>
+      <th>Turnos (hoy)</th>
       <th>Última comida</th>
       <th>Estado</th>
       <th>Acciones</th>
@@ -41,8 +40,10 @@ if ($result->num_rows > 0) {
     $estado = $row['entro'];
     if ($estado == 0) {
       $color = "color:#adb5bd";
+      $tooltip = "Inactivo";
     } else {
       $color = "color:#00AE25";
+      $tooltip = "Comiendo";
     }
     $salida .= "<tr style='vertical-align: middle;'>
         <td><a href='ampliacion.php?identificador=" . $row['identificador'] . "'><b>" . $row['identificador'] . "</b></a></td>
@@ -54,11 +55,10 @@ if ($result->num_rows > 0) {
         <td>" . $row['edad'] . "</td>
         <td>" . $row['peso'] . "kg</td>
         <td>" . $row['racion'] . "g</td>
-        <td>" . $row['turnos'] . "</td>
         <td>" . $row['cooldown'] . "h</td>
-        <td>" . $row['veces'] . "</td>
+        <td>" . $row['veces'] . "<strong> / ".$row['turnos']."</strong></td>
         <td>" . $row['ultimaSalida'] . "</td>
-        <td><h4 style='" . $color . "'>●</h4></td>
+        <td><span id='tooltip_comiendo' role='button' class='d-inline-block' tabindex='0' data-toggle='tooltip' title='".$tooltip."'><h4 style='" . $color . "'>●</h4></span></td>
         <td>
         <a href='editar.php?identificador=" . $row['identificador'] . "'><span style='margin-right:20px;' data-feather='edit-2'></span></a>
   			<a class='borrar_btn' href=''><span data-feather='trash-2'></span></a>

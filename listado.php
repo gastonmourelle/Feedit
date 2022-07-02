@@ -12,6 +12,7 @@
 
 <body>
   <?php
+  session_start();
   include 'comp/menu.php';
   ?>
 
@@ -33,6 +34,15 @@
   <div class="table-responsive">
     <table class="table table-striped table-sm table-hover tabla" id="datos-tabla" data-sorting="true">
       <thead>
+        <?php
+        if (isset($_SESSION['exito'])) { ?>
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Perfecto! </strong> <?php echo $_SESSION['exito'];unset ($_SESSION['exito']); ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php
+        }
+        ?>
         <tr>
           <th style="width:5%">#</th>
           <th>Foto</th>
@@ -43,9 +53,8 @@
           <th>Edad</th>
           <th>Peso</th>
           <th>Ración diaria</th>
-          <th>Turnos diarios</th>
           <th>Tiempo de espera</th>
-          <th>Comidas de hoy</th>
+          <th>Turnos (hoy)</th>
           <th>Última comida</th>
           <th>Estado</th>
           <th>Acciones</th>
@@ -60,8 +69,10 @@
           $estado = $row['entro'];
           if ($estado == 0) {
             $color = "color:#adb5bd";
+            $tooltip = "Inactivo";
           } else {
             $color = "color:#00AE25";
+            $tooltip = "Comiendo";
           }
           echo '<tr style="vertical-align: middle;">';
           echo '<td><a href="ampliacion.php?identificador=' . $row['identificador'] . '"><b>' . $row['identificador'] . '</b></a></td>';
@@ -73,21 +84,20 @@
           echo '<td>' . $row['edad'] . '</td>';
           echo '<td>' . $row['peso'] . 'kg</td>';
           echo '<td>' . $row['racion'] . 'g</td>';
-          echo '<td>' . $row['turnos'] . '</td>';
           echo '<td>' . $row['cooldown'] . 'h</td>';
-          echo '<td>' . $row['veces'] . '</td>';
+          echo '<td>' . $row['veces'] . '<strong> / ' . $row['turnos'] . '</strong></td>';
           echo '<td>' . $row['ultimaSalida'] . '</td>';
-          echo '<td><h4 style="' . $color . '">●</h4></td>';
+          echo '<td><span id="tooltip_comiendo" role="button" class="d-inline-block" tabindex="0" data-toggle="tooltip" title="' . $tooltip . '"><h4 style="' . $color . '">●</h4></span></td>';
           echo '<td><a href="editar.php?identificador=' . $row['identificador'] . '"><span style="margin-right:20px;" data-feather="edit-2"></span></a>';
           echo '<a class="borrar_btn" href=""><span data-feather="trash-2"></span></a>';
-          echo '<input class="buscar_id" type="hidden" value="'.$row['identificador'].'"></input>';
+          echo '<input class="buscar_id" type="hidden" value="' . $row['identificador'] . '"></input>';
           echo '</td>';
           echo '</tr>';
         }
         Base::disconnect();
         ?>
     </table>
-    
+
     <?php
     include 'comp/modalBorrar.php';
     include 'comp/scripts.php';
@@ -95,7 +105,11 @@
     <script type="text/javascript">
       $(document).ready(function() {
 
-        $(".borrar_btn").click(function(e){
+        setTimeout(function() {
+          $(".alert").alert('close');
+        }, 2000);
+
+        $(".borrar_btn").click(function(e) {
           e.preventDefault();
           var identificador = $('.buscar_id').val();
           $("#borrar_id").val(identificador);

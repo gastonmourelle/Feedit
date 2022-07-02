@@ -9,5 +9,8 @@
     feather.replace({
         'aria-hidden': 'true'
     })
+    $(function() {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
 </script>
 <script type="text/javascript" src="js/codigo.js"></script>
