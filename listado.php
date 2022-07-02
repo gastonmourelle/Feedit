@@ -86,20 +86,30 @@
           echo '<td>' . $row['veces'] . '</td>';
           echo '<td>' . $row['ultimaSalida'] . '</td>';
           echo '<td><h4 style="' . $color . '">●</h4></td>';
-          echo '<td>
-          <a href="editar.php?identificador=' . $row['identificador'] . '"><span style="margin-right:20px;" data-feather="edit-2"></span></a>';
-          echo '<a onclick="return confirmarBorrar()" href="db_borrar.php?identificador='. $row['identificador'] .'"><span data-feather="trash-2"></span></a>';
+          echo '<td><a href="editar.php?identificador=' . $row['identificador'] . '"><span style="margin-right:20px;" data-feather="edit-2"></span></a>';
+          echo '<a class="borrar_btn" href=""><span data-feather="trash-2"></span></a>';
+          echo '<input class="buscar_id" type="hidden" value="'.$row['identificador'].'"></input>';
           echo '</td>';
           echo '</tr>';
         }
         Base::disconnect();
         ?>
     </table>
-
-
-    <?php include 'comp/scripts.php'; ?>
+    
+    <?php
+    include 'comp/modalBorrar.php';
+    include 'comp/scripts.php';
+    ?>
     <script type="text/javascript">
       $(document).ready(function() {
+
+        $(".borrar_btn").click(function(e){
+          e.preventDefault();
+          var identificador = $('.buscar_id').val();
+          $("#borrar_id").val(identificador);
+          $("#modal_borrar").modal("show");
+        })
+
         $("#buscar").keyup(function() {
           var consulta = $(this).val();
           $.ajax({
@@ -114,11 +124,6 @@
           });
         });
       });
-    </script>
-    <script>
-      function confirmarBorrar(){
-        return confirm("¿Esta seguro de que quiere borrar este registro?")
-      }
     </script>
 </body>
 

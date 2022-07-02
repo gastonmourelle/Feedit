@@ -12,7 +12,7 @@
                 <img style="margin-left:15px;margin-bottom:40px;" src="svg/slack.svg" alt="" width="130" height="">
             </a>
             <div class="d-inline-flex p-3">
-                <input class="form-control me-2" name="buscar" id="buscar" type="text" placeholder="Buscar..." aria-label="Buscar" aria-describedby="basic-addon1">
+                <input class="form-control me-2" name="buscar" id="buscar" type="text" placeholder="&#xF002;  Buscar..." style="font-family:system-ui, FontAwesome" aria-label="Buscar" aria-describedby="basic-addon1">
             </div>
             <div class="position-sticky pt-3">
                 <ul class="nav flex-column">
@@ -77,4 +77,4 @@
             </div>
         </nav>
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <div style="background-color:white;" class="sticky-top d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">

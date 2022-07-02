@@ -53,7 +53,9 @@
         echo '<p class="card-text">- ' . $row['raza'] . '</p>';
         echo '</div>';
         echo '<div class="card-footer">';
-        echo '<small class="text-muted">Código: ' . $row['id'] . '<a href="db_borrar.php?identificador=' . $row['identificador'] . '"><span data-feather="trash-2"></span></a><a href="editar.php?identificador=' . $row['identificador'] . '"><span style="margin-right:20px;" data-feather="edit-2"></span></a></small>';
+        echo '<small class="text-muted">Código: ' . $row['id'] . '<a class="borrar_btn" href=""><span data-feather="trash-2"></span></a>
+        <a href="editar.php?identificador=' . $row['identificador'] . '"><span style="margin-right:20px;" data-feather="edit-2"></span></a></small>';
+        echo '<input class="buscar_id" type="hidden" value="'.$row['identificador'].'"></input>';
         echo '</div></div></a></div>';
       }
       Base::disconnect();
@@ -62,9 +64,20 @@
     </div>
 
 
-    <?php include 'comp/scripts.php'; ?>
+    <?php 
+    include 'comp/modalBorrar.php';
+    include 'comp/scripts.php';
+    ?>
     <script type="text/javascript">
       $(document).ready(function() {
+
+        $(".borrar_btn").click(function(e){
+          e.preventDefault();
+          var identificador = $('.buscar_id').val();
+          $("#borrar_id").val(identificador);
+          $("#modal_borrar").modal("show");
+        })
+        
         $("#buscar").keyup(function() {
           var consulta = $(this).val();
           $.ajax({

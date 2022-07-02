@@ -1,8 +1,8 @@
 <?php
 include 'config.php';
 
-if (isset($_GET['identificador'])) {
-    $identificador = $_GET['identificador'];
+if (isset($_POST['submit_borrar'])) {
+    $identificador = $_POST['borrar_id'];
     $foto = $_GET['foto'];
 
     $sql1 = "SELECT * FROM perros WHERE identificador='$identificador'";
