@@ -11,48 +11,45 @@ file_put_contents('uid.php', $escribir);
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="utf-8">
 	<!-- <link rel="stylesheet" href="css/estilos.css"> -->
-	<link rel="stylesheet" href="css/temp.css">
 	<title>Registro</title>
+	<?php include 'comp/head.php';
+	include 'comp/estilos.php' ?>
 </head>
 
 <body>
+	<?php
+	include 'comp/menu.php'; ?>
 
-	<ul>
-		<li><a href="listado.php">Listado</a></li>
-		<li><a href="registro.php">Registro</a></li>
-		<li><a href="verificacion.php">Verificación</a></li>
-	</ul>
+	<h1 class="h2">Registro</h1>
+	</div>
 
-	<div>
+	<form action="db_insertar.php" method="POST" enctype="multipart/form-data">
+		
 		<div>
+			<input id="identificador" name="identificador" type="hidden" placeholder="">
+		</div>
+		<div>
+			<label>Código</label>
 			<div>
-				<h1>Registro</h1>
+				<textarea name="id" id="obtenerUID" placeholder="Pase el collar por el lector para detectar el código" required></textarea>
 			</div>
-			<form action="db_insertar.php" method="POST" enctype="multipart/form-data">
-				<div>
-					<input id="identificador" name="identificador" type="hidden" placeholder="">
-				</div>
-				<div>
-					<label>Código</label>
-					<div>
-						<textarea name="id" id="obtenerUID" placeholder="Pase el collar por el lector para detectar el código" required></textarea>
-					</div>
-				</div>
+		</div>
 
-				<div>
-					<label>Nombre</label>
-					<div>
-						<input id="div_refresh" name="nombre" type="text" placeholder="" required>
-					</div>
-				</div>
+		<div>
+			<label>Nombre</label>
+			<div>
+				<input id="div_refresh" name="nombre" type="text" placeholder="" required>
+			</div>
+		</div>
 
-				<label>Sexo</label>
-				<div>
-					<select name="sexo">
-						<option value="Macho">Macho</option>
-						<option value="Hembra">Hembra</option>
-					</select>
-				</div>
+		<div>
+			<label>Sexo</label>
+			<div>
+				<select name="sexo">
+					<option value="Macho">Macho</option>
+					<option value="Hembra">Hembra</option>
+				</select>
+			</div>
 		</div>
 
 		<div>
@@ -111,22 +108,18 @@ file_put_contents('uid.php', $escribir);
 			</div>
 		</div>
 
-		<div>
-			<label for="foto">Foto</label>
-			<div>
-				<input name="foto" type="file" accept="image/*" value="<?php echo $datos['foto']; ?>" required>
-			</div>
+		<div class="input-group mb-3">
+			<input type="file" class="form-control" id="inputGroupFile01" name="foto" accept="image/*" value="<?php echo $datos['foto']; ?>" required>
 		</div>
 
 		<div>
-			<button type="submit">Agregar</button>
+			<button type="submit" class="btn btn-dark">Agregar</button>
 		</div>
-		</form>
+	</form>
 
-	</div>
-	</div>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+	<?php include 'comp/scripts.php'; ?>
 	<script>
 		$(document).ready(function() {
 			$("#obtenerUID").load("uid.php");

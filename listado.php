@@ -41,9 +41,6 @@
   <div class="table-responsive">
     <table class="table table-striped table-sm table-hover tabla" id="datos-tabla" data-sorting="true">
       <thead>
-        <div class="col-4">
-          <input class="form-control me-2" name="buscar" id="buscar" type="text" placeholder="Buscar" aria-label="Buscar">
-        </div>
         <tr>
           <th style="width:5%">#</th>
           <th>Foto</th>
