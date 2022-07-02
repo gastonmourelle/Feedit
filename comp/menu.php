@@ -25,17 +25,16 @@
                             Listado
                         </a>
                     </li>
-
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="bar-chart-2"></span>
-                            Reports
+                        <a class="nav-link" href="registro.php">
+                            <span data-feather="user-plus"></span>
+                            Nuevo registro
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="layers"></span>
-                            Integrations
+                        <a class="nav-link" href="verificacion.php">
+                            <span data-feather="check-square"></span>
+                            Verificar código
                         </a>
                     </li>
                 </ul>

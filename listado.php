@@ -31,9 +31,7 @@
   ?>
 
   <h1 class="h2">Listado</h1>
-  <div class="col-4">
-    <input class="form-control me-2" name="buscar" id="buscar" type="text" placeholder="Buscar" aria-label="Buscar">
-  </div>
+
   <div class="btn-toolbar mb-2 mb-md-0">
     <a style="margin-right:10px;" class="verificar btn btn-outline-dark btn-sm" href="verificacion.php"><span data-feather="check"></span> Verificar</a>
     <a class="nuevo btn btn-dark btn-sm me-md-2" href="registro.php"><span data-feather="plus"></span> Nuevo</a>
@@ -43,6 +41,9 @@
   <div class="table-responsive">
     <table class="table table-striped table-sm table-hover tabla" id="datos-tabla" data-sorting="true">
       <thead>
+        <div class="col-4">
+          <input class="form-control me-2" name="buscar" id="buscar" type="text" placeholder="Buscar" aria-label="Buscar">
+        </div>
         <tr>
           <th style="width:5%">#</th>
           <th>Foto</th>
@@ -88,9 +89,9 @@
           echo '<td>' . $row['veces'] . '</td>';
           echo '<td>' . $row['ultimaSalida'] . '</td>';
           echo '<td><h4 style="' . $color . '">●</h4></td>';
-          echo '<td><a href="editar.php?identificador=' . $row['identificador'] . '"><span style="margin-right:20px;" data-feather="edit-2"></span></a>';
-          echo ' ';
-          echo '<a href="db_borrar.php?identificador=' . $row['identificador'] . '"><span data-feather="trash-2"></span></a>';
+          echo '<td>
+          <a href="editar.php?identificador=' . $row['identificador'] . '"><span style="margin-right:20px;" data-feather="edit-2"></span></a>';
+          echo '<a href="db_borrar.php?identificador='. $row['identificador'] .'"><span data-feather="trash-2"></span></a>';
           echo '</td>';
           echo '</tr>';
         }

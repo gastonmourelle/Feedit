@@ -30,7 +30,7 @@ if ($result->num_rows > 0) {
       <th>Ración diaria</th>
       <th>Turnos diarios</th>
       <th>Tiempo de espera</th>
-      <th>Veces que ya comió</th>
+      <th>Comidas de hoy</th>
       <th>Última comida</th>
       <th>Estado</th>
       <th>Acciones</th>
@@ -54,14 +54,14 @@ if ($result->num_rows > 0) {
         <td>" . $row['edad'] . "</td>
         <td>" . $row['peso'] . "kg</td>
         <td>" . $row['racion'] . "g</td>
-        <td>" . $row['turnos'] . "h</td>
-        <td>" . $row['cooldown'] . "</td>
+        <td>" . $row['turnos'] . "</td>
+        <td>" . $row['cooldown'] . "h</td>
         <td>" . $row['veces'] . "</td>
         <td>" . $row['ultimaSalida'] . "</td>
         <td><h4 style='" . $color . "'>●</h4></td>
         <td>
         <a href='editar.php?identificador=" . $row['identificador'] . "'><span style='margin-right:20px;' data-feather='edit-2'></span></a>
-  			<a href='db_borrar.php?identificador=" . $row['identificador'] . "'><span data-feather='trash-2'></span></a>
+  			<a href='db_borrar.php?identificador=". $row['identificador'] ."'><span data-feather='trash-2'></span></a>
         </td>
       </tr>";
   }
