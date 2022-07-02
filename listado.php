@@ -45,7 +45,7 @@
       <thead>
         <tr>
           <th style="width:5%">#</th>
-          <th></th>
+          <th>Foto</th>
           <th>Nombre</th>
           <th>Código</th>
           <th>Sexo</th>
@@ -67,6 +67,12 @@
         $pdo = Base::connect();
         $sql = 'SELECT * FROM perros ORDER BY identificador DESC';
         foreach ($pdo->query($sql) as $row) {
+          $estado = $row['entro'];
+          if ($estado == 0) {
+            $color = "color:#adb5bd";
+          } else {
+            $color = "color:#00AE25";
+          }
           echo '<tr style="vertical-align: middle;">';
           echo '<td><a href="ampliacion.php?identificador=' . $row['identificador'] . '"><b>' . $row['identificador'] . '</b></a></td>';
           echo '<td><a href="ampliacion.php?identificador=' . $row['identificador'] . '"><img src="img/' . $row['foto'] . '" alt="" style="object-fit: cover;height:100px;width:100px;" class="rounded-circle"></a></td>';
@@ -81,7 +87,7 @@
           echo '<td>' . $row['cooldown'] . 'h</td>';
           echo '<td>' . $row['veces'] . '</td>';
           echo '<td>' . $row['ultimaSalida'] . '</td>';
-          echo '<td><h4 class="estado">●</h4><input type="hidden" class="entro" name="entro" value="'. $row['entro'] .'" /></td>';
+          echo '<td><h4 style="' . $color . '">●</h4></td>';
           echo '<td><a href="editar.php?identificador=' . $row['identificador'] . '"><span style="margin-right:20px;" data-feather="edit-2"></span></a>';
           echo ' ';
           echo '<a href="db_borrar.php?identificador=' . $row['identificador'] . '"><span data-feather="trash-2"></span></a>';

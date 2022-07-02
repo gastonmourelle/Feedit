@@ -23,6 +23,11 @@ a {
   text-decoration: none;
 }
 
+.btn{
+  border-radius: 5px;
+  padding: 7px 20px;
+}
+
 .table{
   text-align: center;
 }

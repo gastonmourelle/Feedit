@@ -27,7 +27,7 @@ ESP8266WebServer server(80);
 
 const char *ssid = "arroz con atun";
 const char *password = "gastonmourelle99";
-const char *host = "http://192.168.0.105/dispensadorm2/";
+const char *host = "http://192.168.0.100/dispensadorm2/";
 
 /*const char *ssid = "iPhone de Gaston";
 const char *password = "gastonmourelle";
