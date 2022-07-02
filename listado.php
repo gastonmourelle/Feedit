@@ -91,7 +91,7 @@
           echo '<td><h4 style="' . $color . '">●</h4></td>';
           echo '<td>
           <a href="editar.php?identificador=' . $row['identificador'] . '"><span style="margin-right:20px;" data-feather="edit-2"></span></a>';
-          echo '<a href="db_borrar.php?identificador='. $row['identificador'] .'"><span data-feather="trash-2"></span></a>';
+          echo '<a onclick="return confirmarBorrar()" href="db_borrar.php?identificador='. $row['identificador'] .'"><span data-feather="trash-2"></span></a>';
           echo '</td>';
           echo '</tr>';
         }
@@ -117,6 +117,11 @@
           });
         });
       });
+    </script>
+    <script>
+      function confirmarBorrar(){
+        return confirm("¿Esta seguro de que quiere borrar este registro?")
+      }
     </script>
 </body>
 
