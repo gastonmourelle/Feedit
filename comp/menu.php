@@ -11,7 +11,9 @@
             <a href="index.php">
                 <img style="margin-left:15px;margin-bottom:40px;" src="svg/slack.svg" alt="" width="130" height="">
             </a>
-            <div class="d-inline-flex p-2"><input class="form-control me-2" name="buscar" id="buscar" type="text" placeholder="Buscar..." aria-label="Buscar"></div>
+            <div class="d-inline-flex p-3">
+                <input class="form-control me-2" name="buscar" id="buscar" type="text" placeholder="Buscar..." aria-label="Buscar" aria-describedby="basic-addon1">
+            </div>
             <div class="position-sticky pt-3">
                 <ul class="nav flex-column">
                     <li class="nav-item">
