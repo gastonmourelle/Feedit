@@ -76,7 +76,7 @@ include 'autenticacion.php';
 								</tr>
 								<tr>
 									<td>Edad (aprox)</td>
-									<td><?php echo $datos['edad'];?> años</td>
+									<td><?php echo $datos['edad'];?> </td>
 								</tr>
 								<tr>
 									<td>Peso</td>

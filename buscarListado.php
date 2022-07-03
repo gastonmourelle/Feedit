@@ -16,11 +16,11 @@ if (isset($_POST['query'])) {
 }
 $stmt->execute();
 $result = $stmt->get_result();
-
 if ($result->num_rows > 0) {
   $salida = "<thead>
       <tr>
-      <th style='width:5%'>#</th>
+      <th></th>
+      <th>#</th>
       <th>Foto</th>
       <th>Nombre</th>
       <th>Código</th>
@@ -33,7 +33,7 @@ if ($result->num_rows > 0) {
       <th>Turnos (hoy)</th>
       <th>Última comida</th>
       <th>Estado</th>
-      <th>Acciones</th>
+      <th style='width:10%'>Acciones</th>
       </tr>
     </thead>
     <tbody>";
@@ -54,13 +54,14 @@ if ($result->num_rows > 0) {
       $tooltip = "Comiendo";
     }
     $salida .= "<tr style='vertical-align: middle;'>
+        <td><input id='borrarlista_check_id' onchange='cambioValor()' class='form-check-input' type='checkbox' name='borrarlista_check_id[]' value='" . $row['identificador'] . "'></td>
         <td><a href='ampliacion.php?identificador=" . $row['identificador'] . "'><b>" . $row['identificador'] . "</b></a></td>
         <td><a href='ampliacion.php?identificador=" . $row['identificador'] . "'><img src='img/" . $row['foto'] . "' alt='' style='object-fit: cover;height:100px;width:100px' class='rounded-circle'></a></td>
         <td><a href='ampliacion.php?identificador=" . $row['identificador'] . "'><b>" . $row['nombre'] . "</b></a></td>
         <td>" . $row['id'] . "</td>
         <td>" . $row['sexo'] . "</td>
         <td>" . $row['raza'] . "</td>
-        <td>" . $row['edad'] . " años</td>
+        <td>" . $row['edad'] . "</td>
         <td>" . $row['peso'] . "kg</td>
         <td>" . $row['racion'] . "g</td>
         <td>" . $row['cooldown'] . "h</td>
@@ -79,6 +80,7 @@ if ($result->num_rows > 0) {
 } else {
   echo "<h6>No se han encontrados resultados para tu búsqueda</h6>";
 }
+
 include 'comp/modalBorrar.php';
 include "comp/scripts.php";
 
@@ -86,6 +88,11 @@ include "comp/scripts.php";
 
 <script type="text/javascript">
   $(document).ready(function() {
+
+    $(".borrarlista_btn").click(function(e) {
+        e.preventDefault();
+        $("#modal_borrarlista").modal("show");
+      })
 
     $(".borrar_btn").click(function(e) {
       e.preventDefault();

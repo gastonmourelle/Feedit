@@ -40,9 +40,12 @@ include 'autenticacion.php';
       <thead>
         <?php
         include 'comp/alerts.php';
+        include 'comp/modalBorrar_lista.php';
         ?>
+
         <tr>
-          <th style="width:5%">#</th>
+          <th><a class="borrarlista_btn" href=""><span style="margin: 0 10px;" data-feather="trash-2"></span></a></th>
+          <th>#</th>
           <th>Foto</th>
           <th>Nombre</th>
           <th>Código</th>
@@ -55,7 +58,7 @@ include 'autenticacion.php';
           <th>Turnos (hoy)</th>
           <th>Última comida</th>
           <th>Estado</th>
-          <th>Acciones</th>
+          <th style="width:10%">Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -67,10 +70,9 @@ include 'autenticacion.php';
           $estado = $row['entro'];
           $turnos = $row['turnos'];
           $veces = $row['veces'];
-          if($veces >= $turnos){
+          if ($veces >= $turnos) {
             $check = "<span data-feather='check'></span>";
-          }
-          else{
+          } else {
             $check = "";
           }
           if ($estado == 0) {
@@ -81,13 +83,14 @@ include 'autenticacion.php';
             $tooltip = "Comiendo";
           }
           echo '<tr style="vertical-align: middle;">';
+          echo '<td><input id="borrarlista_check_id" onchange="cambioValor()" class="form-check-input" type="checkbox" name="borrarlista_check_id[]" value="' . $row['identificador'] . '"></td>';
           echo '<td><a href="ampliacion.php?identificador=' . $row['identificador'] . '"><b>' . $row['identificador'] . '</b></a></td>';
           echo '<td><a href="ampliacion.php?identificador=' . $row['identificador'] . '"><img src="img/' . $row['foto'] . '" alt="" style="object-fit: cover;height:100px;width:100px;" class="rounded-circle"></a></td>';
           echo '<td><a href="ampliacion.php?identificador=' . $row['identificador'] . '"><b>' . $row['nombre'] . '</b></a></td>';
           echo '<td>' . $row['id'] . '</td>';
           echo '<td>' . $row['sexo'] . '</td>';
           echo '<td>' . $row['raza'] . '</td>';
-          echo '<td>' . $row['edad'] . ' años</td>';
+          echo '<td>' . $row['edad'] . ' </td>';
           echo '<td>' . $row['peso'] . 'kg</td>';
           echo '<td>' . $row['racion'] . 'g</td>';
           echo '<td>' . $row['cooldown'] . 'h</td>';
@@ -96,47 +99,57 @@ include 'autenticacion.php';
           echo '<td><span id="tooltip_comiendo" role="button" class="d-inline-block" tabindex="0" data-toggle="tooltip" title="' . $tooltip . '"><h4 style="' . $color . '">●</h4></span></td>';
           echo '<td><a href="editar.php?identificador=' . $row['identificador'] . '"><span style="margin: 0 10px;" data-feather="edit-2"></span></a>';
           echo '<a class="borrar_btn" href=""><span style="margin: 0 10px;" data-feather="trash-2"></span></a>';
-          echo '<p class="buscar_id" hidden>'.$row['identificador'].'</p>';
+          echo '<p class="buscar_id" hidden>' . $row['identificador'] . '</p>';
           echo '</td>';
           echo '</tr>';
         }
         Base::disconnect();
         ?>
-    </table>
 
-    <?php
-    include 'comp/modalBorrar.php';
-    include 'comp/scripts.php';
-    ?>
-    <script type="text/javascript">
-      $(document).ready(function() {
+        </form>
+  </div>
+  </div>
+  </div>
+  </table>
 
-        setTimeout(function() {
-          $(".alert").alert('close');
-        }, 4000);
+  <?php
+  include 'comp/modalBorrar.php';
+  include 'comp/scripts.php';
+  ?>
+  <script type="text/javascript">
+    $(document).ready(function() {
 
-        $(".borrar_btn").click(function(e) {
-          e.preventDefault();
-          var identificador = $(this).closest('tr').find('.buscar_id').text();
-          $("#borrar_id").val(identificador);
-          $("#modal_borrar").modal("show");
-        })
+      setTimeout(function() {
+        $(".alert").alert('close');
+      }, 4000);
 
-        $("#buscar").keyup(function() {
-          var consulta = $(this).val();
-          $.ajax({
-            url: 'buscarListado.php',
-            method: 'POST',
-            data: {
-              query: consulta
-            },
-            success: function(respuesta) {
-              $("#datos-tabla").html(respuesta);
-            }
-          });
+      $(".borrar_btn").click(function(e) {
+        e.preventDefault();
+        var identificador = $(this).closest('tr').find('.buscar_id').text();
+        $("#borrar_id").val(identificador);
+        $("#modal_borrar").modal("show");
+      })
+
+      $(".borrarlista_btn").click(function(e) {
+        e.preventDefault();
+        $("#modal_borrarlista").modal("show");
+      })
+
+      $("#buscar").keyup(function() {
+        var consulta = $(this).val();
+        $.ajax({
+          url: 'buscarListado.php',
+          method: 'POST',
+          data: {
+            query: consulta
+          },
+          success: function(respuesta) {
+            $("#datos-tabla").html(respuesta);
+          }
         });
       });
-    </script>
+    });
+  </script>
 </body>
 
 </html>

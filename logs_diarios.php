@@ -73,7 +73,7 @@ include 'autenticacion.php';
                 include 'comp/alerts.php';
                 ?>
                 <tr>
-                    <th style="width:5%">#</th>
+                    <th>#</th>
                     <th>Nombre</th>
                     <th>Tiempo comiendo</th>
                     <th>Hora de entrada</th>

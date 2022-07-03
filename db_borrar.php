@@ -20,7 +20,7 @@ if (isset($_POST['submit_borrar'])) {
         $_SESSION['exito'] = "Registro eliminado con éxito";
         header("Location: listado.php");
     } else {
-        $_SESSION['error'] = "Error al eliminar el registro";
+        $_SESSION['error'] = "No se pudo eliminar el registro";
         header("Location: listado.php");
     }
 }
