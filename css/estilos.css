@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap');
 
 :root {
   --negro: #212529;
@@ -12,11 +12,13 @@
     margin: 0;
     padding: 0;
     list-style: none;
+    font-family: 'Inter', sans-serif;
 }
 
 body {
   font-size: .875rem;
 }
+
 
 a {
   color: inherit;
