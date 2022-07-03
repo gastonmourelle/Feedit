@@ -22,7 +22,7 @@
   $result = $stmt->get_result();
   ?>
 
-  <h1 class="h2">Inicio</h1>
+  <h1 class="display-6">Inicio</h1>
   <div class="btn-toolbar mb-2 mb-md-0">
     <a style="margin-right:10px;" class="verificar btn btn-outline-dark btn-sm" href="verificacion.php"><span data-feather="check"></span> Verificar</a>
     <a class="nuevo btn btn-dark btn-sm me-md-2" href="registro.php"><span data-feather="plus"></span> Nuevo</a>

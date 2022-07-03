@@ -30,7 +30,7 @@ Base::disconnect();
 	<?php
 	include 'comp/menu.php'; ?>
 
-	<h1 class="h2">Editar datos</h1>
+	<h1 class="display-6">Editar datos</h1>
 	<p id="porDefecto" hidden><?php echo $datos['sexo']; ?></p>
 	</div>
 

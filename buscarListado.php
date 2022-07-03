@@ -6,10 +6,11 @@ if (isset($_POST['query'])) {
   $buscar = $_POST['query'];
   $stmt = $conex->prepare("SELECT * FROM perros 
     WHERE nombre LIKE CONCAT('%',?,'%') 
+    OR identificador LIKE CONCAT('%',?,'%') 
     OR id LIKE CONCAT('%',?,'%') 
     OR raza LIKE CONCAT('%',?,'%') 
     ORDER BY identificador DESC");
-  $stmt->bind_param("sss", $buscar, $buscar, $buscar);
+  $stmt->bind_param("ssss",$buscar, $buscar, $buscar, $buscar);
 } else {
   $stmt = $conex->prepare("SELECT * FROM perros");
 }
@@ -40,7 +41,7 @@ if ($result->num_rows > 0) {
     $estado = $row['entro'];
     $turnos = $row['turnos'];
     $veces = $row['veces'];
-    if ($turnos == $veces) {
+    if($veces >= $turnos){
       $check = "<span data-feather='check'></span>";
     } else {
       $check = "";

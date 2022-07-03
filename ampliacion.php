@@ -24,7 +24,7 @@
     $sql1 = "SELECT * FROM perros WHERE identificador = $identificador";
     $query1 = $conex->query($sql1);
     ?>
-            <h1 class="h2">Detalles</h1>
+            <h1 class="display-6">Detalles</h1>
         </div>
         <?php
         if ($query1->num_rows > 0) {
