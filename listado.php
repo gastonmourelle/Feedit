@@ -14,6 +14,7 @@
   <?php
   session_start();
   include 'comp/menu.php';
+  include 'comp/estilos.php';
   ?>
 
   <?php
@@ -23,7 +24,7 @@
   $result = $stmt->get_result();
   ?>
 
-  <h1 class="h2">Listado</h1>
+  <h1 class="display-6">Listado</h1>
 
   <div class="btn-toolbar mb-2 mb-md-0">
     <a style="margin-right:10px;" class="verificar btn btn-outline-dark btn-sm" href="verificacion.php"><span data-feather="check"></span> Verificar</a>
@@ -35,20 +36,7 @@
     <table class="table table-striped table-sm table-hover tabla" id="datos-tabla" data-sorting="true">
       <thead>
         <?php
-        if (isset($_SESSION['exito'])) { ?>
-          <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Perfecto! </strong> <?php echo $_SESSION['exito'];unset ($_SESSION['exito']); ?>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-        <?php
-        }
-        else if (isset($_SESSION['error'])) { ?>
-          <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Error: </strong> <?php echo $_SESSION['error'];unset ($_SESSION['error']); ?>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-        <?php
-        }
+        include 'comp/alerts.php';
         ?>
         <tr>
           <th style="width:5%">#</th>
@@ -76,7 +64,7 @@
           $estado = $row['entro'];
           $turnos = $row['turnos'];
           $veces = $row['veces'];
-          if($turnos == $veces){
+          if($veces >= $turnos){
             $check = "<span data-feather='check'></span>";
           }
           else{
