@@ -93,7 +93,7 @@
           echo '<td><span id="tooltip_comiendo" role="button" class="d-inline-block" tabindex="0" data-toggle="tooltip" title="' . $tooltip . '"><h4 style="' . $color . '">●</h4></span></td>';
           echo '<td><a href="editar.php?identificador=' . $row['identificador'] . '"><span style="margin: 0 10px;" data-feather="edit-2"></span></a>';
           echo '<a class="borrar_btn" href=""><span style="margin: 0 10px;" data-feather="trash-2"></span></a>';
-          echo '<input class="buscar_id" type="hidden" value="' . $row['identificador'] . '"></input>';
+          echo '<p class="buscar_id" hidden>'.$row['identificador'].'</p>';
           echo '</td>';
           echo '</tr>';
         }
@@ -114,7 +114,7 @@
 
         $(".borrar_btn").click(function(e) {
           e.preventDefault();
-          var identificador = $('.buscar_id').val();
+          var identificador = $(this).closest('tr').find('.buscar_id').text();
           $("#borrar_id").val(identificador);
           $("#modal_borrar").modal("show");
         })
