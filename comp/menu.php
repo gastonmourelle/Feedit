@@ -5,11 +5,23 @@
     </button>
 </header> -->
 
+<nav id="nav_mobile" class="navbar navbar-expand-lg bg-light sticky-top">
+  <div class="container-md">
+  <a href="index.php">
+                <img src="svg/slack.svg" alt="" width="130" height="">
+            </a>
+  <button style="margin-top:10px" class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+    
+
 <div class="container-fluid">
     <div class="row">
         <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
             <a href="index.php">
-                <img style="margin-left:15px;margin-bottom:40px;" src="svg/slack.svg" alt="" width="130" height="">
+                <img id="img_header" style="margin-left:15px;margin-bottom:40px;" src="svg/slack.svg" alt="" width="130" height="">
             </a>
             <div class="d-inline-flex p-3">
                 <input class="form-control me-2" name="buscar" id="buscar" type="text" placeholder="&#xF002;  Buscar..." style="font-family:system-ui, FontAwesome" aria-label="Buscar" aria-describedby="basic-addon1">

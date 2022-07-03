@@ -3,7 +3,6 @@
     include 'config.php';
  
 	if (!empty($_POST)) {
-		
         $identificador = $_POST['identificador'];
         $nombre = $_POST['nombre'];
         $foto = $_FILES['foto']['name'];
@@ -21,30 +20,43 @@
         $formatos = array('image/jpg','image/jpeg','image/png');
         $validar_img = in_array($_FILES['foto']['type'],$formatos);
 
-        if($validar_img){
-            if(file_exists("img/" . $_FILES["foto"]["name"])){
-            $guardar = $_FILES["foto"]["name"];
-            $_SESSION['error'] = "Esta imagen ya existe '.$guardar.'";
-            header("Location: registro.php");
-            }
-            else{
-            $sql1 = "INSERT INTO perros (nombre,foto,id,sexo,raza,edad,peso,racion,turnos,cooldown,veces,ultimaSalida) VALUES ('$nombre','$foto','$id','$sexo','$raza','$edad','$peso','$racion','$turnos','$cooldown','$veces','$ultimaSalida') ON DUPLICATE KEY UPDATE id=id;";
-            $query1 = mysqli_query($conex,$sql1);
+        $sql2 = "SELECT * FROM perros WHERE id = '$id'";
+        $query2 = mysqli_query($conex,$sql2);
 
-            if($query1){
-                move_uploaded_file($_FILES["foto"]["tmp_name"], "img/".$_FILES["foto"]["name"]);
-                $_SESSION['exito'] = "Registro añadido con éxito";
-                header("Location: listado.php");
+        if($query2){
+            if(mysqli_num_rows($query2) > 0){
+                $_SESSION['error'] = "Este código ya está en uso. Dirígase a la página de <a href='verificacion.php'>Verificación</a> para obtener más información";
+                header("Location: registro.php");
             }
             else{
-                $_SESSION['error'] = "Error al añadir registro";
+                if($validar_img){
+                    if(file_exists("img/" . $_FILES["foto"]["name"])){
+                    $guardar = $_FILES["foto"]["name"];
+                    $_SESSION['error'] = "Esta imagen ya existe '.$guardar.'";
+                    header("Location: registro.php");
+                    }
+                    else{
+                    $sql1 = "INSERT INTO perros (nombre,foto,id,sexo,raza,edad,peso,racion,turnos,cooldown,veces,ultimaSalida) VALUES ('$nombre','$foto','$id','$sexo','$raza','$edad','$peso','$racion','$turnos','$cooldown','$veces','$ultimaSalida')";
+                    $query1 = mysqli_query($conex,$sql1);
+        
+                    if($query1){
+                        move_uploaded_file($_FILES["foto"]["tmp_name"], "img/".$_FILES["foto"]["name"]);
+                        $_SESSION['exito'] = "Registro añadido con éxito";
+                        header("Location: listado.php");
+                    }
+                    else{
+                        $_SESSION['error'] = "Error al añadir registro";
+                        header("Location: listado.php");
+                    }
+                }
+            }
+            else{
+                $_SESSION['error'] = "Formato de archivo no soportado";
                 header("Location: listado.php");
             }
         }
-    }
-    else{
-        $_SESSION['error'] = "Formato de archivo no soportado";
-        header("Location: listado.php");
-    }
-}
+            }
+        }
+
+        
 ?>

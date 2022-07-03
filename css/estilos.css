@@ -64,9 +64,19 @@ a {
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
 }
 
-@media (max-width: 767.98px) {
+#nav_mobile{
+  display: none;background-color: white; padding: 20px 0;
+}
+
+@media only screen and (max-width: 768px){
+  #nav_mobile{
+    display:block;
+  }
+  #img_header{
+    display:none;
+  }
   .sidebar {
-    top: 5rem;
+    top: 40px;
   }
 }
 
