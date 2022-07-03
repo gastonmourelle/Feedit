@@ -1,4 +1,5 @@
 <?php
+include 'autenticacion.php';
 $escribir = "<?php $" . "UIDresultado=''; " . "echo $" . "UIDresultado;" . " ?>";
 file_put_contents('uid.php', $escribir);
 ?>
@@ -18,7 +19,6 @@ file_put_contents('uid.php', $escribir);
 
 <body>
 	<?php
-	session_start();
 	include 'comp/menu.php'; ?>
 
 	<h1 class="display-6">Registro</h1>

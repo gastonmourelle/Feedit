@@ -1,3 +1,7 @@
+<?php
+include 'autenticacion.php';
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <html>
@@ -12,7 +16,6 @@
 
 <body>
   <?php
-  session_start();
   include 'comp/menu.php';
   include 'comp/estilos.php';
   ?>

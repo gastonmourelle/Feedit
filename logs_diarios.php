@@ -1,3 +1,7 @@
+<?php
+include 'autenticacion.php';
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <html>
@@ -7,7 +11,6 @@
     <meta charset="utf-8">
     <title>Logs</title>
     <?php
-    session_start();
     include 'comp/head.php';
     include 'comp/estilos.php';
     ?>

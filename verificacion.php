@@ -1,4 +1,5 @@
 <?php
+include 'autenticacion.php';
 	$escribir="<?php $" . "UIDresultado=''; " . "echo $" . "UIDresultado;" . " ?>";
 	file_put_contents('uid.php',$escribir);
 ?>

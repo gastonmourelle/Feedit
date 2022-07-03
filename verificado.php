@@ -1,4 +1,5 @@
 <?php
+include 'autenticacion.php';
     include 'db.php';
     $id = null;
     if ( !empty($_GET['id'])) {

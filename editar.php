@@ -1,4 +1,5 @@
 <?php
+include 'autenticacion.php';
 include 'db.php';
 $identificador = null;
 if (!empty($_GET['identificador'])) {
