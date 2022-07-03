@@ -72,6 +72,10 @@ a {
   #nav_mobile{
     display:block;
   }
+  #sidebarMenu{
+    max-width: 300px;
+  }
+  
   #img_header{
     display:none;
   }

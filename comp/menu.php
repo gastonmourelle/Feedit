@@ -6,20 +6,20 @@
 </header> -->
 
 <nav id="nav_mobile" class="navbar navbar-expand-lg bg-light sticky-top">
-  <div class="container-md">
-  <a href="index.php">
-                <img src="svg/slack.svg" alt="" width="130" height="">
-            </a>
-  <button style="margin-top:10px" class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-  </div>
+    <div class="container-md">
+        <a href="index.php">
+            <img src="svg/slack.svg" alt="" width="130" height="">
+        </a>
+        <button style="margin-top:10px" class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span style="width: 30px; height: 30px;" data-feather="menu"></span>
+        </button>
+    </div>
 </nav>
-    
+
 
 <div class="container-fluid">
     <div class="row">
-        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse collapse-horizontal">
             <a href="index.php">
                 <img id="img_header" style="margin-left:15px;margin-bottom:40px;" src="svg/slack.svg" alt="" width="130" height="">
             </a>
