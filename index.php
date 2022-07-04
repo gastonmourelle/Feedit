@@ -35,14 +35,14 @@ include 'autenticacion.php';
     <a class="nuevo btn btn-dark btn-sm me-md-2" href="registro.php"><span data-feather="plus"></span> Nuevo</a>
   </div>
   </div>
-  <div id="datosInicio" class="row row-cols-1 row-cols-md-5 g-4">
+  <div id="datosInicio" class="row row-cols-1 row-cols-md-4 g-4">
     <?php
     include 'db.php';
 
     $pdo = Base::connect();
     $sql = 'SELECT * FROM perros ORDER BY identificador DESC';
     foreach ($pdo->query($sql) as $row) {
-      echo '<div class="col">';
+      echo '<div class="col col_index">';
       echo '<a href="ampliacion.php?identificador=' . $row['identificador'] . '">';
       echo '<div class="card h-100">';
       echo '<img src="img/' . $row['foto'] . '" class="card-img-top" alt="">';

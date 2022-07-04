@@ -25,7 +25,7 @@ file_put_contents('uid.php', $escribir);
 	</div>
 
 	<div class="row">
-		<div class="col-md-8">
+		<div class="col-md-6">
 
 			<form class="row g-3" action="db_insertar.php" method="POST" enctype="multipart/form-data">
 
@@ -35,7 +35,7 @@ file_put_contents('uid.php', $escribir);
 
 				<input id="identificador" name="identificador" type="hidden" placeholder="">
 
-				<div class="input-group flex-nowrap">
+				<div class="textarea input-group flex-nowrap">
 					<span class="input-group-text" id="addon-wrapping">Código UID</span>
 					<textarea class="form-control" name="id" id="obtenerUID" placeholder="Pase el collar por el lector para detectar el código" required></textarea>
 				</div>

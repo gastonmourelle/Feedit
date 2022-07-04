@@ -36,9 +36,9 @@ Base::disconnect();
 	</div>
 
 	<div class="row">
-		<div class="col-md-8">
+		<div class="col-md-6">
 			<form class="row g-3" action="db_editar.php?identificador=<?php echo $identificador ?>" method="POST" enctype="multipart/form-data">
-				<div class="input-group flex-nowrap">
+				<div class="textarea input-group flex-nowrap">
 					<span class="input-group-text" id="addon-wrapping">Código UID</span>
 					<textarea class="form-control" name="id" readonly><?php echo $datos['id']; ?></textarea>
 				</div>
