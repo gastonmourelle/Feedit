@@ -25,7 +25,7 @@ if ($result->num_rows > 0) {
     } else {
       $color = "color:#00AE25";
     }
-    $salida .= "<div class='col'>
+    $salida .= "<div class='col col_index'>
     <a href='ampliacion.php?identificador=" . $row['identificador'] . "'>
     <div class='card h-100'>
     <img src='img/" . $row['foto'] . "' class='card-img-top img_index' alt=''>

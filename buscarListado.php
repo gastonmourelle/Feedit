@@ -10,7 +10,7 @@ if (isset($_POST['query'])) {
     OR id LIKE CONCAT('%',?,'%') 
     OR raza LIKE CONCAT('%',?,'%') 
     ORDER BY nombre ASC");
-  $stmt->bind_param("ssss",$buscar, $buscar, $buscar, $buscar);
+  $stmt->bind_param("ssss", $buscar, $buscar, $buscar, $buscar);
 } else {
   $stmt = $conex->prepare("SELECT * FROM perros");
 }
@@ -40,20 +40,19 @@ if ($result->num_rows > 0) {
     $estado = $row['entro'];
     $turnos = $row['turnos'];
     $veces = $row['veces'];
-    if($veces >= $turnos){
+    if ($veces >= $turnos) {
       $check = "<span data-feather='check'></span>";
     } else {
       $check = "";
     }
     if ($estado == 0) {
       $color = "color:#adb5bd";
-      $tooltip = "";
+      $tooltip = "Inactivo";
     } else {
       $color = "color:#00AE25";
       $tooltip = "Comiendo";
     }
     $salida .= "<tr style='vertical-align: middle;'>
-        
         <td><a href='ampliacion.php?identificador=" . $row['identificador'] . "'><b>" . $row['identificador'] . "</b></a></td>
         <td><a href='ampliacion.php?identificador=" . $row['identificador'] . "'><img src='img/" . $row['foto'] . "' alt='' style='object-fit: cover;height:100px;width:100px' class='rounded-circle'></a></td>
         <td><a href='ampliacion.php?identificador=" . $row['identificador'] . "'><b>" . $row['nombre'] . "</b></a></td>
