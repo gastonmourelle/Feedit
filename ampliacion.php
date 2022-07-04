@@ -31,7 +31,7 @@ include 'autenticacion.php';
     <h1 class="display-6">Detalles</h1>
     </div>
 
-    <div id="product-section">
+    <div>
 
         <?php
         if ($query1->num_rows > 0) {
