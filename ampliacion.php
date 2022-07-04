@@ -98,7 +98,7 @@ include 'autenticacion.php';
                                 <h5 class="subtitulo">- <?php echo $row["raza"] ?></h5>
                             </div>
 
-                            <div class="col-md-2 my-3 d-flex justify-content-end">
+                            <div class="col-md-3 my-3 d-flex justify-content-end">
                                 <input class="buscar_id" type="hidden" value="<?php echo $row["identificador"] ?>"></input>
                                 <a style="margin-right:40px;" href="editar.php?identificador=<?php echo $row["identificador"] ?>"><span class="iconos_ampliacion" data-feather="edit-2"></span></a>
                                 <a style="margin-left:20px;" class="borrar_btn" href=""><span class="iconos_ampliacion" data-feather="trash-2"></span></a>
@@ -106,11 +106,10 @@ include 'autenticacion.php';
                         </div>
 
                         <div class="row listado_ampliacion">
-                            <div class="col-md-10">
-
+                            <div class="col-md-11">
                                 <div class="row">
                                     <div class="col">
-                                        <div style="height: 25px;background-color:rgb(219, 219, 219)" class="progress">
+                                        <div style="height: 20px;background-color:rgb(219, 219, 219)" class="progress">
                                             <p style="line-height:24px;color:#808080;">
                                                 <?php
                                                 echo $mensaje;
@@ -140,7 +139,7 @@ include 'autenticacion.php';
                                     <li class="list-group-item">#<?php echo $row["identificador"] ?></li>
                                 </ul>
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-md-8">
                                 <ul class="list-group list-group-horizontal">
                                     <li class="list-group-item"><b>Código UID</b></li>
                                     <li class="list-group-item"><?php echo $row["id"] ?></li>
@@ -149,7 +148,7 @@ include 'autenticacion.php';
                         </div>
 
                         <div class="row listado_ampliacion">
-                            <div class="col-md-5">
+                            <div class="col-md-6">
                                 <ul class="list-group list-group-horizontal">
                                     <li class="list-group-item"><b>Sexo</b></li>
                                     <li class="list-group-item"><?php echo $row["sexo"] ?></li>
@@ -182,13 +181,13 @@ include 'autenticacion.php';
                                     <li class="list-group-item"><?php echo $row["veces"] ?></li>
                                 </ul>
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-6">
                                 <ul class="list-group list-group-horizontal">
                                     <li class="list-group-item"><b>Última comida</b></li>
                                     <li class="list-group-item"><?php echo $ultimaComida ?></li>
                                 </ul>
                                 <ul class="list-group list-group-horizontal">
-                                    <li class="list-group-item"><b>Estado</b></li>
+                                    <li class="list-group-item"><b>Estado actual</b></li>
                                     <li class="list-group-item"><?php echo $tooltip ?></li>
                                 </ul>
                             </div>
@@ -205,7 +204,7 @@ include 'autenticacion.php';
                                     <li class="list-group-item"><?php echo $row["turnos"] ?></li>
                                 </ul>
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-6">
                                 <ul class="list-group list-group-horizontal">
                                     <li class="list-group-item"><b>Ración por turno</b></li>
                                     <li class="list-group-item"><?php echo $unaRacion ?>g</li>
@@ -220,8 +219,42 @@ include 'autenticacion.php';
                     </div>
                 </div>
 
-                <div class="table-responsive my-5">
+                <div style="margin-top:20px;margin-left: 10px;" class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h4 style="margin-bottom:40px;">Historial de turnos</h4>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input type="date" name="desde" class="form-control" value="
+                                <?php
+                                if (isset($_GET['desde'])) {
+                                    echo $_GET['desde'];
+                                } else {
+                                }
+                                ?>">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input type="date" name="hasta" class="form-control" value="
+                                <?php
+                                if (isset($_GET['hasta'])) {
+                                    echo $_GET['hasta'];
+                                } else {
+                                }
+                                ?>">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-dark btn-sm">Filtrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
                     <table class="table table-striped table-sm table-hover tabla" id="datos-tabla" data-sorting="true">
                         <thead>
                             <?php
