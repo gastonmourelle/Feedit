@@ -35,7 +35,7 @@ include 'autenticacion.php';
     <a class="nuevo btn btn-dark btn-sm me-md-2" href="registro.php"><span data-feather="plus"></span> Nuevo</a>
   </div>
   </div>
-  <div id="datosInicio" class="row row-cols-1 row-cols-md-4 g-4">
+  <div id="datosInicio" class="row row-cols-1 row-cols-md-5 g-4">
     <?php
     include 'db.php';
 

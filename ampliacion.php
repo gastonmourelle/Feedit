@@ -1,5 +1,13 @@
 <?php
 include 'autenticacion.php';
+include 'config.php';
+
+$identificador = "";
+    if (isset($_GET["identificador"])) {
+        $identificador = $_GET["identificador"];
+    }
+    $sql1 = "SELECT * FROM perros WHERE identificador = $identificador";
+    $query1 = $conex->query($sql1);
 ?>
 
 <!DOCTYPE html>
@@ -9,7 +17,7 @@ include 'autenticacion.php';
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <title>Ampliación</title>
+    <title>Ficha</title>
     <?php
     include 'comp/head.php';
     include 'comp/estilos.php';
@@ -19,16 +27,8 @@ include 'autenticacion.php';
 <body>
     <?php
     include 'comp/menu.php';
-    include 'config.php';
-
-    $identificador = "";
-    if (isset($_GET["identificador"])) {
-        $identificador = $_GET["identificador"];
-    }
-    $sql1 = "SELECT * FROM perros WHERE identificador = $identificador";
-    $query1 = $conex->query($sql1);
     ?>
-    <h1 class="display-6">Detalles</h1>
+    <h1 class="display-6">Ficha</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
         <a style="margin-right:10px;" class="verificar btn btn-outline-dark btn-sm" href="verificacion.php"><span data-feather="check"></span> Verificar</a>
         <a class="nuevo btn btn-dark btn-sm me-md-2" href="registro.php"><span data-feather="plus"></span> Nuevo</a>
@@ -46,6 +46,7 @@ include 'autenticacion.php';
                 $turnos = intval($row['turnos']);
                 $unaRacion = ($racion / $turnos) | 0;
                 $cantidadHoy = $unaRacion * $veces;
+                $diferenciaCantidad = $racion - $cantidadHoy;
                 $estado = $row['entro'];
                 $mensaje = "";
                 if ($estado == 0) {
@@ -54,6 +55,11 @@ include 'autenticacion.php';
                 } else {
                     $color = "color:#00AE25";
                     $tooltip = "Comiendo";
+                }
+                if ($cantidadHoy >= $racion) {
+                    $tooltip2 = "Este perro ya comió";
+                } else {
+                    $tooltip2 = $diferenciaCantidad."g restantes";
                 }
                 $porcentaje = (($row['veces'] * 100) / $row['turnos']);
                 if ($porcentaje >= 100) {
@@ -95,7 +101,7 @@ include 'autenticacion.php';
                                     <h4 style="<?php echo $color ?>;margin-right:10px">●</h4>
                                 </span>
                                 <h1 class="d-inline-block"><?php echo $row["nombre"] ?></h1>
-                                <h5 class="subtitulo">- <?php echo $row["raza"] ?></h5>
+                                <h6 class="subtitulo"><?php echo $row["raza"] ?></h6>
                             </div>
 
                             <div class="col-md-3 my-3 d-flex justify-content-end">
@@ -109,21 +115,23 @@ include 'autenticacion.php';
                             <div class="col-md-11">
                                 <div class="row">
                                     <div class="col">
-                                        <div style="height: 20px;background-color:rgb(219, 219, 219)" class="progress">
-                                            <p style="line-height:24px;color:#808080;">
-                                                <?php
-                                                echo $mensaje;
-                                                ?>
-                                            </p>
-                                            <div class="progress-bar" role="progressbar" style="background-color:
-                                        <?php
-                                        echo $color2;
-                                        ?>;
-                                        width: 
-                                        <?php
-                                        echo $porcentaje;
-                                        ?>%;" aria-valuenow="<?php echo $row["veces"] ?>" aria-valuemin="0" aria-valuemax="<?php echo $row["turnos"] ?>"><?php echo $row["veces"] ?> de <?php echo $row["turnos"] ?> turnos</div>
-                                        </div>
+                                        <span role="button" tabindex="0" data-toggle="tooltip" title="<?php echo $tooltip2 ?>">
+                                            <div style="height: 20px;background-color:rgb(219, 219, 219)" class="progress">
+                                                <p style="line-height:24px;color:#808080;">
+                                                    <?php
+                                                    echo $mensaje;
+                                                    ?>
+                                                </p>
+                                                <div class="progress-bar" role="progressbar" style="background-color:
+                                            <?php
+                                            echo $color2;
+                                            ?>;
+                                            width: 
+                                            <?php
+                                            echo $porcentaje;
+                                            ?>%;" aria-valuenow="<?php echo $row["veces"] ?>" aria-valuemin="0" aria-valuemax="<?php echo $row["turnos"] ?>"><?php echo $row["veces"] ?> de <?php echo $row["turnos"] ?> turnos</div>
+                                            </div>
+                                        </span>
                                         <div class="d-flex justify-content-end">
                                             <p><b><?php echo $cantidadHoy ?>g</b> de <b><?php echo $racion ?>g</b></p>
                                         </div>
@@ -215,43 +223,11 @@ include 'autenticacion.php';
                                 </ul>
                             </div>
                         </div>
-
                     </div>
                 </div>
 
                 <div style="margin-top:20px;margin-left: 10px;" class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h4 style="margin-bottom:40px;">Historial de turnos</h4>
-                    <div class="btn-toolbar mb-2 mb-md-0">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <input type="date" name="desde" class="form-control" value="
-                                <?php
-                                if (isset($_GET['desde'])) {
-                                    echo $_GET['desde'];
-                                } else {
-                                }
-                                ?>">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <input type="date" name="hasta" class="form-control" value="
-                                <?php
-                                if (isset($_GET['hasta'])) {
-                                    echo $_GET['hasta'];
-                                } else {
-                                }
-                                ?>">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-dark btn-sm">Filtrar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="table-responsive">
