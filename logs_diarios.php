@@ -27,12 +27,26 @@ include 'autenticacion.php';
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <input type="date" name="desde" class="form-control" value="<?php echo date("Y-m-d",time()); ?>">
+                        <input type="date" name="desde" class="form-control" value="
+                        <?php
+                        if (isset($_GET['desde'])) {
+                            echo $_GET['desde'];
+                        } else {
+                            echo date("Y-m-d",time());
+                        }
+                        ?>">
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <input type="date" name="hasta" class="form-control" value="<?php echo date("Y-m-d",time()); ?>">
+                        <input type="date" name="hasta" class="form-control" value="
+                        <?php
+                        if (isset($_GET['hasta'])) {
+                            echo $_GET['hasta'];
+                        } else {
+                            echo date("Y-m-d",time());
+                        }
+                        ?>">
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -69,7 +83,7 @@ include 'autenticacion.php';
                 if (isset($_GET['desde']) && isset($_GET['hasta'])) {
                     $desde = $_GET['desde'];
                     $hasta = $_GET['hasta'];
-                    if (strtotime($desde) <= strtotime($hasta)) {
+                    if (strtotime($desde) < strtotime($hasta)) {
 
                         $sql1 = "SELECT * FROM logs WHERE horaSalida BETWEEN '$desde' AND '$hasta' ORDER BY identificador DESC";
                         $query1 = mysqli_query($conex, $sql1);
