@@ -3,11 +3,11 @@ include 'autenticacion.php';
 include 'config.php';
 
 $identificador = "";
-    if (isset($_GET["identificador"])) {
-        $identificador = $_GET["identificador"];
-    }
-    $sql1 = "SELECT * FROM perros WHERE identificador = $identificador";
-    $query1 = $conex->query($sql1);
+if (isset($_GET["identificador"])) {
+    $identificador = $_GET["identificador"];
+}
+$sql1 = "SELECT * FROM perros WHERE identificador = $identificador";
+$query1 = $conex->query($sql1);
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +59,7 @@ $identificador = "";
                 if ($cantidadHoy >= $racion) {
                     $tooltip2 = "Este perro ya comió";
                 } else {
-                    $tooltip2 = $diferenciaCantidad."g restantes";
+                    $tooltip2 = $diferenciaCantidad . "g restantes";
                 }
                 $porcentaje = (($row['veces'] * 100) / $row['turnos']);
                 if ($porcentaje >= 100) {
@@ -265,10 +265,15 @@ $identificador = "";
                                         <td><?php echo $row['horaEntrada'] ?></td>
                                         <td><?php echo $row['horaSalida'] ?></td>
                                     </tr>
-                    <?php
+                                <?php
                                 }
                             } else {
-                                echo "<h6>No se han encontrados resultados</h6>";
+                                ?>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <center><span style="margin-right:5px" data-feather="alert-triangle"></span><?php echo "No se han encontrado resultados" ?></center>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                    <?php
                             }
                         }
                     }

@@ -36,51 +36,51 @@ file_put_contents('uid.php', $escribir);
 				<table class="table tabla" id="datos-tabla" data-sorting="true">
 					<tr>
 						<td><b>#</b></td>
-						<td>---------------------</td>
+						<td>______________________</td>
 					</tr>
 					<tr>
 						<td><b>Nombre</b></td>
-						<td>---------------------</td>
+						<td>______________________</td>
 					</tr>
 					<tr>
 						<td><b>Código</b></td>
-						<td>---------------------</td>
+						<td>______________________</td>
 					</tr>
 					<tr>
 						<td><b>Sexo</b></td>
-						<td>---------------------</td>
+						<td>______________________</td>
 					</tr>
 					<tr>
 						<td><b>Raza</b></td>
-						<td>---------------------</td>
+						<td>______________________</td>
 					</tr>
 					<tr>
 						<td><b>Edad (aprox)</b></td>
-						<td>---------------------</td>
+						<td>______________________</td>
 					</tr>
 					<tr>
 						<td><b>Peso</b></td>
-						<td>---------------------</td>
+						<td>______________________</td>
 					</tr>
 					<tr>
 						<td><b>Ración diaria</b></td>
-						<td>---------------------</td>
+						<td>______________________</td>
 					</tr>
 					<tr>
 						<td><b>Turnos diarios</b></td>
-						<td>---------------------</td>
+						<td>______________________</td>
 					</tr>
 					<tr>
 						<td><b>Tiempo de espera</b></td>
-						<td>---------------------</td>
+						<td>______________________</td>
 					</tr>
 					<tr>
 						<td><b>Veces que ya comió</b></td>
-						<td>---------------------</td>
+						<td>______________________</td>
 					</tr>
 					<tr>
 						<td><b>Última comida</b></td>
-						<td>---------------------</td>
+						<td>______________________</td>
 					</tr>
 					</td>
 					</tr>
@@ -92,13 +92,8 @@ file_put_contents('uid.php', $escribir);
 	<?php
 	include 'comp/scripts.php';
 	?>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script>
 		$(document).ready(function() {
-
-			setTimeout(function() {
-				$(".alert").alert('close');
-			}, 4000);
 
 			$("#obtenerUID").load("uid.php");
 			setInterval(function() {

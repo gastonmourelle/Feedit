@@ -28,12 +28,10 @@ include 'autenticacion.php';
                 <div class="col-md-4">
                     <div class="form-group">
                         <input type="date" name="desde" class="form-control" value="
-                        <?php 
+                        <?php
                         if (isset($_GET['desde'])) {
                             echo $_GET['desde'];
-                        }
-                        else{
-
+                        } else {
                         }
                         ?>">
                     </div>
@@ -41,12 +39,10 @@ include 'autenticacion.php';
                 <div class="col-md-4">
                     <div class="form-group">
                         <input type="date" name="hasta" class="form-control" value="
-                        <?php 
+                        <?php
                         if (isset($_GET['hasta'])) {
                             echo $_GET['hasta'];
-                        }
-                        else{
-
+                        } else {
                         }
                         ?>">
                     </div>
@@ -85,28 +81,42 @@ include 'autenticacion.php';
                 if (isset($_GET['desde']) && isset($_GET['hasta'])) {
                     $desde = $_GET['desde'];
                     $hasta = $_GET['hasta'];
+                    if (strtotime($desde) < strtotime($hasta)) {
 
-                    $sql1 = "SELECT * FROM logs WHERE horaSalida BETWEEN '$desde' AND '$hasta' ORDER BY identificador DESC";
-                    $query1 = mysqli_query($conex, $sql1);
+                        $sql1 = "SELECT * FROM logs WHERE horaSalida BETWEEN '$desde' AND '$hasta' ORDER BY identificador DESC";
+                        $query1 = mysqli_query($conex, $sql1);
 
-                    if (mysqli_num_rows($query1) > 0) {
-                        foreach ($query1 as $row) {
-                            $tiempoEntrada = strtotime($row['horaEntrada']);
-                            $tiempoSalida = strtotime($row['horaSalida']);
-                            $diferencia = ($tiempoSalida - $tiempoEntrada);
-                            $tiempoDiferencia = gmdate('H:i:s', $diferencia);
+                        if (mysqli_num_rows($query1) > 0) {
+                            foreach ($query1 as $row) {
+                                $tiempoEntrada = strtotime($row['horaEntrada']);
+                                $tiempoSalida = strtotime($row['horaSalida']);
+                                $diferencia = ($tiempoSalida - $tiempoEntrada);
+                                $tiempoDiferencia = gmdate('H:i:s', $diferencia);
                 ?>
-                            <tr style="vertical-align: middle;">
-                                <td><b><?php echo $row['identificador'] ?></b></td>
-                                <td><b><?php echo $row['nombre'] ?></b></td>
-                                <td><?php echo $tiempoDiferencia ?></td>
-                                <td><?php echo $row['horaEntrada'] ?></td>
-                                <td><?php echo $row['horaSalida'] ?></td>
-                            </tr>
+                                <tr style="vertical-align: middle;">
+                                    <td><b><?php echo $row['identificador'] ?></b></td>
+                                    <td><b><?php echo $row['nombre'] ?></b></td>
+                                    <td><?php echo $tiempoDiferencia ?></td>
+                                    <td><?php echo $row['horaEntrada'] ?></td>
+                                    <td><?php echo $row['horaSalida'] ?></td>
+                                </tr>
+                            <?php
+                            }
+                        } else {
+                            ?>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <center><span style="margin-right:5px" data-feather="alert-triangle"></span><?php echo "No se han encontrado resultados para su búsqueda" ?></center>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
                         <?php
                         }
                     } else {
-                        echo "<h6>No se han encontrados resultados para tu búsqueda</h6>";
+                        ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <center><span style="margin-right:5px" data-feather="alert-triangle"></span><strong>Error: </strong><?php echo "El rango de fechas es inválido" ?></center>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        <?php
                     }
                 } else {
                     $tiempoActualUnix = time() - 10800;
@@ -130,8 +140,15 @@ include 'autenticacion.php';
                                 <td><?php echo $row['horaEntrada'] ?></td>
                                 <td><?php echo $row['horaSalida'] ?></td>
                             </tr>
-                <?php
+                        <?php
                         }
+                    } else {
+                        ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <center><span style="margin-right:5px" data-feather="alert-triangle"></span><?php echo "No se han encontrado resultados" ?></center>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                <?php
                     }
                 }
                 ?>
@@ -142,11 +159,5 @@ include 'autenticacion.php';
         include 'comp/scripts.php';
         ?>
         <script type="text/javascript">
-            $(document).ready(function() {
-
-                setTimeout(function() {
-                    $(".alert").alert('close');
-                }, 4000);
-            });
         </script>
 </body>

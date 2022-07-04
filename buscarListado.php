@@ -77,7 +77,7 @@ if ($result->num_rows > 0) {
   $salida .= "</tbody>";
   echo $salida;
 } else {
-  echo "<h6>No se han encontrados resultados para tu búsqueda</h6>";
+  echo "<h6>No se han encontrados resultados para su búsqueda</h6>";
 }
 
 include 'comp/modalBorrar.php';
