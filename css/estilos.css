@@ -110,6 +110,10 @@ a {
     padding-left:25px;
 }
 
+.items_menu li{
+    padding: 5px 0;
+}
+
 .sidebar-sticky {
   position: relative;
   top: 0;

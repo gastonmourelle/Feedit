@@ -36,6 +36,8 @@ include 'autenticacion.php';
         <?php
         if ($query1->num_rows > 0) {
             while ($row = $query1->fetch_assoc()) {
+                $racion = intval($row['racion']);
+                $turnos = intval($row['turnos']);
                 $estado = $row['entro'];
                 $mensaje = "";
                 if ($estado == 0) {
@@ -46,7 +48,7 @@ include 'autenticacion.php';
                     $tooltip = "Comiendo";
                 }
                 $porcentaje = (($row['veces'] * 100) / $row['turnos']);
-                if ($porcentaje == 100) {
+                if ($porcentaje >= 100) {
                     $color2 = "#00B005";
                 } else if ($porcentaje < 100 and $porcentaje >= 80) {
                     $color2 = "#B0C800";
@@ -113,6 +115,7 @@ include 'autenticacion.php';
                             <tr>
                                 <th>#</th>
                                 <th>Nombre</th>
+                                <th>Ración por turno</th>
                                 <th>Tiempo comiendo</th>
                                 <th>Hora de entrada</th>
                                 <th>Hora de salida</th>
@@ -129,10 +132,12 @@ include 'autenticacion.php';
                                     $tiempoSalida = strtotime($row['horaSalida']);
                                     $diferencia = ($tiempoSalida - $tiempoEntrada);
                                     $tiempoDiferencia = gmdate('H:i:s', $diferencia);
+                                    $unaRacion = ($racion / $turnos)| 0;
                             ?>
                                     <tr style="vertical-align: middle;">
                                         <td><b><?php echo $row['identificador'] ?></b></a></td>
                                         <td><b><?php echo $row['nombre'] ?></b></a></td>
+                                        <td><?php echo $unaRacion ?>g</td>
                                         <td><?php echo $tiempoDiferencia ?></td>
                                         <td><?php echo $row['horaEntrada'] ?></td>
                                         <td><?php echo $row['horaSalida'] ?></td>
