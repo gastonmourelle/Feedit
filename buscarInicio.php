@@ -9,7 +9,7 @@ if (isset($_POST['query'])) {
     OR identificador LIKE CONCAT('%',?,'%') 
     OR id LIKE CONCAT('%',?,'%') 
     OR raza LIKE CONCAT('%',?,'%') 
-    ORDER BY identificador DESC");
+    ORDER BY nombre ASC");
   $stmt->bind_param("ssss",$buscar, $buscar, $buscar, $buscar);
 } else {
   $stmt = $conex->prepare("SELECT * FROM perros");

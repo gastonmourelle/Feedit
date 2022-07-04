@@ -26,12 +26,10 @@ file_put_contents('uid.php', $escribir);
 	<h1 class="display-6">Verificación</h1>
 	<p id="obtenerUID" hidden></p>
 
-	<form action="excel.php" method="post">
-		<button type="submit" name="descargar_excel" class="btn btn-outline-dark btn-sm">
-			<span data-feather="download-cloud"></span> Exportar XLS
-		</button>
-	</form>
-</div>
+	<div class="btn-toolbar mb-2 mb-md-0">
+		<a class="nuevo btn btn-dark btn-sm me-md-2" href="registro.php"><span data-feather="plus"></span> Nuevo</a>
+	</div>
+	</div>
 	<div class="row d-flex justify-content-center">
 		<div class="col-md-6">
 			<div id="mostrarDatos" class="btn-toolbar mb-2 mb-md-0 table-responsive">

@@ -21,7 +21,7 @@ include 'autenticacion.php';
 
   <?php
   include "config.php";
-  $stmt = $conex->prepare('SELECT * FROM perros ORDER BY identificador DESC');
+  $stmt = $conex->prepare('SELECT * FROM perros ORDER BY nombre ASC');
   $stmt->execute();
   $result = $stmt->get_result();
   ?>
@@ -43,7 +43,6 @@ include 'autenticacion.php';
         ?>
 
         <tr>
-          <th><a class="borrarlista_btn" href=""><span style="margin: 0 10px;" data-feather="trash-2"></span></a></th>
           <th>#</th>
           <th>Foto</th>
           <th>Nombre</th>
@@ -64,7 +63,7 @@ include 'autenticacion.php';
         <?php
         include 'db.php';
         $pdo = Base::connect();
-        $sql = 'SELECT * FROM perros ORDER BY identificador DESC';
+        $sql = 'SELECT * FROM perros ORDER BY nombre ASC';
         foreach ($pdo->query($sql) as $row) {
           $estado = $row['entro'];
           $turnos = $row['turnos'];
@@ -82,7 +81,6 @@ include 'autenticacion.php';
             $tooltip = "Comiendo";
           }
           echo '<tr style="vertical-align: middle;">';
-          echo '<td><input id="borrarlista_check_id" onchange="cambioValor()" class="form-check-input" type="checkbox" name="borrarlista_check_id[]" value="' . $row['identificador'] . '"></td>';
           echo '<td><a href="ampliacion.php?identificador=' . $row['identificador'] . '"><b>' . $row['identificador'] . '</b></a></td>';
           echo '<td><a href="ampliacion.php?identificador=' . $row['identificador'] . '"><img src="img/' . $row['foto'] . '" alt="" style="object-fit: cover;height:100px;width:100px;" class="rounded-circle"></a></td>';
           echo '<td><a href="ampliacion.php?identificador=' . $row['identificador'] . '"><b>' . $row['nombre'] . '</b></a></td>';
@@ -127,11 +125,6 @@ include 'autenticacion.php';
         var identificador = $(this).closest('tr').find('.buscar_id').text();
         $("#borrar_id").val(identificador);
         $("#modal_borrar").modal("show");
-      })
-
-      $(".borrarlista_btn").click(function(e) {
-        e.preventDefault();
-        $("#modal_borrarlista").modal("show");
       })
 
       $("#buscar").keyup(function() {

@@ -29,6 +29,10 @@ include 'autenticacion.php';
     $query1 = $conex->query($sql1);
     ?>
     <h1 class="display-6">Detalles</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <a style="margin-right:10px;" class="verificar btn btn-outline-dark btn-sm" href="verificacion.php"><span data-feather="check"></span> Verificar</a>
+        <a class="nuevo btn btn-dark btn-sm me-md-2" href="registro.php"><span data-feather="plus"></span> Nuevo</a>
+    </div>
     </div>
 
     <div>
@@ -132,7 +136,7 @@ include 'autenticacion.php';
                                     $tiempoSalida = strtotime($row['horaSalida']);
                                     $diferencia = ($tiempoSalida - $tiempoEntrada);
                                     $tiempoDiferencia = gmdate('H:i:s', $diferencia);
-                                    $unaRacion = ($racion / $turnos)| 0;
+                                    $unaRacion = ($racion / $turnos) | 0;
                             ?>
                                     <tr style="vertical-align: middle;">
                                         <td><b><?php echo $row['identificador'] ?></b></a></td>

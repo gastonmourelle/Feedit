@@ -9,7 +9,7 @@ if (isset($_POST['query'])) {
     OR identificador LIKE CONCAT('%',?,'%') 
     OR id LIKE CONCAT('%',?,'%') 
     OR raza LIKE CONCAT('%',?,'%') 
-    ORDER BY identificador DESC");
+    ORDER BY nombre ASC");
   $stmt->bind_param("ssss",$buscar, $buscar, $buscar, $buscar);
 } else {
   $stmt = $conex->prepare("SELECT * FROM perros");
@@ -19,7 +19,6 @@ $result = $stmt->get_result();
 if ($result->num_rows > 0) {
   $salida = "<thead>
       <tr>
-      <th></th>
       <th>#</th>
       <th>Foto</th>
       <th>Nombre</th>
@@ -54,7 +53,7 @@ if ($result->num_rows > 0) {
       $tooltip = "Comiendo";
     }
     $salida .= "<tr style='vertical-align: middle;'>
-        <td><input id='borrarlista_check_id' onchange='cambioValor()' class='form-check-input' type='checkbox' name='borrarlista_check_id[]' value='" . $row['identificador'] . "'></td>
+        
         <td><a href='ampliacion.php?identificador=" . $row['identificador'] . "'><b>" . $row['identificador'] . "</b></a></td>
         <td><a href='ampliacion.php?identificador=" . $row['identificador'] . "'><img src='img/" . $row['foto'] . "' alt='' style='object-fit: cover;height:100px;width:100px' class='rounded-circle'></a></td>
         <td><a href='ampliacion.php?identificador=" . $row['identificador'] . "'><b>" . $row['nombre'] . "</b></a></td>
@@ -88,11 +87,6 @@ include "comp/scripts.php";
 
 <script type="text/javascript">
   $(document).ready(function() {
-
-    $(".borrarlista_btn").click(function(e) {
-        e.preventDefault();
-        $("#modal_borrarlista").modal("show");
-      })
 
     $(".borrar_btn").click(function(e) {
       e.preventDefault();

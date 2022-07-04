@@ -21,7 +21,7 @@ include 'autenticacion.php';
 
   <?php
   include "config.php";
-  $stmt = $conex->prepare('SELECT * FROM perros ORDER BY identificador DESC');
+  $stmt = $conex->prepare('SELECT * FROM perros ORDER BY nombre ASC');
   $stmt->execute();
   $result = $stmt->get_result();
   ?>
@@ -40,7 +40,7 @@ include 'autenticacion.php';
     include 'db.php';
 
     $pdo = Base::connect();
-    $sql = 'SELECT * FROM perros ORDER BY identificador DESC';
+    $sql = 'SELECT * FROM perros ORDER BY nombre ASC';
     foreach ($pdo->query($sql) as $row) {
       echo '<div class="col col_index">';
       echo '<a href="ampliacion.php?identificador=' . $row['identificador'] . '">';
