@@ -41,7 +41,10 @@ include 'autenticacion.php';
         if ($query1->num_rows > 0) {
             while ($row = $query1->fetch_assoc()) {
                 $racion = intval($row['racion']);
+                $veces = intval($row['veces']);
                 $turnos = intval($row['turnos']);
+                $unaRacion = ($racion / $turnos) | 0;
+                $cantidadHoy = $unaRacion * $veces;
                 $estado = $row['entro'];
                 $mensaje = "";
                 if ($estado == 0) {
@@ -80,37 +83,111 @@ include 'autenticacion.php';
                         <!-- __MIGAS__ -->
                         <img class="rounded my-3 img-fluid w-100" src="img/<?php echo $row["foto"] ?>" alt="">
                     </div>
-                    <div class="col-md-5 my-5">
+                    <div class="col-md-6 my-5">
                         <!-- TITULO -->
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-8">
                                 <span id="tooltip_comiendo" role="button" class="d-inline-block" tabindex="0" data-toggle="tooltip" title="<?php echo $tooltip ?>">
-                                    <h3 style="<?php echo $color ?>;">●</h3>
+                                    <h4 style="<?php echo $color ?>;">●</h4>
                                 </span>
                                 <h1 class="d-inline-block"><?php echo $row["nombre"] ?></h1>
                                 <h5 class="subtitulo">- <?php echo $row["raza"] ?></h5>
-                                <h6>Comidas de hoy:</h6>
-                                <div style="height: 25px;background-color:#D0d0d0" class="progress">
+                            </div>
+
+                            <div class="col-md-2 my-3 d-flex justify-content-end">
+                                <input class="buscar_id" type="hidden" value="<?php echo $row["identificador"] ?>"></input>
+                                <a style="margin-right:20px;" href="editar.php?identificador=<?php echo $row["identificador"] ?>"><span class="iconos_ampliacion" data-feather="edit-2"></span></a>
+                                <a style="margin-left:20px;" class="borrar_btn" href=""><span class="iconos_ampliacion" data-feather="trash-2"></span></a>
+                            </div>
+                        </div>
+
+                        <h6>Hoy comió: <b><?php echo $cantidadHoy ?>g</b> de <b><?php echo $racion ?>g</b></h6>
+                        <h6>Turnos (hoy):</h6>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div style="height: 25px;background-color:rgb(219, 219, 219)" class="progress">
                                     <p style="line-height:24px;color:#808080;">
                                         <?php
                                         echo $mensaje;
                                         ?>
                                     </p>
                                     <div class="progress-bar" role="progressbar" style="background-color:
-                                    <?php
-                                    echo $color2;
-                                    ?>;
-                                    width: 
-                                    <?php
-                                    echo $porcentaje;
-                                    ?>%;" aria-valuenow="<?php echo $row["veces"] ?>" aria-valuemin="0" aria-valuemax="<?php echo $row["turnos"] ?>"><?php echo $row["veces"] ?> de <?php echo $row["turnos"] ?></div>
+                                        <?php
+                                        echo $color2;
+                                        ?>;
+                                        width: 
+                                        <?php
+                                        echo $porcentaje;
+                                        ?>%;" aria-valuenow="<?php echo $row["veces"] ?>" aria-valuemin="0" aria-valuemax="<?php echo $row["turnos"] ?>"><?php echo $row["veces"] ?> de <?php echo $row["turnos"] ?></div>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="row listado_ampliacion">
+                            <div class="col-md-3">
+                                <ul class="list-group list-group-horizontal">
+                                    <li class="list-group-item"><b>ID</b></li>
+                                    <li class="list-group-item">#<?php echo $row["identificador"] ?></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-7">
+                                <ul class="list-group list-group-horizontal">
+                                    <li class="list-group-item"><b>Código UID</b></li>
+                                    <li class="list-group-item"><?php echo $row["id"] ?></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="row listado_ampliacion">
+                            <div class="col-md-5">
+                                <ul class="list-group list-group-horizontal">
+                                    <li class="list-group-item"><b>Sexo</b></li>
+                                    <li class="list-group-item"><?php echo $row["sexo"] ?></li>
+                                </ul>
+                                <ul class="list-group list-group-horizontal">
+                                    <li class="list-group-item"><b>Raza</b></li>
+                                    <li class="list-group-item"><?php echo $row["raza"] ?></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-5">
+                                <ul class="list-group list-group-horizontal">
+                                    <li class="list-group-item"><b>Edad</b></li>
+                                    <li class="list-group-item"><?php echo $row["edad"] ?> años</li>
+                                </ul>
+                                <ul class="list-group list-group-horizontal">
+                                    <li class="list-group-item"><b>Peso</b></li>
+                                    <li class="list-group-item"><?php echo $row["peso"] ?>kg</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="row listado_ampliacion">
+                            <div class="col-md-5">
+                                <ul class="list-group list-group-horizontal">
+                                    <li class="list-group-item"><b>Ración diaria (total)</b></li>
+                                    <li class="list-group-item"><?php echo $row["racion"] ?>g</li>
+                                </ul>
+                                <ul class="list-group list-group-horizontal">
+                                    <li class="list-group-item"><b>Turnos diarios</b></li>
+                                    <li class="list-group-item"><?php echo $row["turnos"] ?></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-5">
+                                <ul class="list-group list-group-horizontal">
+                                    <li class="list-group-item"><b>Ración por turno</b></li>
+                                    <li class="list-group-item"><?php echo $unaRacion ?>g</li>
+                                </ul>
+                                <ul class="list-group list-group-horizontal">
+                                    <li class="list-group-item"><b>Tiempo de espera entre turnos</b></li>
+                                    <li class="list-group-item"><?php echo $row["cooldown"] ?> horas</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="table-responsive my-5">
+                    <h4 style="margin-bottom:40px;">Historial de turnos</h4>
                     <table class="table table-striped table-sm table-hover tabla" id="datos-tabla" data-sorting="true">
                         <thead>
                             <?php
@@ -136,7 +213,6 @@ include 'autenticacion.php';
                                     $tiempoSalida = strtotime($row['horaSalida']);
                                     $diferencia = ($tiempoSalida - $tiempoEntrada);
                                     $tiempoDiferencia = gmdate('H:i:s', $diferencia);
-                                    $unaRacion = ($racion / $turnos) | 0;
                             ?>
                                     <tr style="vertical-align: middle;">
                                         <td><b><?php echo $row['identificador'] ?></b></a></td>
@@ -160,6 +236,17 @@ include 'autenticacion.php';
 
 
                 <?php
+                include 'comp/modalBorrar.php';
                 include 'comp/scripts.php';
                 ?>
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        $(".borrar_btn").click(function(e) {
+                            e.preventDefault();
+                            var identificador = $('.buscar_id').val();
+                            $("#borrar_id").val(identificador);
+                            $("#modal_borrar").modal("show");
+                        })
+                    });
+                </script>
 </body>

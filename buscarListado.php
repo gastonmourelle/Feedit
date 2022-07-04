@@ -68,8 +68,8 @@ if ($result->num_rows > 0) {
         <td>" . $row['ultimaSalida'] . "</td>
         <td><span id='tooltip_comiendo' role='button' class='d-inline-block' tabindex='0' data-toggle='tooltip' title='" . $tooltip . "'><h4 style='" . $color . "'>●</h4></span></td>
         <td>
-        <a href='editar.php?identificador=" . $row['identificador'] . "'><span style='margin: 0 10px;' data-feather='edit-2'></span></a>
-  			<a class='borrar_btn' href=''><span style='margin: 0 10px;' data-feather='trash-2'></span></a>
+        <a style='margin: 0 10px;' href='editar.php?identificador=" . $row['identificador'] . "'><span data-feather='edit-2'></span></a>
+  			<a style='margin: 0 10px;' class='borrar_btn' href=''><span data-feather='trash-2'></span></a>
         <input class='buscar_id' type='hidden' value='" . $row['identificador'] . "'></input>
         </td>
       </tr>";

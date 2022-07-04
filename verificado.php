@@ -92,7 +92,7 @@ include 'autenticacion.php';
 								</tr>
 								<tr>
 									<td>Tiempo de espera</td>
-									<td><?php echo $datos['cooldown'];?>hs</td>
+									<td><?php echo $datos['cooldown'];?> horas</td>
 								</tr>
 								<tr>
 									<td>Veces que ya comió</td>
