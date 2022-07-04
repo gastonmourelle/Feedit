@@ -21,7 +21,7 @@ include 'autenticacion.php';
     include 'comp/menu.php';
     include 'config.php';
     ?>
-    <h1 class="display-6">Logs</h1>
+    <h1 class="display-6">Logs diarios</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
         <form action="" method="GET">
             <div class="row">
@@ -97,8 +97,8 @@ include 'autenticacion.php';
                             $tiempoDiferencia = gmdate('H:i:s', $diferencia);
                 ?>
                             <tr style="vertical-align: middle;">
-                                <td><b><?php echo $row['identificador'] ?></b></a></td>
-                                <td><b><?php echo $row['nombre'] ?></b></a></td>
+                                <td><b><?php echo $row['identificador'] ?></b></td>
+                                <td><b><?php echo $row['nombre'] ?></b></td>
                                 <td><?php echo $tiempoDiferencia ?></td>
                                 <td><?php echo $row['horaEntrada'] ?></td>
                                 <td><?php echo $row['horaSalida'] ?></td>
@@ -124,8 +124,8 @@ include 'autenticacion.php';
                             $tiempoDiferencia = gmdate('H:i:s', $diferencia);
                         ?>
                             <tr style="vertical-align: middle;">
-                                <td><b><?php echo $row['identificador'] ?></b></a></td>
-                                <td><b><?php echo $row['nombre'] ?></b></a></td>
+                                <td><b><?php echo $row['identificador'] ?></b></td>
+                                <td><b><?php echo $row['nombre'] ?></b></td>
                                 <td><?php echo $tiempoDiferencia ?></td>
                                 <td><?php echo $row['horaEntrada'] ?></td>
                                 <td><?php echo $row['horaSalida'] ?></td>

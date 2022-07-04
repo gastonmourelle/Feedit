@@ -55,7 +55,7 @@
                     <li class="nav-item">
                         <a class="nav-link <?= $actual == 'logs_diarios.php' ? 'active':'' ?>" href="logs_diarios.php">
                             <span data-feather="database"></span>
-                            Logs
+                            Logs diarios
                         </a>
                     </li>
                     <li class="nav-item">

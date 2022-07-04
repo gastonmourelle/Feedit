@@ -36,6 +36,30 @@ include 'autenticacion.php';
         <?php
         if ($query1->num_rows > 0) {
             while ($row = $query1->fetch_assoc()) {
+                $estado = $row['entro'];
+                $mensaje = "";
+                if ($estado == 0) {
+                    $color = "color:#adb5bd";
+                    $tooltip = "Inactivo";
+                } else {
+                    $color = "color:#00AE25";
+                    $tooltip = "Comiendo";
+                }
+                $porcentaje = (($row['veces'] * 100) / $row['turnos']);
+                if ($porcentaje == 100) {
+                    $color2 = "#00B005";
+                } else if ($porcentaje < 100 and $porcentaje >= 80) {
+                    $color2 = "#B0C800";
+                } else if ($porcentaje < 80 and $porcentaje >= 60) {
+                    $color2 = "#FFB900";
+                } else if ($porcentaje < 60 and $porcentaje >= 30) {
+                    $color2 = "#D64E00";
+                } else if ($porcentaje < 30 and $porcentaje > 0) {
+                    $color2 = "#D30000";
+                } else {
+                    $color2 = "#D30000";
+                    $mensaje = $row['nombre'] . " todavía no comió";
+                }
         ?>
                 <div class="row">
                     <div class="col-md-6">
@@ -54,28 +78,12 @@ include 'autenticacion.php';
                         <!-- TITULO -->
                         <div class="row">
                             <div class="col-md-12">
-                                <h1><?php echo $row["nombre"] ?></h1>
-                                <h4><?php echo $row["raza"] ?></h4>
-                                <!-- <span class="badge text-bg-dark">Dark</span> -->
+                                <span id="tooltip_comiendo" role="button" class="d-inline-block" tabindex="0" data-toggle="tooltip" title="<?php echo $tooltip ?>">
+                                    <h3 style="<?php echo $color ?>;">●</h3>
+                                </span>
+                                <h1 class="d-inline-block"><?php echo $row["nombre"] ?></h1>
+                                <h5 class="subtitulo">- <?php echo $row["raza"] ?></h5>
                                 <h6>Comidas de hoy:</h6>
-                                <?php
-                                $mensaje = "";
-                                $porcentaje = (($row['veces'] * 100) / $row['turnos']);
-                                if ($porcentaje == 100) {
-                                    $color = "#00B005";
-                                } else if ($porcentaje < 100 and $porcentaje >= 80) {
-                                    $color = "#B0C800";
-                                } else if ($porcentaje < 80 and $porcentaje >= 60) {
-                                    $color = "#FFB900";
-                                } else if ($porcentaje < 60 and $porcentaje >= 30) {
-                                    $color = "#D64E00";
-                                } else if ($porcentaje < 30 and $porcentaje > 0) {
-                                    $color = "#D30000";
-                                } else {
-                                    $color = "#D30000";
-                                    $mensaje = $row['nombre'] . " todavía no comió";
-                                }
-                                ?>
                                 <div style="height: 25px;background-color:#D0d0d0" class="progress">
                                     <p style="line-height:24px;color:#808080;">
                                         <?php
@@ -84,7 +92,7 @@ include 'autenticacion.php';
                                     </p>
                                     <div class="progress-bar" role="progressbar" style="background-color:
                                     <?php
-                                    echo $color;
+                                    echo $color2;
                                     ?>;
                                     width: 
                                     <?php

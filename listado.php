@@ -17,7 +17,6 @@ include 'autenticacion.php';
 <body>
   <?php
   include 'comp/menu.php';
-  include 'comp/estilos.php';
   ?>
 
   <?php
@@ -77,7 +76,7 @@ include 'autenticacion.php';
           }
           if ($estado == 0) {
             $color = "color:#adb5bd";
-            $tooltip = "";
+            $tooltip = "Inactivo";
           } else {
             $color = "color:#00AE25";
             $tooltip = "Comiendo";
