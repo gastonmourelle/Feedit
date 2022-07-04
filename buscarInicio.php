@@ -28,7 +28,7 @@ if ($result->num_rows > 0) {
     $salida .= "<div class='col'>
     <a href='ampliacion.php?identificador=" . $row['identificador'] . "'>
     <div class='card h-100'>
-    <img src='img/" . $row['foto'] . "' class='card-img-top' alt=''>
+    <img src='img/" . $row['foto'] . "' class='card-img-top img_index' alt=''>
     <div class='card-body'>
     <h5 class='card-title'>" . $row['nombre'] . "</h5>
     <p class='card-text'>- " . $row['raza'] . "</p>

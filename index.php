@@ -45,7 +45,7 @@ include 'autenticacion.php';
       echo '<div class="col col_index">';
       echo '<a href="ampliacion.php?identificador=' . $row['identificador'] . '">';
       echo '<div class="card h-100">';
-      echo '<img src="img/' . $row['foto'] . '" class="card-img-top" alt="">';
+      echo '<img src="img/' . $row['foto'] . '" class="card-img-top img_index" alt="">';
       echo '<div class="card-body">';
       echo '<h5 class="card-title">' . $row['nombre'] . '</h5>';
       echo '<p class="card-text">- ' . $row['raza'] . '</p>';

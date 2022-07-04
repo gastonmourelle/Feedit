@@ -77,18 +77,30 @@ a {
 #nav_mobile{
   display: none;background-color: white; padding: 20px 0;
 }
+
+.img_index{
+  object-fit: cover;
+  height:240px;
+}
+
 /* MOBILE */
 @media only screen and (max-width: 768px){
   #nav_mobile{
     display:block;
   }
+
   #sidebarMenu{
     max-width: 300px;
+  }
+
+  .img_index{
+    height:150px;
   }
   
   #img_header{
     display:none;
   }
+
   .sidebar {
     top: 40px;
   }
@@ -100,6 +112,10 @@ a {
 /* TABLETS */
 @media (min-width: 768px) and (max-width: 1024px) {
   
+  .img_index{
+    height:250px;
+  }
+
   .col_index{
     width: 50%;
   }

@@ -40,6 +40,7 @@ include 'autenticacion.php';
         <?php
         if ($query1->num_rows > 0) {
             while ($row = $query1->fetch_assoc()) {
+                $ultimaComida = date('d/m H:i', strtotime($row['ultimaSalida']));
                 $racion = intval($row['racion']);
                 $veces = intval($row['veces']);
                 $turnos = intval($row['turnos']);
@@ -61,9 +62,11 @@ include 'autenticacion.php';
                     $color2 = "#B0C800";
                 } else if ($porcentaje < 80 and $porcentaje >= 60) {
                     $color2 = "#FFB900";
-                } else if ($porcentaje < 60 and $porcentaje >= 30) {
+                } else if ($porcentaje < 60 and $porcentaje >= 40) {
+                    $color2 = "#FF9B00";
+                } else if ($porcentaje < 40 and $porcentaje >= 20) {
                     $color2 = "#D64E00";
-                } else if ($porcentaje < 30 and $porcentaje > 0) {
+                } else if ($porcentaje < 20 and $porcentaje > 0) {
                     $color2 = "#D30000";
                 } else {
                     $color2 = "#D30000";
@@ -81,14 +84,15 @@ include 'autenticacion.php';
                             </ol>
                         </nav>
                         <!-- __MIGAS__ -->
-                        <img class="rounded my-3 img-fluid w-100" src="img/<?php echo $row["foto"] ?>" alt="">
+                        <img style="object-fit: cover;height:600px;" class="rounded my-3 img-fluid w-100" src="img/<?php echo $row["foto"] ?>" alt="">
+
                     </div>
                     <div class="col-md-6 my-5">
                         <!-- TITULO -->
                         <div class="row">
                             <div class="col-md-8">
                                 <span id="tooltip_comiendo" role="button" class="d-inline-block" tabindex="0" data-toggle="tooltip" title="<?php echo $tooltip ?>">
-                                    <h4 style="<?php echo $color ?>;">●</h4>
+                                    <h4 style="<?php echo $color ?>;margin-right:10px">●</h4>
                                 </span>
                                 <h1 class="d-inline-block"><?php echo $row["nombre"] ?></h1>
                                 <h5 class="subtitulo">- <?php echo $row["raza"] ?></h5>
@@ -96,29 +100,35 @@ include 'autenticacion.php';
 
                             <div class="col-md-2 my-3 d-flex justify-content-end">
                                 <input class="buscar_id" type="hidden" value="<?php echo $row["identificador"] ?>"></input>
-                                <a style="margin-right:20px;" href="editar.php?identificador=<?php echo $row["identificador"] ?>"><span class="iconos_ampliacion" data-feather="edit-2"></span></a>
+                                <a style="margin-right:40px;" href="editar.php?identificador=<?php echo $row["identificador"] ?>"><span class="iconos_ampliacion" data-feather="edit-2"></span></a>
                                 <a style="margin-left:20px;" class="borrar_btn" href=""><span class="iconos_ampliacion" data-feather="trash-2"></span></a>
                             </div>
                         </div>
 
-                        <h6>Hoy comió: <b><?php echo $cantidadHoy ?>g</b> de <b><?php echo $racion ?>g</b></h6>
-                        <h6>Turnos (hoy):</h6>
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div style="height: 25px;background-color:rgb(219, 219, 219)" class="progress">
-                                    <p style="line-height:24px;color:#808080;">
-                                        <?php
-                                        echo $mensaje;
-                                        ?>
-                                    </p>
-                                    <div class="progress-bar" role="progressbar" style="background-color:
+                        <div class="row listado_ampliacion">
+                            <div class="col-md-10">
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div style="height: 25px;background-color:rgb(219, 219, 219)" class="progress">
+                                            <p style="line-height:24px;color:#808080;">
+                                                <?php
+                                                echo $mensaje;
+                                                ?>
+                                            </p>
+                                            <div class="progress-bar" role="progressbar" style="background-color:
                                         <?php
                                         echo $color2;
                                         ?>;
                                         width: 
                                         <?php
                                         echo $porcentaje;
-                                        ?>%;" aria-valuenow="<?php echo $row["veces"] ?>" aria-valuemin="0" aria-valuemax="<?php echo $row["turnos"] ?>"><?php echo $row["veces"] ?> de <?php echo $row["turnos"] ?></div>
+                                        ?>%;" aria-valuenow="<?php echo $row["veces"] ?>" aria-valuemin="0" aria-valuemax="<?php echo $row["turnos"] ?>"><?php echo $row["veces"] ?> de <?php echo $row["turnos"] ?> turnos</div>
+                                        </div>
+                                        <div class="d-flex justify-content-end">
+                                            <p><b><?php echo $cantidadHoy ?>g</b> de <b><?php echo $racion ?>g</b></p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -164,6 +174,29 @@ include 'autenticacion.php';
                         <div class="row listado_ampliacion">
                             <div class="col-md-5">
                                 <ul class="list-group list-group-horizontal">
+                                    <li class="list-group-item"><b>Cantidad (hoy)</b></li>
+                                    <li class="list-group-item"><?php echo $cantidadHoy ?>g</li>
+                                </ul>
+                                <ul class="list-group list-group-horizontal">
+                                    <li class="list-group-item"><b>Turnos (hoy)</b></li>
+                                    <li class="list-group-item"><?php echo $row["veces"] ?></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-5">
+                                <ul class="list-group list-group-horizontal">
+                                    <li class="list-group-item"><b>Última comida</b></li>
+                                    <li class="list-group-item"><?php echo $ultimaComida ?></li>
+                                </ul>
+                                <ul class="list-group list-group-horizontal">
+                                    <li class="list-group-item"><b>Estado</b></li>
+                                    <li class="list-group-item"><?php echo $tooltip ?></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="row listado_ampliacion">
+                            <div class="col-md-5">
+                                <ul class="list-group list-group-horizontal">
                                     <li class="list-group-item"><b>Ración diaria (total)</b></li>
                                     <li class="list-group-item"><?php echo $row["racion"] ?>g</li>
                                 </ul>
@@ -183,6 +216,7 @@ include 'autenticacion.php';
                                 </ul>
                             </div>
                         </div>
+
                     </div>
                 </div>
 

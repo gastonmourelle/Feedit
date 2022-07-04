@@ -35,7 +35,7 @@ include 'autenticacion.php';
   </div>
 
   <div class="table-responsive">
-    <table class="table table-striped table-sm table-hover tabla" id="datos-tabla" data-sorting="true">
+    <table style="width:100%;" class="table table-striped table-sm table-hover tabla" id="datos-tabla" data-sorting="true">
       <thead>
         <?php
         include 'comp/alerts.php';
