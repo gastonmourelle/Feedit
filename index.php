@@ -43,21 +43,21 @@ include 'autenticacion.php';
     $sql = 'SELECT * FROM perros ORDER BY nombre ASC';
     foreach ($pdo->query($sql) as $row) { ?>
       <div class="col col_index">
-        <a href="ampliacion.php?identificador=<?php echo $row['identificador'] ?>">
+        <a href="ampliacion.php?identificador=<?= $row['identificador'] ?>">
           <div class="card h-100">
-            <img src="img/<?php echo $row['foto'] ?>" class="card-img-top img_index" alt="<?php echo $row['foto'] ?>">
+            <img src="img/<?= $row['foto'] ?>" class="card-img-top img_index" alt="<?= $row['foto'] ?>">
             <div class="card-body">
-              <h5 class="card-title"><?php echo $row['nombre'] ?></h5>
-              <p class="card-text"><?php echo $row['raza'] ?></p>
+              <h5 class="card-title"><?= $row['nombre'] ?></h5>
+              <p class="card-text"><?= $row['raza'] ?></p>
             </div>
             <div class="card-footer">
-              <small class="text-muted">Código: <?php echo $row['id'] ?><a class="borrar_btn" href=""><span data-feather="trash-2"></span></a>
-                <a href="editar.php?identificador=<?php echo $row['identificador'] ?>">
+              <small class="text-muted">Código: <?= $row['id'] ?><a class="borrar_btn" href=""><span data-feather="trash-2"></span></a>
+                <a href="editar.php?identificador=<?= $row['identificador'] ?>">
                   <span style="margin-right:20px;" data-feather="edit-2">
                   </span>
                 </a>
               </small>
-              <input class="buscar_id" type="hidden" value="<?php echo $row['identificador'] ?>"></input>
+              <input class="buscar_id" type="hidden" value="<?= $row['identificador'] ?>"></input>
             </div>
           </div>
         </a>

@@ -81,31 +81,31 @@ include 'autenticacion.php';
             $tooltip = "Comiendo";
           } ?>
           <tr style="vertical-align: middle;">
-            <td><a href="ampliacion.php?identificador=<?php echo $row['identificador'] ?>"><b><?php echo $row['identificador'] ?></b></a></td>
-            <td><a href="ampliacion.php?identificador=<?php echo $row['identificador'] ?>"><img src="img/<?php echo $row['foto'] ?>" alt="<?php echo $row['foto'] ?>" style="object-fit: cover;height:100px;width:100px;" class="rounded-circle"></a></td>
-            <td><a href="ampliacion.php?identificador=<?php echo $row['identificador'] ?>"><b><?php echo $row['nombre'] ?></b></a></td>
-            <td><?php echo $row['id'] ?></td>
-            <td><?php echo $row['sexo'] ?></td>
-            <td><?php echo $row['raza'] ?></td>
-            <td><?php echo $row['edad'] ?></td>
-            <td><?php echo $row['peso'] ?>kg</td>
-            <td><?php echo $row['racion'] ?>g</td>
-            <td><?php echo $row['cooldown'] ?>h</td>
-            <td><?php echo $check . $row['veces'] ?><strong> / <?php echo $row['turnos'] ?></strong></td>
-            <td><?php echo $row['ultimaSalida'] ?></td>
+            <td><a href="ampliacion.php?identificador=<?= $row['identificador'] ?>"><b><?= $row['identificador'] ?></b></a></td>
+            <td><a href="ampliacion.php?identificador=<?= $row['identificador'] ?>"><img src="img/<?= $row['foto'] ?>" alt="<?= $row['foto'] ?>" style="object-fit: cover;height:100px;width:100px;" class="rounded-circle"></a></td>
+            <td><a href="ampliacion.php?identificador=<?= $row['identificador'] ?>"><b><?= $row['nombre'] ?></b></a></td>
+            <td><?= $row['id'] ?></td>
+            <td><?= $row['sexo'] ?></td>
+            <td><?= $row['raza'] ?></td>
+            <td><?= $row['edad'] ?></td>
+            <td><?= $row['peso'] ?>kg</td>
+            <td><?= $row['racion'] ?>g</td>
+            <td><?= $row['cooldown'] ?>h</td>
+            <td><?= $check . $row['veces'] ?><strong> / <?= $row['turnos'] ?></strong></td>
+            <td><?= $row['ultimaSalida'] ?></td>
             <td>
-              <span id="tooltip_comiendo" role="button" class="d-inline-block" tabindex="0" data-toggle="tooltip" title="<?php echo $tooltip ?>">
-                <h4 style="<?php echo $color ?>">●</h4>
+              <span id="tooltip_comiendo" role="button" class="d-inline-block" tabindex="0" data-toggle="tooltip" title="<?= $tooltip ?>">
+                <h4 style="<?= $color ?>">●</h4>
               </span>
             </td>
             <td>
-              <a style="margin: 0 10px;" href="editar.php?identificador=<?php echo $row['identificador'] ?>">
+              <a style="margin: 0 10px;" href="editar.php?identificador=<?= $row['identificador'] ?>">
                 <span data-feather="edit-2"></span>
               </a>
               <a style="margin: 0 10px;" class="borrar_btn" href="">
                 <span data-feather="trash-2"></span>
               </a>
-              <p class="buscar_id" hidden><?php echo $row['identificador'] ?></p>
+              <p class="buscar_id" hidden><?= $row['identificador'] ?></p>
             </td>
           </tr>
         <?php
