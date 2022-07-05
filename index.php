@@ -39,17 +39,52 @@ include 'autenticacion.php';
   <!-- Tarjetas -->
   <div style="margin-top:40px;margin-bottom:40px" class="row">
     <div class="col col_index">
+      <span role="button" tabindex="0" data-toggle="tooltip" title="25kg restantes">
+        <div class="card tarjetas">
+          <div class="card-body tarjetas_body">
+            <h5 style="margin-bottom:30px" class="card-title">Almacenamiento</h5>
+            <i class="fa-solid fa-box-archive tarjetas_span"></i>
+            <h1 class="card-text float-end"><b>55</b>%</h1>
+          </div>
+        </div>
+      </span>
+    </div>
+
+    <div class="col col_index">
       <div class="card tarjetas">
         <div class="card-body tarjetas_body">
-          <h4 style="margin-bottom:30px" class="card-title">Almacenamiento</h4>
-          <span data-feather="archive" class="d-inline-block tarjetas_span"></span>
-          <h1 class="card-text float-end"><b>55</b>%</h1>
+          <h5 style="margin-bottom:30px" class="card-title">Perros registrados</h5>
+          <i class="fa-solid fa-paw d-inline-block tarjetas_span"></i>
+          <h1 class="card-text float-end"><b>82</b></h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="col col_index">
+      <span role="button" tabindex="0" data-toggle="tooltip" title="25kg restantes">
+        <div class="card tarjetas">
+          <div class="card-body tarjetas_body">
+            <h5 style="margin-bottom:30px" class="card-title">Almacenamiento</h5>
+            <i class="fa-solid fa-box-archive tarjetas_span"></i>
+            <h1 class="card-text float-end"><b>55</b>%</h1>
+          </div>
+        </div>
+      </span>
+    </div>
+
+    <div class="col col_index">
+      <div class="card tarjetas">
+        <div class="card-body tarjetas_body">
+          <h5 style="margin-bottom:30px" class="card-title">Perros registrados</h5>
+          <i class="fa-solid fa-paw d-inline-block tarjetas_span"></i>
+          <h1 class="card-text float-end"><b>82</b></h1>
         </div>
       </div>
     </div>
   </div>
 
-  <div id="datosInicio" class="row row-cols-1 row-cols-md-5 g-4">
+  <!-- Perros -->
+  <div id="datosInicio" class="row row-cols-1 row-cols-md-4 g-4">
     <?php
     include 'db.php';
 

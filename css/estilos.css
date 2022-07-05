@@ -3,7 +3,7 @@
 :root {
   --negro: #353535;
   --gris: rgb(100, 100, 100);
-  --principal: rgb(128, 66, 199);
+  --principal: rgb(68, 18, 160);
   --bordes_tablas: #5f5f5f20;
   --fondo_tablas: #fff;
   --fondo: rgb(239, 241, 252);
@@ -225,16 +225,28 @@ a:hover{
 }
 
 .tarjetas{
-  width:20%;
   background-color:white;
+  border-left: var(--negro) 7px solid;
+  box-shadow: 0px 0px 40px 0px rgba(0,0,0,0.15);
 }
 
 .tarjetas_body{
   color:var(--negro);
-  padding: 25px;
+  padding: 20px;
+}
+
+.tarjetas_body h1{
+  font-size: 32px;
+}
+
+.tarjetas_body h5{
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--gris);
 }
 
 .tarjetas_span{
-  width:45px;
-  height:45px;
+  width:32px;
+  height:32px;
+  font-size: 32px;
 }

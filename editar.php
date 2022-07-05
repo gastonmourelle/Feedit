@@ -35,7 +35,7 @@ Base::disconnect();
 	<p id="porDefecto" hidden><?php echo $datos['sexo']; ?></p>
 	</div>
 
-	<div class="row">
+	<div class="row" style="padding:40px">
 		<div class="col-md-6">
 			<form class="row g-3" action="db_editar.php?identificador=<?php echo $identificador ?>" method="POST" enctype="multipart/form-data">
 				<div class="textarea input-group flex-nowrap">

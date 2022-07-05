@@ -24,7 +24,7 @@ file_put_contents('uid.php', $escribir);
 	<h1 class="display-6">Registro</h1>
 	</div>
 
-	<div class="row">
+	<div class="row" style="padding:40px">
 		<div class="col-md-6">
 
 			<form class="row g-3" action="db_insertar.php" method="POST" enctype="multipart/form-data">
