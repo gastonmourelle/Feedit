@@ -25,7 +25,9 @@
 
     $nombre = ($datos['nombre']);
     $id = ($datos['id']);
+    $racion = ($datos['racion']);
     $turnos = ($datos['turnos']);
+    $unaRacion = ($racion / $turnos) | 0;
     $cooldown = ($datos['cooldown']);
     $veces = ($logs['total']);
     $ultimaSalidaUnix = strtotime(($datos['ultimaSalida'])) + 7200;
@@ -38,7 +40,7 @@
     $cooldownUnix = 10; /* <--- cambiarlo por $cooldown*3600 */
 
     if ($entro == 0 AND $turnos >= $veces AND $diferenciaTiempoUnix >= $cooldownUnix){
-        c("puede comer");
+        c("dispensa ". $unaRacion ." gramos");
 
         $query1 = "UPDATE perros SET ultimaEntrada = NOW() WHERE id = '$UIDresultado'";
         mysqli_query($conex,$query1);
