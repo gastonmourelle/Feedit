@@ -47,7 +47,7 @@
         mysqli_query($conex,$query2);
     }
     else if ($entro == 1){
-
+        c("Termino de comer");
         $query1 = "UPDATE perros SET ultimaSalida = NOW() WHERE id = '$UIDresultado'";
         mysqli_query($conex,$query1);
 

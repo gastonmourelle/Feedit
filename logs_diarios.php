@@ -76,7 +76,7 @@ $diaActual = gmdate('Y-m-d', $tiempoActualUnix);
                 if (isset($_GET['desde']) && isset($_GET['hasta'])) {
                     $desde = $_GET['desde'];
                     $hasta = $_GET['hasta'];
-                    if (strtotime($desde) < strtotime($hasta)) {
+                    if (strtotime($desde) <= strtotime($hasta)) {
                         $sql1 = "SELECT * FROM logs WHERE horaSalida BETWEEN '$desde' AND '$hasta' ORDER BY identificador DESC";
                         $query1 = mysqli_query($conex, $sql1);
 

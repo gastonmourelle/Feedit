@@ -35,6 +35,20 @@ include 'autenticacion.php';
     <a class="nuevo btn btn-dark btn-sm me-md-2" href="registro.php"><span data-feather="plus"></span> Nuevo</a>
   </div>
   </div>
+
+  <!-- Tarjetas -->
+  <div class="row">
+    <div class="col">
+      <div class="card border-dark mb-3">
+        <div class="card-header">Header</div>
+        <div class="card-body text-dark">
+          <h5 class="card-title">Dark card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div id="datosInicio" class="row row-cols-1 row-cols-md-5 g-4">
     <?php
     include 'db.php';
@@ -68,8 +82,6 @@ include 'autenticacion.php';
     ?>
 
   </div>
-
-
   <?php
   include 'comp/modalBorrar.php';
   include 'comp/scripts.php';
