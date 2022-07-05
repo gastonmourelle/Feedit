@@ -96,16 +96,15 @@ include 'autenticacion.php';
           <div class="card h-100">
             <img src="img/<?= $row['foto'] ?>" class="card-img-top img_index" alt="<?= $row['foto'] ?>">
             <div class="card-body">
-              <h5 class="card-title"><?= $row['nombre'] ?></h5>
+              <h5 class="card-title d-inline-block"><?= $row['nombre'] ?></h5>
+              <div class="float-end">
+                <a href="editar.php?identificador=<?= $row['identificador'] ?>"><span class="iconos_perros" style="margin-right:20px;" data-feather="edit"></span></a>
+                <a class="borrar_btn" href=""><span class="iconos_perros" data-feather="trash-2"></span></a>
+              </div>
               <p class="card-text"><?= $row['raza'] ?></p>
             </div>
             <div class="card-footer">
-              <small class="text-muted">Código: <?= $row['id'] ?><a class="borrar_btn" href=""><span data-feather="trash-2"></span></a>
-                <a href="editar.php?identificador=<?= $row['identificador'] ?>">
-                  <span style="margin-right:20px;" data-feather="edit">
-                  </span>
-                </a>
-              </small>
+              <small class="text-muted">Código: <?= $row['id'] ?></small>
               <input class="buscar_id" type="hidden" value="<?= $row['identificador'] ?>"></input>
             </div>
           </div>

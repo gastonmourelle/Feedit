@@ -74,7 +74,7 @@ a:hover{
 }
 
 .items_menu .nav-item{
-  font-size: 15px;
+  font-size: 14px;
 }
 
 #nav_mobile{
@@ -247,4 +247,9 @@ a:hover{
   width:32px;
   height:32px;
   font-size: 32px;
+}
+
+.iconos_perros{
+  width: 20px;
+  height: 20px;
 }
