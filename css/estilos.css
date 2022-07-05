@@ -1,7 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
-
 :root {
-  --negro: #353535;
+  --negro: #1e2125;
   --gris: rgb(100, 100, 100);
   --principal: rgb(68, 18, 160);
   --bordes_tablas: #5f5f5f20;
@@ -17,10 +15,6 @@
 
 body {
   font-size: .875rem;
-}
-
-#seccion_principal{
-  font-family: 'Open Sans', sans-serif;
 }
 
 a {
@@ -77,6 +71,10 @@ a:hover{
   z-index: 100; /* Behind the navbar */
   padding: 48px 0 0; /* Height of navbar */
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.items_menu .nav-item{
+  font-size: 15px;
 }
 
 #nav_mobile{
@@ -227,7 +225,7 @@ a:hover{
 .tarjetas{
   background-color:white;
   border-left: var(--negro) 7px solid;
-  box-shadow: 0px 0px 40px 0px rgba(0,0,0,0.15);
+  box-shadow: 0px 15px 30px 0px rgba(0,0,0,0.10);
 }
 
 .tarjetas_body{
