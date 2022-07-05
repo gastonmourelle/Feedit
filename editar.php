@@ -44,13 +44,13 @@ Base::disconnect();
 				</div>
 
 				<div class="col-md-6"">
-			<label for=" div_refresh" class="form-label">Nombre</label>
+					<label for=" div_refresh" class="form-label">Nombre</label>
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" id="div_refresh" name="nombre" value="<?php echo $datos['nombre']; ?>" required>
 					</div>
 				</div>
 
-				<div class="col-md-4">
+				<div class="col-md-6">
 					<label class="form-label">Sexo</label>
 					<select name="sexo" id="selSexo" class="form-select">
 						<option selected disabled></option>
@@ -66,7 +66,7 @@ Base::disconnect();
 					</div>
 				</div>
 
-				<div class="col-md-3">
+				<div class="col-md-5">
 					<label for="edad" class="form-label">Edad (aproximada)</label>
 					<div class="input-group mb-3">
 						<input type="number" class="form-control" id="edad" name="edad" value="<?php echo $datos['edad']; ?>" required>
@@ -94,14 +94,14 @@ Base::disconnect();
 					</div>
 				</div>
 
-				<div class="col-md-4">
+				<div class="col-md-6">
 					<label for="cooldown" class="form-label">Tiempo de espera entre turnos (h)</label>
 					<div class="input-group mb-3">
 						<input type="number" class="form-control" id="cooldown" name="cooldown" value="<?php echo $datos['cooldown']; ?>" required>
 					</div>
 				</div>
 
-				<div class="col-md-4">
+				<div class="col-md-6">
 					<label for="veces" class="form-label">Veces que ya comió en el día</label>
 					<div class="input-group mb-3">
 						<input type="number" class="form-control" id="veces" name="veces" value="<?php echo $datos['veces']; ?>" required>

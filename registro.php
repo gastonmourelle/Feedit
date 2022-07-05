@@ -47,7 +47,7 @@ file_put_contents('uid.php', $escribir);
 					</div>
 				</div>
 
-				<div class="col-md-4">
+				<div class="col-md-6">
 					<label class="form-label">Sexo</label>
 					<select name="sexo" class="form-select">
 						<option selected disabled></option>
@@ -63,7 +63,7 @@ file_put_contents('uid.php', $escribir);
 					</div>
 				</div>
 
-				<div class="col-md-3">
+				<div class="col-md-5">
 					<label for="edad" class="form-label">Edad (aproximada)</label>
 					<div class="input-group mb-3">
 						<input type="number" class="form-control" id="edad" name="edad" placeholder="" required>
@@ -106,7 +106,7 @@ file_put_contents('uid.php', $escribir);
 				</div>
 
 				<div class="col-md-4">
-					<label for="ultimaSalida" class="form-label">Fecha y hora de su última comida</label>
+					<label for="ultimaSalida" class="form-label">Fecha de su última comida</label>
 					<div class="input-group mb-3">
 						<input type="date" class="form-control" id="ultimaSalida" name="ultimaSalida" placeholder="" required>
 					</div>
