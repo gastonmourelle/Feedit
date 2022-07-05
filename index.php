@@ -37,13 +37,13 @@ include 'autenticacion.php';
   </div>
 
   <!-- Tarjetas -->
-  <div class="row">
-    <div class="col">
-      <div class="card border-dark mb-3">
-        <div class="card-header">Header</div>
-        <div class="card-body text-dark">
-          <h5 class="card-title">Dark card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  <div style="margin-top:40px;margin-bottom:40px" class="row">
+    <div class="col col_index">
+      <div class="card tarjetas">
+        <div class="card-body tarjetas_body">
+          <h4 style="margin-bottom:30px" class="card-title">Almacenamiento</h4>
+          <span data-feather="archive" class="d-inline-block tarjetas_span"></span>
+          <h1 class="card-text float-end"><b>55</b>%</h1>
         </div>
       </div>
     </div>
@@ -67,7 +67,7 @@ include 'autenticacion.php';
             <div class="card-footer">
               <small class="text-muted">Código: <?= $row['id'] ?><a class="borrar_btn" href=""><span data-feather="trash-2"></span></a>
                 <a href="editar.php?identificador=<?= $row['identificador'] ?>">
-                  <span style="margin-right:20px;" data-feather="edit-2">
+                  <span style="margin-right:20px;" data-feather="edit">
                   </span>
                 </a>
               </small>

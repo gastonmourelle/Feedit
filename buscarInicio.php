@@ -34,7 +34,7 @@ if ($result->num_rows > 0) {
     <p class='card-text'>- " . $row['raza'] . "</p>
     </div>
     <div class='card-footer'>
-    <small class='text-muted'>Código: " . $row['id'] . "<a href='db_borrar.php?identificador=" . $row['identificador'] . "'><span data-feather='trash-2'></span></a><a href='editar.php?identificador=" . $row['identificador'] . "'><span style='margin-right:20px;' data-feather='edit-2'></span></a></small>
+    <small class='text-muted'>Código: " . $row['id'] . "<a href='db_borrar.php?identificador=" . $row['identificador'] . "'><span data-feather='trash-2'></span></a><a href='editar.php?identificador=" . $row['identificador'] . "'><span style='margin-right:20px;' data-feather='edit'></span></a></small>
     </div></div></a></div>
     ";
   }

@@ -106,7 +106,7 @@ $query1 = $conex->query($sql1);
 
                             <div class="col-md-3 my-3 d-flex justify-content-end">
                                 <input class="buscar_id" type="hidden" value="<?php echo $row["identificador"] ?>"></input>
-                                <a style="margin-right:40px;" href="editar.php?identificador=<?php echo $row["identificador"] ?>"><span class="iconos_ampliacion" data-feather="edit-2"></span></a>
+                                <a style="margin-right:40px;" href="editar.php?identificador=<?php echo $row["identificador"] ?>"><span class="iconos_ampliacion" data-feather="edit"></span></a>
                                 <a style="margin-left:20px;" class="borrar_btn" href=""><span class="iconos_ampliacion" data-feather="trash-2"></span></a>
                             </div>
                         </div>

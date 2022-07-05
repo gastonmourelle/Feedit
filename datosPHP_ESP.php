@@ -63,10 +63,10 @@
         mysqli_query($conex,$query4);
     }
     else if ($turnos < $veces){
-        c("comiste muchas veces");
+        c("Ya uso todos sus turnos");
     }
     else if ($diferenciaTiempoUnix < $cooldownUnix){
-        c("no esperaste el cooldown");
+        c("Cooldown activo");
     }
 
 

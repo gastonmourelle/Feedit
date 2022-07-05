@@ -100,7 +100,7 @@ include 'autenticacion.php';
             </td>
             <td>
               <a style="margin: 0 10px;" href="editar.php?identificador=<?= $row['identificador'] ?>">
-                <span data-feather="edit-2"></span>
+                <span data-feather="edit"></span>
               </a>
               <a style="margin: 0 10px;" class="borrar_btn" href="">
                 <span data-feather="trash-2"></span>
