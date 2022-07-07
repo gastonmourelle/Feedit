@@ -97,10 +97,6 @@ include 'autenticacion.php';
             <img src="img/<?= $row['foto'] ?>" class="card-img-top img_index" alt="<?= $row['foto'] ?>">
             <div class="card-body">
               <h5 class="card-title d-inline-block"><?= $row['nombre'] ?></h5>
-              <div class="float-end">
-                <a href="editar.php?identificador=<?= $row['identificador'] ?>"><span class="iconos_perros" style="margin-right:20px;" data-feather="edit"></span></a>
-                <a class="borrar_btn" href=""><span class="iconos_perros" data-feather="trash-2"></span></a>
-              </div>
               <p class="card-text"><?= $row['raza'] ?></p>
             </div>
             <div class="card-footer">
@@ -127,12 +123,12 @@ include 'autenticacion.php';
         $(".alert").alert('close');
       }, 4000);
 
-      $(".borrar_btn").click(function(e) {
+      /* $(".borrar_btn").click(function(e) {
         e.preventDefault();
         var identificador = $('.buscar_id').val();
         $("#borrar_id").val(identificador);
         $("#modal_borrar").modal("show");
-      })
+      }) */
 
       $("#buscar").keyup(function() {
         var consulta = $(this).val();

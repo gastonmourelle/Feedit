@@ -105,7 +105,7 @@ if (null == $datos['nombre']) {
 		</tr>
 		<tr>
 			<td><b>Última comida</b></td>
-			<td><?php echo $datos['ultimaSalida']; ?></td>
+			<td><?php echo $datos['ultimaEntrada']; ?></td>
 		</tr>
 	</table>
 </body>

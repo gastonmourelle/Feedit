@@ -15,7 +15,7 @@
         $turnos = $_POST['turnos'];
         $cooldown = $_POST['cooldown'];
         $veces = $_POST['veces'];
-        $ultimaSalida = $_POST['ultimaSalida'];
+        $ultimaEntrada = $_POST['ultimaEntrada'];
 
         $formatos = array('image/jpg','image/jpeg','image/png');
         $validar_img = in_array($_FILES['foto']['type'],$formatos);
@@ -36,7 +36,7 @@
                     header("Location: registro.php");
                     }
                     else{
-                    $sql1 = "INSERT INTO perros (nombre,foto,id,sexo,raza,edad,peso,racion,turnos,cooldown,veces,ultimaSalida) VALUES ('$nombre','$foto','$id','$sexo','$raza','$edad','$peso','$racion','$turnos','$cooldown','$veces','$ultimaSalida')";
+                    $sql1 = "INSERT INTO perros (nombre,foto,id,sexo,raza,edad,peso,racion,turnos,cooldown,veces,ultimaEntrada,entro) VALUES ('$nombre','$foto','$id','$sexo','$raza','$edad','$peso','$racion','$turnos','$cooldown','$veces','$ultimaEntrada','0')";
                     $query1 = mysqli_query($conex,$sql1);
         
                     if($query1){

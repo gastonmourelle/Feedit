@@ -31,10 +31,10 @@ if ($result->num_rows > 0) {
     <img src='img/" . $row['foto'] . "' class='card-img-top img_index' alt=''>
     <div class='card-body'>
     <h5 class='card-title'>" . $row['nombre'] . "</h5>
-    <p class='card-text'>- " . $row['raza'] . "</p>
+    <p class='card-text'> " . $row['raza'] . "</p>
     </div>
     <div class='card-footer'>
-    <small class='text-muted'>Código: " . $row['id'] . "<a href='db_borrar.php?identificador=" . $row['identificador'] . "'><span data-feather='trash-2'></span></a><a href='editar.php?identificador=" . $row['identificador'] . "'><span style='margin-right:20px;' data-feather='edit'></span></a></small>
+    <small class='text-muted'>Código: " . $row['id'] . "</small>
     </div></div></a></div>
     ";
   }

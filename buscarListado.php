@@ -64,7 +64,7 @@ if ($result->num_rows > 0) {
         <td>" . $row['racion'] . "g</td>
         <td>" . $row['cooldown'] . "h</td>
         <td>" . $check . $row['veces'] . "<strong> / " . $row['turnos'] . "</strong></td>
-        <td>" . $row['ultimaSalida'] . "</td>
+        <td>" . $row['ultimaEntrada'] . "</td>
         <td><span id='tooltip_comiendo' role='button' class='d-inline-block' tabindex='0' data-toggle='tooltip' title='" . $tooltip . "'><h4 style='" . $color . "'>●</h4></span></td>
         <td>
         <a style='margin: 0 10px;' href='editar.php?identificador=" . $row['identificador'] . "'><span data-feather='edit-2'></span></a>

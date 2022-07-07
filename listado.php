@@ -92,7 +92,7 @@ include 'autenticacion.php';
             <td><?= $row['racion'] ?>g</td>
             <td><?= $row['cooldown'] ?>h</td>
             <td><?= $check . $row['veces'] ?><strong> / <?= $row['turnos'] ?></strong></td>
-            <td><?= $row['ultimaSalida'] ?></td>
+            <td><?= $row['ultimaEntrada'] ?></td>
             <td>
               <span id="tooltip_comiendo" role="button" class="d-inline-block" tabindex="0" data-toggle="tooltip" title="<?= $tooltip ?>">
                 <h4 style="<?= $color ?>">●</h4>

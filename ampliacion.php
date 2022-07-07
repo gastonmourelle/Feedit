@@ -40,7 +40,7 @@ $query1 = $conex->query($sql1);
         <?php
         if ($query1->num_rows > 0) {
             while ($row = $query1->fetch_assoc()) {
-                $ultimaComida = date('d/m H:i', strtotime($row['ultimaSalida']));
+                $ultimaComida = date('d/m H:i', strtotime($row['ultimaEntrada']));
                 $racion = intval($row['racion']);
                 $veces = intval($row['veces']);
                 $turnos = intval($row['turnos']);
