@@ -24,23 +24,22 @@ void loop() {
     }
   }
   if(c=='\n'){
-    Serial.println(dataIn);
+    delimitarSerial();
     Node_SoftSerial.print("%"+motor+"%"+bocina+"%\n");
     c=0;
     dataIn="";
   }
-  /*delimitarSerial();*/
 }
 
 void delimitarSerial(){
-  guardarSerial = Node_SoftSerial.readStringUntil('\n');
+  /*guardarSerial = Node_SoftSerial.readStringUntil('\n');*/
   int delimitador, delimitador1, delimitador2;
-  delimitador = guardarSerial.indexOf("%");
-  delimitador1 = guardarSerial.indexOf("%", delimitador + 1);
-  delimitador2 = guardarSerial.indexOf("%", delimitador1 +1);
+  delimitador = dataIn.indexOf("%");
+  delimitador1 = dataIn.indexOf("%", delimitador + 1);
+  delimitador2 = dataIn.indexOf("%", delimitador1 +1);
 
-  String first = guardarSerial.substring(delimitador + 1, delimitador1);
-  String second = guardarSerial.substring(delimitador1 + 1, delimitador2);
+  String first = dataIn.substring(delimitador + 1, delimitador1);
+  String second = dataIn.substring(delimitador1 + 1, delimitador2);
   Serial.println(second);
   delay(4000);
 }

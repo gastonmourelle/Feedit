@@ -19,7 +19,7 @@
 MFRC522 mfrc522(SS_PIN, RST_PIN);
 
 //--- Puertos de la conexión serial con arduino
-SoftwareSerial recibirSerial (D3);
+SoftwareSerial Node_SoftSerial (D3,D4);
 
 //---------------------------------------------------------------------------------------------DATOS CONEXIÓN-------------------------------------------------------------------------------//
 
@@ -45,8 +45,8 @@ String guardarSerial;
 
 void setup()
 {
-    Serial.begin(115200);
-    recibirSerial.begin(9600);
+    Serial.begin(57600);
+    Node_SoftSerial.begin(9600);
     SPI.begin();
     mfrc522.PCD_Init();
 
@@ -182,7 +182,7 @@ void array_to_string(byte array[], unsigned int len, char buffer[])
 
 void datosArduino()
 {
-  guardarSerial = recibirSerial.readStringUntil('\r');
+  guardarSerial = Node_SoftSerial.readStringUntil('\r');
   int delimitador, delimitador1, delimitador2;
   delimitador = guardarSerial.indexOf("%");
   delimitador1 = guardarSerial.indexOf("%", delimitador + 1);

@@ -1,6 +1,6 @@
 #include <SoftwareSerial.h>
 
-SoftwareSerial Arduino_SoftSerial(10,11); //RX | TX
+SoftwareSerial Arduino_SoftSerial(8,9); //RX | TX
 
 String balanza = "10";
 String ultrasonido = "40";
@@ -14,11 +14,6 @@ void setup() {
 }
 
 void loop() {
-  Arduino_SoftSerial.print("%"+balanza+"%"+ultrasonido+"%\n");
-  delay(2000);
-  /*Arduino_SoftSerial.print("ARduino \n");
-  delay(1000);*/
-
   while(Arduino_SoftSerial.available() > 0){
     c = Arduino_SoftSerial.read();
     if (c == '\n'){
@@ -29,7 +24,14 @@ void loop() {
     }
   }
   if(c == '\n'){
-    /*Serial.println(dataIn);*/
+  delimitarSerial();
+  Arduino_SoftSerial.print("%"+balanza+"%"+ultrasonido+"%\n");
+  c=0;
+  dataIn="";
+  }
+}
+
+void delimitarSerial(){
   int delimitador, delimitador1, delimitador2;
   delimitador = dataIn.indexOf("%");
   delimitador1 = dataIn.indexOf("%", delimitador + 1);
@@ -37,13 +39,5 @@ void loop() {
 
   String first = dataIn.substring(delimitador + 1, delimitador1);
   String second = dataIn.substring(delimitador1 + 1, delimitador2);
-  if(first == "5 vueltas"){
-    Serial.println("funcionando");
-  }
-  else{
-    Serial.println("nada");
-  }
-    c=0;
-    dataIn="";
-  }
+  Serial.println(first);
 }
