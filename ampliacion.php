@@ -40,6 +40,12 @@ $query1 = $conex->query($sql1);
         <?php
         if ($query1->num_rows > 0) {
             while ($row = $query1->fetch_assoc()) {
+                $tiempoActualUnix = time() - 10800;
+                $ultimaSalidaUnix = strtotime(($row['ultimaSalida'])) + 7200;
+                $diferenciaTiempoUnix = $tiempoActualUnix - $ultimaSalidaUnix;
+                $cooldownUnix = 10; /* <--- cambiarlo por $cooldown*3600 */
+                $tiempoEsperaUnix = $cooldownUnix - $diferenciaTiempoUnix;
+                $tiempoEspera = gmdate("H:i:s", $tiempoEsperaUnix);
                 $ultimaComida = date('d/m H:i', strtotime($row['ultimaEntrada']));
                 $racion = intval($row['racion']);
                 $veces = intval($row['veces']);
@@ -49,12 +55,15 @@ $query1 = $conex->query($sql1);
                 $diferenciaCantidad = $racion - $cantidadHoy;
                 $estado = $row['entro'];
                 $mensaje = "";
-                if ($estado == 0) {
-                    $color = "color:#adb5bd";
-                    $tooltip = "Inactivo";
+                if ($diferenciaTiempoUnix < $cooldownUnix) {
+                    $color = "color:#D30000";
+                    $tooltip = "Tiene que esperar " . $tiempoEspera . " para volver a comer";
+                } else if ($estado == 1) {
+                    $color = "color:rgb(67, 103, 202)";
+                    $tooltip = "Comiendo";
                 } else {
                     $color = "color:#00AE25";
-                    $tooltip = "Comiendo";
+                    $tooltip = "Turno disponible";
                 }
                 if ($cantidadHoy >= $racion) {
                     $tooltip2 = "Este perro ya comió";
@@ -195,7 +204,7 @@ $query1 = $conex->query($sql1);
                                     <li class="list-group-item"><?php echo $ultimaComida ?></li>
                                 </ul>
                                 <ul class="list-group list-group-horizontal">
-                                    <li class="list-group-item"><b>Estado actual</b></li>
+                                    <li class="list-group-item"><b>Estado</b></li>
                                     <li class="list-group-item"><?php echo $tooltip ?></li>
                                 </ul>
                             </div>

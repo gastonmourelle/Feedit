@@ -65,6 +65,12 @@ include 'autenticacion.php';
         $pdo = Base::connect();
         $sql = 'SELECT * FROM perros ORDER BY nombre ASC';
         foreach ($pdo->query($sql) as $row) {
+          $cooldownUnix = 10; /* <--- cambiarlo por $cooldown*3600 */
+          $tiempoActualUnix = time() - 10800;
+          $ultimaSalidaUnix = strtotime(($row['ultimaSalida'])) + 7200;
+          $diferenciaTiempoUnix = $tiempoActualUnix - $ultimaSalidaUnix;
+          $tiempoEsperaUnix = $cooldownUnix - $diferenciaTiempoUnix;
+          $tiempoEspera = gmdate("H:i:s", $tiempoEsperaUnix);
           $estado = $row['entro'];
           $turnos = $row['turnos'];
           $veces = $row['veces'];
@@ -73,12 +79,16 @@ include 'autenticacion.php';
           } else {
             $check = "";
           }
-          if ($estado == 0) {
-            $color = "color:#adb5bd";
-            $tooltip = "Inactivo";
+          if ($diferenciaTiempoUnix < $cooldownUnix) {
+            $color = "color:#D30000";
+            $tooltip = "Tiene que esperar " . $tiempoEspera . " para volver a comer";
+          }
+          else if ($estado == 1) {
+            $color = "color:rgb(67, 103, 202)";
+            $tooltip = "Comiendo";
           } else {
             $color = "color:#00AE25";
-            $tooltip = "Comiendo";
+            $tooltip = "Turno disponible";
           } ?>
           <tr style="vertical-align: middle;">
             <td><a href="ampliacion.php?identificador=<?= $row['identificador'] ?>"><b><?= $row['identificador'] ?></b></a></td>
