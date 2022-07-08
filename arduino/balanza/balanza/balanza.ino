@@ -1,7 +1,7 @@
 #include <HX711_ADC.h> // https://github.com/olkal/HX711_ADC
 #include <Wire.h>
 
-HX711_ADC LoadCell(2, 3); // dt pin, sck pin
+HX711_ADC LoadCell(5, 4); // dt pin, sck pin
 
 void setup() {
   Serial.begin(9600);

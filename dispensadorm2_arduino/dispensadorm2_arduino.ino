@@ -2,7 +2,7 @@
 #include <HX711_ADC.h>
 #include <Wire.h>
 
-HX711_ADC LoadCell(4, 5); // dt pin, sck pin
+HX711_ADC LoadCell(5, 4); // dt pin, sck pin
 SoftwareSerial Arduino_SoftSerial(10,11); //RX | TX
 
 const int Trigger = 2;
@@ -30,7 +30,10 @@ void setup() {
 
 void loop() {
   ultra();
-  Arduino_SoftSerial.print("%"+balanza+"%"+ultrasonido+"%\n");
+  celda();
+  Arduino_SoftSerial.print("%"+balanza+"%"+i+"%\n");
+  delay(1200);
+  
 
   while(Arduino_SoftSerial.available() > 0){
     c = Arduino_SoftSerial.read();
@@ -56,10 +59,10 @@ void ultra(){
   
   t = pulseIn(Echo, HIGH); //obtenemos el ancho del pulso
   d = t/59;             //escalamos el tiempo a una distancia en cm
-  delay(1000);          //Hacemos una pausa de 100ms
 }
 
 void celda(){
   LoadCell.update(); // retrieves data from the load cell
   i = LoadCell.getData(); // get output value
+  Serial.println(i);
 }
