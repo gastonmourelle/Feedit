@@ -10,10 +10,10 @@
 // Esto es el número de pasos por revolución
 #define STEPS 2048 
 // Número de pasos que queremos que de
-#define NUMSTEPS 2048
+#define NUMSTEPS 1024
 
 // Constructor, pasamos STEPS y los pines donde tengamos conectado el motor
-Stepper stepper(STEPS, 8, 10, 9, 11);
+Stepper stepper(STEPS, 8, 6, 9, 7);
 
 void setup() {
   // Asignamos la velocidad en RPM (Revoluciones por Minuto)
