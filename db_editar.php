@@ -18,7 +18,6 @@
         $racion = $_POST['racion'];
         $turnos = $_POST['turnos'];
         $cooldown = $_POST['cooldown'];
-        $veces = $_POST['veces'];
         
         $sql1 = "SELECT * FROM perros WHERE identificador='$identificador'";
         $query1 = mysqli_query($conex, $sql1);
@@ -34,7 +33,7 @@
             }
         }
 
-		$sql2 = "UPDATE perros SET nombre = '$nombre', foto = '$img_datos', sexo = '$sexo', raza = '$raza', edad ='$edad', peso ='$peso', racion ='$racion', turnos ='$turnos', cooldown ='$cooldown', veces ='$veces' WHERE identificador = '$identificador'";
+		$sql2 = "UPDATE perros SET nombre = '$nombre', foto = '$img_datos', sexo = '$sexo', raza = '$raza', edad ='$edad', peso ='$peso', racion ='$racion', turnos ='$turnos', cooldown ='$cooldown' WHERE identificador = '$identificador'";
         $query2 = mysqli_query($conex,$sql2);
 
         if($query2){

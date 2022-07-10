@@ -98,17 +98,10 @@ file_put_contents('uid.php', $escribir);
 					</div>
 				</div>
 
-				<div class="col-md-4">
-					<label for="veces" class="form-label">Veces que ya comió en el día</label>
+				<div class="col-md-5">
+					<label for="ultimaSalida" class="form-label">Fecha de su última comida</label>
 					<div class="input-group mb-3">
-						<input type="number" class="form-control" id="veces" name="veces" placeholder="" required>
-					</div>
-				</div>
-
-				<div class="col-md-4">
-					<label for="ultimaEntrada" class="form-label">Fecha de su última comida</label>
-					<div class="input-group mb-3">
-						<input type="date" class="form-control" id="ultimaEntrada" name="ultimaEntrada" placeholder="" required>
+						<input type="date" class="form-control" id="ultimaSalida" name="ultimaSalida" placeholder="" required>
 					</div>
 				</div>
 

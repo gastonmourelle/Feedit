@@ -94,20 +94,13 @@ Base::disconnect();
 					</div>
 				</div>
 
-				<div class="col-md-6">
+				<div class="col-md-4">
 					<label for="cooldown" class="form-label">Tiempo de espera entre turnos (h)</label>
 					<div class="input-group mb-3">
 						<input type="number" class="form-control" id="cooldown" name="cooldown" value="<?php echo $datos['cooldown']; ?>" required>
 					</div>
 				</div>
-
-				<div class="col-md-6">
-					<label for="veces" class="form-label">Veces que ya comió en el día</label>
-					<div class="input-group mb-3">
-						<input type="number" class="form-control" id="veces" name="veces" value="<?php echo $datos['veces']; ?>" required>
-					</div>
-				</div>
-
+				
 				<div class="col-md-6">
 					<label for="foto" class="form-label">Foto</label>
 					<div class="input-group mb-3">
