@@ -112,6 +112,9 @@ include 'autenticacion.php';
       } else if ($estado == 1) {
         $color = "color:rgb(67, 103, 202)";
         $tooltip = "Comiendo";
+      } else if ($veces >= $turnos) {
+        $color = "color:#D30000";
+        $tooltip = "Ya usó todos sus turnos";
       } else {
         $color = "color:#00AE25";
         $tooltip = "Turno disponible";

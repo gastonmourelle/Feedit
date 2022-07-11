@@ -40,7 +40,7 @@
     $cooldownUnix = 10; /* <--- cambiarlo por $cooldown*3600 */
 
     if ($entro == 0 AND $turnos >= $veces AND $diferenciaTiempoUnix >= $cooldownUnix){
-        c("dispensa ". $unaRacion ." gramos");
+        echo "&".$unaRacion."&";
 
         $query1 = "UPDATE perros SET ultimaEntrada = NOW() WHERE id = '$UIDresultado'";
         mysqli_query($conex,$query1);
@@ -50,6 +50,7 @@
     }
     else if ($entro == 1){
         c("Termino de comer");
+
         $query1 = "UPDATE perros SET ultimaSalida = NOW() WHERE id = '$UIDresultado'";
         mysqli_query($conex,$query1);
 
