@@ -1,5 +1,0 @@
-https://mschoeffler.com/2017/12/04/arduino-tutorial-hx711-load-cell-amplifier-weight-sensor-module-lcm1602-iic-v1-lcd/
-
-https://www.youtube.com/watch?v=S12Mp8gDJmI
-
-https://www.instructables.com/Arduino-Scale-With-5kg-Load-Cell-and-HX711-Amplifi/

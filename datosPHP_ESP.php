@@ -49,7 +49,8 @@
         mysqli_query($conex,$query2);
     }
     else if ($entro == 1){
-        c("Termino de comer");
+        // Termino de comer
+        echo "&1&";
 
         $query1 = "UPDATE perros SET ultimaSalida = NOW() WHERE id = '$UIDresultado'";
         mysqli_query($conex,$query1);
@@ -64,10 +65,12 @@
         mysqli_query($conex,$query4);
     }
     else if ($turnos < $veces){
-        c("Ya uso todos sus turnos");
+        // Ya uso todos sus turnos
+        echo "&2&";
     }
     else if ($diferenciaTiempoUnix < $cooldownUnix){
-        c("Cooldown activo");
+        // Cooldown activo
+        echo "&3&";
     }
 
 

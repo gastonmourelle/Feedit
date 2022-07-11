@@ -1,1 +1,0 @@
-https://www.aranacorp.com/es/controla-un-motor-paso-a-paso-con-arduino/

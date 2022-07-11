@@ -1,4 +1,3 @@
-
 //--- NodeMCU ESP8266
 #include <ESP8266WebServer.h>
 #include <ESP8266HTTPClient.h>
@@ -7,19 +6,20 @@
 #include <SPI.h>
 #include <MFRC522.h>
 
-//--- Recibir serial de Arduino
+//--- Comunicarse por serial con Arduino
+#include <Arduino.h>
 #include <SoftwareSerial.h>
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
-//--- Puertos RFID
-#define SS_PIN D2
+//--- Pines RFID
+#define SS_PIN D0
 #define RST_PIN D1
 #define ON_Board_LED 2
 MFRC522 mfrc522(SS_PIN, RST_PIN);
 
-//--- Puertos de la conexión serial con arduino
-SoftwareSerial Node_SoftSerial (D3,D4);
+//--- Pines de la conexión serial con arduino
+SoftwareSerial node_serial (D2, D3);
 
 //---------------------------------------------------------------------------------------------DATOS CONEXIÓN-------------------------------------------------------------------------------//
 
@@ -35,18 +35,19 @@ const char *host = "http://172.20.10.7/dispensadorm2/";*/
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
-int readsuccess;
-byte readcard[4];
+int leido;
+byte tag_leido[4];
 char str[32] = "";
-String StrUID;
+String uid_string;
+
 String guardarSerial;
 
 //-----------------------------------------------------------------------------------------------SETUP--------------------------------------------------------------------------------------//
 
 void setup()
 {
-    Serial.begin(57600);
-    Node_SoftSerial.begin(9600);
+    Serial.begin(115200);
+    node_serial.begin(115200);
     SPI.begin();
     mfrc522.PCD_Init();
 
@@ -91,7 +92,7 @@ void loop()
 
 //----------------------------------------Obtener UID del llavero o tarjeta-----------------------------------------------------------------------------------------------------------------//
 
-int getid()
+int leer_uid()
 {
     if (!mfrc522.PICC_IsNewCardPresent())
     {
@@ -104,64 +105,12 @@ int getid()
 
     for (int i = 0; i < 4; i++)
     {
-        readcard[i] = mfrc522.uid.uidByte[i]; // guardar UID en el array
-        array_to_string(readcard, 4, str);
-        StrUID = str;
+        tag_leido[i] = mfrc522.uid.uidByte[i]; // guardar UID en el array
+        array_to_string(tag_leido, 4, str);
+        uid_string = str;
     }
     mfrc522.PICC_HaltA();
     return 1;
-}
-
-//----------------------------------------Enviar RFID al servidor--------------------------------------------------------------------------------------------------------------------------//
-
-void enviarRfid()
-{
-    readsuccess = getid();
-
-    if (readsuccess)
-    {
-        digitalWrite(ON_Board_LED, LOW);
-        HTTPClient http;
-
-        String UIDresultSend, postData;
-        UIDresultSend = StrUID;
-
-        postData = "UIDresultado=" + UIDresultSend;
-
-        String url, link;
-        url = "datosESP_PHP.php";
-        link = host + url;
-        http.begin(link);
-        http.addHeader("Content-Type", "application/x-www-form-urlencoded");
-
-        int httpCode = http.POST(postData);
-        String payload = http.getString();
-
-        Serial.print("UID: ");
-        Serial.println(UIDresultSend);
-
-        //--- Recibir datos desde el servidor cuando se detecta el RFID
-        if (UIDresultSend)
-        {
-            HTTPClient http;
-            String url, link, data;
-            int id = 0;
-            url = "datosPHP_ESP.php";
-            link = host + url;
-            data = "ID=" + String(id);
-            http.begin(link);
-            http.addHeader("Content-Type", "application/x-www-form-urlencoded");
-            int httpCodeGet = http.POST(data);
-            String payloadGet = http.getString();
-            Serial.println(payloadGet);
-            Serial.println("");
-            datosArduino();
-        }
-
-        http.end();
-        delay(1000);
-        digitalWrite(ON_Board_LED, HIGH);
-    }
 }
 
 //----------------------------------------Cambiar el UID a string---------------------------------------------------------------------------------------------------------------------------//
@@ -178,17 +127,87 @@ void array_to_string(byte array[], unsigned int len, char buffer[])
     buffer[len * 2] = '\0';
 }
 
+//----------------------------------------Enviar codigo UID al arduino---------------------------------------------------------------------------------------------------------------------------//
+
+void enviarArduino(String mensaje)
+{
+  node_serial.println(mensaje);
+}
+
+//----------------------------------------Enviar codigo UID al servidor--------------------------------------------------------------------------------------------------------------------------//
+
+void enviarRfid()
+{
+    leido = leer_uid();
+
+    if (leido)
+    {
+        digitalWrite(ON_Board_LED, LOW);
+        HTTPClient http;
+
+        String resultado_uid, datos_post;
+        resultado_uid = uid_string;
+
+        datos_post = "UIDresultado=" + resultado_uid;
+
+        String url, link;
+        url = "datosESP_PHP.php";
+        link = host + url;
+        http.begin(link);
+        http.addHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        int codigo_http = http.POST(datos_post);
+        String dato_recibido = http.getString();
+
+        /*Serial.print("UID: ");
+        Serial.println(resultado_uid);*/
+
+        //--- Recibir datos desde el servidor cuando se detecta el RFID
+        if (resultado_uid)
+        {
+            HTTPClient http;
+            String url, link, data;
+            int id = 0;
+            url = "datosPHP_ESP.php";
+            link = host + url;
+            data = "ID=" + String(id);
+            http.begin(link);
+            http.addHeader("Content-Type", "application/x-www-form-urlencoded");
+            int codigo_httpGet = http.POST(data);
+            String dato_recibidoGet = http.getString();
+            Serial.println(dato_recibidoGet);
+
+            // Separar datos en strings
+            int delimitador, delimitador1, delimitador2;
+            delimitador = dato_recibidoGet.indexOf("&");
+            delimitador1 = dato_recibidoGet.indexOf("&", delimitador + 1);
+            delimitador2 = dato_recibidoGet.indexOf("&", delimitador1 +1);
+
+            String dato_gramos = dato_recibidoGet.substring(delimitador + 1, delimitador1);
+            String dato2 = dato_recibidoGet.substring(delimitador1 + 1, delimitador2);
+
+            enviarArduino(dato_gramos);
+
+            //datosArduino(); //--- Recibir datos del arduino cuando paso la tarjeta
+        }
+
+        http.end();
+        delay(1000);
+        digitalWrite(ON_Board_LED, HIGH);
+    }
+}
+
 //-------------------------------------Recibir datos de Arduino desde el serial-------------------------------------------------------------------------------------------------------------//
 
 void datosArduino()
 {
-  guardarSerial = Node_SoftSerial.readStringUntil('\r');
+  guardarSerial = node_serial.readStringUntil('\n');
   int delimitador, delimitador1, delimitador2;
   delimitador = guardarSerial.indexOf("%");
   delimitador1 = guardarSerial.indexOf("%", delimitador + 1);
   delimitador2 = guardarSerial.indexOf("%", delimitador1 +1);
 
-  String bal = guardarSerial.substring(delimitador + 1, delimitador1);
-  String ultra = guardarSerial.substring(delimitador1 + 1, delimitador2);
-  Serial.println("Ultrasonido: "+ultra);
+  String primero = guardarSerial.substring(delimitador + 1, delimitador1);
+  String segundo = guardarSerial.substring(delimitador1 + 1, delimitador2);
+  //Serial.println("Ultrasonido: "+ ultra);
 }
