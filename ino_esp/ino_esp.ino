@@ -19,7 +19,7 @@
 MFRC522 mfrc522(SS_PIN, RST_PIN);
 
 //--- Pines de la conexión serial con arduino
-SoftwareSerial node_serial (D2, D3);
+SoftwareSerial esp_serial (D2, D3);
 
 //---------------------------------------------------------------------------------------------DATOS CONEXIÓN-------------------------------------------------------------------------------//
 
@@ -47,7 +47,7 @@ String guardarSerial;
 void setup()
 {
     Serial.begin(115200);
-    node_serial.begin(115200);
+    esp_serial.begin(115200);
     SPI.begin();
     mfrc522.PCD_Init();
 
@@ -131,7 +131,7 @@ void array_to_string(byte array[], unsigned int len, char buffer[])
 
 void enviarArduino(String mensaje)
 {
-  node_serial.println(mensaje);
+  esp_serial.println(mensaje);
 }
 
 //----------------------------------------Enviar codigo UID al servidor--------------------------------------------------------------------------------------------------------------------------//
@@ -184,11 +184,13 @@ void enviarRfid()
             delimitador2 = dato_recibidoGet.indexOf("&", delimitador1 +1);
 
             String dato_gramos = dato_recibidoGet.substring(delimitador + 1, delimitador1);
-            String dato2 = dato_recibidoGet.substring(delimitador1 + 1, delimitador2);
-
+            /*String dato2 = dato_recibidoGet.substring(delimitador1 + 1, delimitador2);*/
+            
             enviarArduino(dato_gramos);
 
-            //datosArduino(); //--- Recibir datos del arduino cuando paso la tarjeta
+            if (dato_gramos.toInt() == 1){
+              recibirArduino();
+            }
         }
 
         http.end();
@@ -199,15 +201,18 @@ void enviarRfid()
 
 //-------------------------------------Recibir datos de Arduino desde el serial-------------------------------------------------------------------------------------------------------------//
 
-void datosArduino()
+void recibirArduino()
 {
-  guardarSerial = node_serial.readStringUntil('\n');
+  guardarSerial = esp_serial.readString();
+  
   int delimitador, delimitador1, delimitador2;
-  delimitador = guardarSerial.indexOf("%");
-  delimitador1 = guardarSerial.indexOf("%", delimitador + 1);
-  delimitador2 = guardarSerial.indexOf("%", delimitador1 +1);
+  delimitador = guardarSerial.indexOf("&");
+  delimitador1 = guardarSerial.indexOf("&", delimitador + 1);
+  delimitador2 = guardarSerial.indexOf("&", delimitador1 +1);
 
-  String primero = guardarSerial.substring(delimitador + 1, delimitador1);
-  String segundo = guardarSerial.substring(delimitador1 + 1, delimitador2);
-  //Serial.println("Ultrasonido: "+ ultra);
+  String peso = guardarSerial.substring(delimitador + 1, delimitador1);
+  String ultrasonido = guardarSerial.substring(delimitador1 + 1, delimitador2);
+  Serial.println("Todo el string: "+guardarSerial);
+  Serial.println("Peso: "+peso);
+  Serial.println("Ultrasonido: "+ultrasonido);
 }

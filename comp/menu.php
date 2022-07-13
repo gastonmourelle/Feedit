@@ -51,6 +51,7 @@
                             Logs diarios
                         </a>
                     </li>
+
                     <li style="margin-top:50px;margin-left:15px;" class="nav-item d-flex">
                         <form action="logout.php" method="post">
                             <button name="logout" type="submit" class="btn btn-dark btn-sm"><span data-feather="log-out"></span> Cerrar sesión</button>

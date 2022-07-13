@@ -1,6 +1,6 @@
 /*---------------Comunicación serial-----------------*/
 #include <SoftwareSerial.h>
-SoftwareSerial esp(2, 3);
+SoftwareSerial arduino_serial(2, 3);
 int dato_recibido = 0;
 
 /*---------------Motor paso a paso-----------------*/
@@ -8,7 +8,7 @@ int dato_recibido = 0;
 #define motor_velocidad 10 //Velocidad a la cual se moverá el motor a pasos 0-3 rpm
 #define gramos_vuelta 100 // Cambiar valor para ajustar giros
 #define pasos_vuelta 2048
-Stepper motor(2048, 8, 6, 9, 7);
+Stepper motor(pasos_vuelta, 8, 6, 9, 7);
 
 /*---------------Celda de carga-----------------*/
 
@@ -22,7 +22,7 @@ long ultra_distancia; //distancia en centimetros
 void setup() {
   //--- Serial
   Serial.begin(115200);
-  esp.begin(115200);
+  arduino_serial.begin(115200);
   
   //--- Motor
   motor.setSpeed(motor_velocidad);
@@ -35,9 +35,9 @@ void setup() {
 
 void loop() 
 {
-  if(esp.available() > 0)
+  if(arduino_serial.available() > 0)
   {
-    dato_recibido = esp.readStringUntil('\n').toInt();
+    dato_recibido = arduino_serial.readStringUntil('\n').toInt();
     Serial.println(dato_recibido);
     
     /*-----------------------------------------------------------------------
@@ -52,7 +52,8 @@ void loop()
     }
     else if (dato_recibido == 1){
       ultrasonido();
-      Serial.println(ultra_distancia);
+      Serial.print("&prueba balanza&");Serial.println(ultra_distancia);Serial.println("&");
+      arduino_serial.print("&prueba balanza&");arduino_serial.print(ultra_distancia);arduino_serial.print("&");
     }
   }
 }
@@ -75,5 +76,4 @@ void ultrasonido(){
   
   ultra_tiempo = pulseIn(ultra_echo, HIGH); //obtenemos el ancho del pulso
   ultra_distancia = ultra_tiempo/59;             //escalamos el tiempo a una distancia en cm
-  delay(1000);
 }
