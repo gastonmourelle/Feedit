@@ -26,12 +26,8 @@ include 'autenticacion.php';
   $result = $stmt->get_result();
   $cantidad = mysqli_num_rows($result);
 
-  $sqlalm = $conex->prepare('SELECT distancia FROM almacenamiento LIMIT 1');
-  $sqlalm->execute();
-  $resultalm = $sqlalm->get_result();
-  $alm =  $resultalm->fetch_assoc();
-  $almacenamiento = 100 - ((100 * ($alm['distancia'])) / 25);
-  $kg = ($almacenamiento * 35) / 100;
+  $almacenamiento = 100 - ((100 * (24/* cambiar por distancia guardada en db */)) / 25);
+  $kg = ($almacenamiento * 50) / 100;
   ?>
 
   <h1 class="display-6">Inicio</h1>

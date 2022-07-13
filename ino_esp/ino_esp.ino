@@ -221,6 +221,8 @@ void recibirArduino()
   enviarUltrasonido();
 }
 
+//----------------------------------------Enviar ultrasonido al servidor--------------------------------------------------------------------------------------------------------------------------//
+
 void enviarUltrasonido(){
   HTTPClient http;
   String datos_post;
