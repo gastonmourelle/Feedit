@@ -39,7 +39,7 @@
     $entro = ($datos['entro']);
     $almacenamiento = ($alm['distancia']);
     /* $rfidlog = ($logs['rfid']); */
-    
+    $ultrasonido = (int)$ULTRAresultado; 
     $diferenciaTiempoUnix = $tiempoActualUnix - $ultimaSalidaUnix;
     $cooldownUnix = 10; /* <--- cambiarlo por $cooldown*3600 */
 
@@ -68,7 +68,7 @@
         $query4 = "UPDATE perros SET entro = 0 WHERE id = '$UIDresultado'";
         mysqli_query($conex,$query4);
 
-        $query5 = "UPDATE almacenamiento SET distancia = '$ULTRAresultado'";
+        $query5 = "UPDATE almacenamiento SET distancia = '$ultrasonido'";
         mysqli_query($conex,$query5);
     }
     else if ($turnos < $veces){

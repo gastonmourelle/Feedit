@@ -224,6 +224,7 @@ void recibirArduino()
 void enviarUltrasonido(){
   HTTPClient http;
   String datos_post;
+
   datos_post = "ULTRAresultado=" + ultrasonido;
 
   String url, link;
