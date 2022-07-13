@@ -42,6 +42,9 @@ String uid_string;
 
 String guardarSerial;
 
+String peso;
+String ultrasonido;
+
 //-----------------------------------------------------------------------------------------------SETUP--------------------------------------------------------------------------------------//
 
 void setup()
@@ -210,9 +213,25 @@ void recibirArduino()
   delimitador1 = guardarSerial.indexOf("&", delimitador + 1);
   delimitador2 = guardarSerial.indexOf("&", delimitador1 +1);
 
-  String peso = guardarSerial.substring(delimitador + 1, delimitador1);
-  String ultrasonido = guardarSerial.substring(delimitador1 + 1, delimitador2);
+  peso = guardarSerial.substring(delimitador + 1, delimitador1);
+  ultrasonido = guardarSerial.substring(delimitador1 + 1, delimitador2);
   Serial.println("Todo el string: "+guardarSerial);
   Serial.println("Peso: "+peso);
   Serial.println("Ultrasonido: "+ultrasonido);
+  enviarUltrasonido();
+}
+
+void enviarUltrasonido(){
+  HTTPClient http;
+  String datos_post;
+  datos_post = "ULTRAresultado=" + ultrasonido;
+
+  String url, link;
+  url = "datosESP_PHP.php";
+  link = host + url;
+  http.begin(link);
+  http.addHeader("Content-Type", "application/x-www-form-urlencoded");
+
+  int codigo_http = http.POST(datos_post);
+  http.end();
 }

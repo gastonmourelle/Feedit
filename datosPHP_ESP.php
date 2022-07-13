@@ -2,6 +2,7 @@
     include 'db.php';
     include 'uid.php';
     include 'tiempo.php';
+    include 'ultrasonido.php';
     include "config.php";
 
     $tiempoActualUnix = time() - 10800;
@@ -22,6 +23,9 @@
     $sql2 = "SELECT COUNT(*)+1 AS total FROM logs WHERE rfid = '$UIDresultado' AND horaSalida BETWEEN '$diaActual 00:00:01' AND '$diaActual 23:59:59'";
     $result = $conex->query($sql2);
     $logs =  $result->fetch_assoc();
+    $sqlalm = "SELECT distancia FROM almacenamiento";
+    $resultalm = $conex->query($sqlalm);
+    $alm =  $resultalm->fetch_assoc();
 
     $nombre = ($datos['nombre']);
     $id = ($datos['id']);
@@ -33,7 +37,7 @@
     $ultimaSalidaUnix = strtotime(($datos['ultimaSalida'])) + 7200;
     $ultimaEntrada = gmdate('Y-m-d H:i:s', (strtotime(($datos['ultimaEntrada'])) + 7200));
     $entro = ($datos['entro']);
-    
+    $almacenamiento = ($alm['distancia']);
     /* $rfidlog = ($logs['rfid']); */
     
     $diferenciaTiempoUnix = $tiempoActualUnix - $ultimaSalidaUnix;
@@ -63,6 +67,9 @@
 
         $query4 = "UPDATE perros SET entro = 0 WHERE id = '$UIDresultado'";
         mysqli_query($conex,$query4);
+
+        $query5 = "UPDATE almacenamiento SET distancia = '$ULTRAresultado'";
+        mysqli_query($conex,$query5);
     }
     else if ($turnos < $veces){
         // Ya uso todos sus turnos

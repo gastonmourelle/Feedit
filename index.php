@@ -25,6 +25,13 @@ include 'autenticacion.php';
   $stmt->execute();
   $result = $stmt->get_result();
   $cantidad = mysqli_num_rows($result);
+
+  $sqlalm = $conex->prepare('SELECT distancia FROM almacenamiento LIMIT 1');
+  $sqlalm->execute();
+  $resultalm = $sqlalm->get_result();
+  $alm =  $resultalm->fetch_assoc();
+  $almacenamiento = 100 - ((100 * ($alm['distancia'])) / 25);
+  $kg = ($almacenamiento * 35) / 100;
   ?>
 
   <h1 class="display-6">Inicio</h1>
@@ -40,12 +47,12 @@ include 'autenticacion.php';
   <!-- Tarjetas -->
   <div style="margin-top:40px;margin-bottom:40px" class="row">
     <div class="col col_index">
-      <span role="button" tabindex="0" data-toggle="tooltip" title="25kg restantes">
+      <span role="button" tabindex="0" data-toggle="tooltip" title="<?php echo $kg; ?>kg restantes">
         <div class="card tarjetas">
           <div class="card-body tarjetas_body">
             <h5 style="margin-bottom:30px" class="card-title">Almacenamiento</h5>
             <i class="fa-solid fa-box-archive tarjetas_span"></i>
-            <h1 class="card-text float-end"><b>55</b>%</h1>
+            <h1 class="card-text float-end"><b><?php echo $almacenamiento; ?>%</b></h1>
           </div>
         </div>
       </span>
@@ -65,9 +72,9 @@ include 'autenticacion.php';
       <span role="button" tabindex="0" data-toggle="tooltip" title="25kg restantes">
         <div class="card tarjetas">
           <div class="card-body tarjetas_body">
-            <h5 style="margin-bottom:30px" class="card-title">Almacenamiento</h5>
+            <h5 style="margin-bottom:30px" class="card-title">Titulo</h5>
             <i class="fa-solid fa-box-archive tarjetas_span"></i>
-            <h1 class="card-text float-end"><b>55</b>%</h1>
+            <h1 class="card-text float-end"><b>00</b></h1>
           </div>
         </div>
       </span>
@@ -76,9 +83,9 @@ include 'autenticacion.php';
     <div class="col col_index">
       <div class="card tarjetas">
         <div class="card-body tarjetas_body">
-          <h5 style="margin-bottom:30px" class="card-title">Perros registrados</h5>
+          <h5 style="margin-bottom:30px" class="card-title">Titulo</h5>
           <i class="fa-solid fa-paw d-inline-block tarjetas_span"></i>
-          <h1 class="card-text float-end"><b>82</b></h1>
+          <h1 class="card-text float-end"><b>00</b></h1>
         </div>
       </div>
     </div>
@@ -151,7 +158,7 @@ include 'autenticacion.php';
                 <h5 style="<?php echo $color ?>;margin-right:5px">●</h5>
               </span>
               <h5 class="card-title d-inline-block"><?= $row['nombre'] ?></h5>
-              <small class="text-muted float-end"><?= $row['id'] ?></small>
+              <small class="text-muted float-end"><b>UID: </b><?= $row['id'] ?></small>
               <p class="card-text"><?= $row['raza'] ?></p>
               <hr>
               <span role="button" tabindex="0" data-toggle="tooltip" title="<?php echo $tooltip2 ?>">
