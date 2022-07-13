@@ -39,6 +39,7 @@ $diferenciaTiempoUnix = $tiempoActualUnix - $ultimaSalidaUnix;
 $cooldownUnix = 10; /* <--- cambiarlo por $cooldown*3600 */
 
 if ($entro == 0 and $turnos >= $veces and $diferenciaTiempoUnix >= $cooldownUnix) {
+    // Entro a comer (dispensar comida)
     echo "&" . $unaRacion . "&";
 
     $query1 = "UPDATE perros SET ultimaEntrada = NOW() WHERE id = '$UIDresultado'";
@@ -62,8 +63,8 @@ if ($entro == 0 and $turnos >= $veces and $diferenciaTiempoUnix >= $cooldownUnix
     $query4 = "UPDATE perros SET entro = 0 WHERE id = '$UIDresultado'";
     mysqli_query($conex, $query4);
 
-    /* $query5 = "UPDATE almacenamiento SET distancia = '$ULTRAresultado'";
-    mysqli_query($conex, $query5); */
+    $query5 = "UPDATE almacenamiento SET distancia = '$ULTRAresultado'";
+    mysqli_query($conex, $query5);
 
 } else if ($turnos < $veces) {
     // Ya uso todos sus turnos

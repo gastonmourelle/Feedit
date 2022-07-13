@@ -76,17 +76,6 @@ include 'autenticacion.php';
       </span>
     </div>
 
-    <div class="col col_index">
-      <div class="card tarjetas">
-        <div class="card-body tarjetas_body">
-          <h5 style="margin-bottom:30px" class="card-title">Titulo</h5>
-          <i class="fa-solid fa-paw d-inline-block tarjetas_span"></i>
-          <h1 class="card-text float-end"><b>00</b></h1>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Perros -->
   <div id="datosInicio" class="row row-cols-1 row-cols-md-4 g-4">
     <?php
