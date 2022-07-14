@@ -1,1 +1,1 @@
-<?php $ULTRAresultado='9'; echo $ULTRAresultado; ?>
+<?php $ULTRAresultado=''; echo $ULTRAresultado; ?>

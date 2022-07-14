@@ -25,13 +25,13 @@ SoftwareSerial esp_serial (D2, D3);
 
 ESP8266WebServer server(80);
 
-/*const char *ssid = "arroz con atun";
+const char *ssid = "arroz con atun";
 const char *password = "gastonmourelle99";
-const char *host = "http://192.168.0.105/dispensadorm2/";*/
+const char *host = "http://192.168.0.105/dispensadorm2/";
 
-const char *ssid = "iPhone de Gaston";
+/* const char *ssid = "iPhone de Gaston";
 const char *password = "gastonmourelle";
-const char *host = "http://172.20.10.7/dispensadorm2/";
+const char *host = "http://172.20.10.7/dispensadorm2/"; */
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
@@ -190,7 +190,7 @@ void enviarRfid()
             /*String dato2 = dato_recibidoGet.substring(delimitador1 + 1, delimitador2);*/
             
             enviarArduino(dato_gramos);
-
+           
             if (dato_gramos.toInt() == 1){
               recibirArduino();
             }

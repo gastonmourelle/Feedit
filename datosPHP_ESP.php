@@ -63,9 +63,10 @@ if ($entro == 0 and $turnos >= $veces and $diferenciaTiempoUnix >= $cooldownUnix
     $query4 = "UPDATE perros SET entro = 0 WHERE id = '$UIDresultado'";
     mysqli_query($conex, $query4);
 
-    $query5 = "UPDATE almacenamiento SET distancia = '$ULTRAresultado'";
-    mysqli_query($conex, $query5);
-
+    if ($ULTRAresultado != "") {
+        $query5 = "UPDATE almacenamiento SET distancia = '$ULTRAresultado'";
+        mysqli_query($conex, $query5);
+    }
 } else if ($turnos < $veces) {
     // Ya uso todos sus turnos
     echo "&2&";
