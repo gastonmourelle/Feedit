@@ -1,4 +1,6 @@
 //--- NodeMCU ESP8266
+#include <WiFiClient.h>
+#include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
 #include <ESP8266HTTPClient.h>
 
@@ -218,23 +220,11 @@ void recibirArduino()
   Serial.println("Todo el string: "+guardarSerial);
   Serial.println("Peso: "+peso);
   Serial.println("Ultrasonido: "+ultrasonido);
-  enviarUltrasonido();
+  enviarDatos();
 }
 
-//----------------------------------------Enviar ultrasonido al servidor--------------------------------------------------------------------------------------------------------------------------//
+//----------------------------------------Enviar ultrasonido y peso al servidor--------------------------------------------------------------------------------------------------------------------------//
 
-void enviarUltrasonido(){
-  HTTPClient http;
-  String datos_post;
-
-  datos_post = "ULTRAresultado=" + ultrasonido;
-
-  String url, link;
-  url = "datosESP_PHP.php";
-  link = host + url;
-  http.begin(link);
-  http.addHeader("Content-Type", "application/x-www-form-urlencoded");
-
-  int codigo_http = http.POST(datos_post);
-  http.end();
+void enviarDatos(){
+  
 }

@@ -3,6 +3,7 @@ include 'db.php';
 include 'uid.php';
 include 'tiempo.php';
 include 'ultrasonido.php';
+include 'peso.php';
 include "config.php";
 
 $tiempoActualUnix = time() - 10800;

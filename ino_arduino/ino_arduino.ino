@@ -11,7 +11,10 @@ int dato_recibido = 0;
 Stepper motor(pasos_vuelta, 8, 6, 9, 7);
 
 /*---------------Celda de carga-----------------*/
-
+#include <HX711_ADC.h> // Librerias
+#include <Wire.h>
+HX711_ADC celda(10, 11); // DT | SCK
+int peso; // variable peso para pasarle el dato que saco de la celda
 
 /*---------------Ultrasonido-----------------*/
 const int ultra_trigger = 4;   //Pin digital 4 para el Trigger del sensor
@@ -26,6 +29,11 @@ void setup() {
   
   //--- Motor
   motor.setSpeed(motor_velocidad);
+
+  //--- Celda de carga
+  celda.begin(); // Se conecta a HX711
+  celda.start(2000); // Espera 2s para estabilizarse
+  celda.setCalFactor(485.0); // Calibracion (no tocar)
   
   //--- Ultrasonido
   pinMode(ultra_trigger, OUTPUT); //pin como salida
@@ -35,6 +43,10 @@ void setup() {
 
 void loop() 
 {
+  //--- Celda de carga
+  celda.update();
+  peso = celda.getData();
+  
   if(arduino_serial.available() > 0)
   {
     dato_recibido = arduino_serial.readStringUntil('\n').toInt();
@@ -52,8 +64,8 @@ void loop()
     }
     else if (dato_recibido == 1){
       ultrasonido();
-      Serial.print("&prueba balanza&");Serial.println(ultra_distancia);Serial.println("&");
-      arduino_serial.print("&prueba balanza&");arduino_serial.print(ultra_distancia);arduino_serial.print("&");
+      Serial.print("&");Serial.print(peso);Serial.print("&");Serial.print(ultra_distancia);Serial.print("&");
+      arduino_serial.print("&");arduino_serial.print(peso);arduino_serial.print("&");arduino_serial.print(ultra_distancia);arduino_serial.print("&");
     }
   }
 }

@@ -18,6 +18,7 @@ include 'autenticacion.php';
   <?php
   include 'comp/menu.php';
   include 'ultrasonido.php';
+  include 'peso.php';
   ?>
 
   <?php
