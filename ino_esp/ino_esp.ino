@@ -37,6 +37,9 @@ const char *host = "http://172.20.10.7/dispensadorm2/"; */
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
+bool bandera = 0;
+String perro_actual = "";
+
 int leido;
 byte tag_leido[4];
 char str[32] = "";
@@ -147,11 +150,23 @@ void enviarRfid()
 
     if (leido)
     {
-        digitalWrite(ON_Board_LED, LOW);
-        HTTPClient http;
-
         String resultado_uid, datos_post;
         resultado_uid = uid_string;
+        
+        if(bandera)
+          {
+            if(resultado_uid == perro_actual)
+              bandera = 0;
+          }
+          else
+          {
+            bandera = 1;
+            perro_actual = resultado_uid;
+          }
+          if(bandera && resultado_uid != perro_actual)
+            return;
+        digitalWrite(ON_Board_LED, LOW);
+        HTTPClient http;
 
         datos_post = "UIDresultado=" + resultado_uid;
 
