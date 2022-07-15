@@ -26,7 +26,7 @@ include 'autenticacion.php';
   $result1 = $conex->query($sql1);
   $cantidad = mysqli_num_rows($result1);
 
-  $sql2 = "SELECT ultrasonido FROM almacenamiento LIMIT 1";
+  $sql2 = "SELECT ultrasonido FROM almacenamiento";
   $result2 = $conex->query($sql2);
   $ultrasonido =  $result2->fetch_assoc();
 
