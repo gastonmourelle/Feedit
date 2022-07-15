@@ -2,8 +2,6 @@
 include 'db.php';
 include 'uid.php';
 include 'tiempo.php';
-include 'ultrasonido.php';
-include 'peso.php';
 include "config.php";
 
 $tiempoActualUnix = time() - 10800;
@@ -35,7 +33,6 @@ $veces = ($logs['total']);
 $ultimaSalidaUnix = strtotime(($datos['ultimaSalida'])) + 7200;
 $ultimaEntrada = gmdate('Y-m-d H:i:s', (strtotime(($datos['ultimaEntrada'])) + 7200));
 $entro = ($datos['entro']);
-/* $rfidlog = ($logs['rfid']); */
 $diferenciaTiempoUnix = $tiempoActualUnix - $ultimaSalidaUnix;
 $cooldownUnix = 10; /* <--- cambiarlo por $cooldown*3600 */
 
@@ -64,10 +61,10 @@ if ($entro == 0 and $turnos >= $veces and $diferenciaTiempoUnix >= $cooldownUnix
     $query4 = "UPDATE perros SET entro = 0 WHERE id = '$UIDresultado'";
     mysqli_query($conex, $query4);
 
-    if ($ULTRAresultado != "") {
+    /* if ($ULTRAresultado != "") {
         $query5 = "UPDATE almacenamiento SET distancia = '$ULTRAresultado'";
         mysqli_query($conex, $query5);
-    }
+    } */
 } else if ($turnos < $veces) {
     // Ya uso todos sus turnos
     echo "&2&";

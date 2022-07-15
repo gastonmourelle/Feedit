@@ -217,7 +217,6 @@ void recibirArduino()
 
   peso = guardarSerial.substring(delimitador + 1, delimitador1);
   ultrasonido = guardarSerial.substring(delimitador1 + 1, delimitador2);
-  Serial.println("Todo el string: "+guardarSerial);
   Serial.println("Peso: "+peso);
   Serial.println("Ultrasonido: "+ultrasonido);
   enviarDatos();
@@ -226,5 +225,16 @@ void recibirArduino()
 //----------------------------------------Enviar ultrasonido y peso al servidor--------------------------------------------------------------------------------------------------------------------------//
 
 void enviarDatos(){
+  WiFiClient wifi;
+  HTTPClient http;
+  String url, link;
+  url = "peso_ultra.php";
+  link = host + url;
+
+  http.begin(wifi, link);
+  http.addHeader("Content-Type", "application/x-www-form-urlencoded");
+  String dato_enviado = "peso=" + peso + "&ultrasonido=" + ultrasonido;
+  int codigo_enviado = http.POST(dato_enviado);
+  http.end();
   
 }

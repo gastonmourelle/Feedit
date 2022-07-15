@@ -17,18 +17,20 @@ include 'autenticacion.php';
 <body>
   <?php
   include 'comp/menu.php';
-  include 'ultrasonido.php';
-  include 'peso.php';
   ?>
 
   <?php
   include "config.php";
-  $stmt = $conex->prepare('SELECT * FROM perros ORDER BY nombre ASC');
-  $stmt->execute();
-  $result = $stmt->get_result();
-  $cantidad = mysqli_num_rows($result);
 
-  $almacenamiento = 100 - ((100 * (5 /* cambiar por $ULTRAresultado cuando funcione */)) / 25);
+  $sql1 = "SELECT * FROM perros ORDER BY nombre ASC";
+  $result1 = $conex->query($sql1);
+  $cantidad = mysqli_num_rows($result1);
+
+  $sql2 = "SELECT ultrasonido FROM almacenamiento LIMIT 1";
+  $result2 = $conex->query($sql2);
+  $ultrasonido =  $result2->fetch_assoc();
+
+  $almacenamiento = 100 - ((100 * ($ultrasonido['ultrasonido'])) / 25);
   $kg = ($almacenamiento * 50) / 100;
 
   ?>

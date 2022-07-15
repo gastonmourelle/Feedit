@@ -252,6 +252,7 @@ $query1 = $conex->query($sql1);
                                 <th>#</th>
                                 <th>Nombre</th>
                                 <th>Ración por turno</th>
+                                <th>Comida restante</th>
                                 <th>Tiempo comiendo</th>
                                 <th>Hora de entrada</th>
                                 <th>Hora de salida</th>
@@ -273,6 +274,7 @@ $query1 = $conex->query($sql1);
                                         <td><b><?php echo $row['identificador'] ?></b></a></td>
                                         <td><b><?php echo $row['nombre'] ?></b></a></td>
                                         <td><?php echo $unaRacion ?>g</td>
+                                        <td><?php echo $row['peso'] ?>g</td>
                                         <td><?php echo $tiempoDiferencia ?></td>
                                         <td><?php echo $row['horaEntrada'] ?></td>
                                         <td><?php echo $row['horaSalida'] ?></td>

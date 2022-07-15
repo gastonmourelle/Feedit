@@ -67,6 +67,7 @@ $diaActual = gmdate('Y-m-d', $tiempoActualUnix);
                     <th>#</th>
                     <th>Nombre</th>
                     <th>Tiempo comiendo</th>
+                    <th>Comida restante</th>
                     <th>Hora de entrada</th>
                     <th>Hora de salida</th>
                 </tr>
@@ -91,6 +92,7 @@ $diaActual = gmdate('Y-m-d', $tiempoActualUnix);
                                     <td><b><?php echo $row['identificador'] ?></b></td>
                                     <td><b><?php echo $row['nombre'] ?></b></td>
                                     <td><?php echo $tiempoDiferencia ?></td>
+                                    <td><?php echo $row['peso'] ?>g</td>
                                     <td><?php echo $row['horaEntrada'] ?></td>
                                     <td><?php echo $row['horaSalida'] ?></td>
                                 </tr>
@@ -127,6 +129,7 @@ $diaActual = gmdate('Y-m-d', $tiempoActualUnix);
                                 <td><b><?php echo $row['identificador'] ?></b></td>
                                 <td><b><?php echo $row['nombre'] ?></b></td>
                                 <td><?php echo $tiempoDiferencia ?></td>
+                                <td><?php echo $row['peso'] ?>g</td>
                                 <td><?php echo $row['horaEntrada'] ?></td>
                                 <td><?php echo $row['horaSalida'] ?></td>
                             </tr>
