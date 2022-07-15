@@ -1,0 +1,1 @@
+<?php $ingreso='salida'; echo $ingreso; ?>

@@ -37,6 +37,7 @@ const char *host = "http://172.20.10.7/dispensadorm2/"; */
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
+uint8_t control = 0x00;
 bool bandera = 0;
 String perro_actual = "";
 
@@ -49,6 +50,7 @@ String guardarSerial;
 
 String peso;
 String ultrasonido;
+bool estado = 0;
 
 //-----------------------------------------------------------------------------------------------SETUP--------------------------------------------------------------------------------------//
 
@@ -92,20 +94,159 @@ void setup()
 }
 
 //-----------------------------------------------------------------------------------------------LOOP---------------------------------------------------------------------------------------//
-
-void loop()
+uint8_t buf[10]= {};
+MFRC522::Uid id;
+MFRC522::Uid id2;
+bool is_card_present = false;
+void PrintHex(uint8_t *data, uint8_t length) // prints 8-bit data in hex with leading zeroes
 {
-    enviarRfid();
+char tmp[16];
+for (int i=0; i<length; i++) {
+tag_leido[i] = mfrc522.uid.uidByte[i]; // guardar UID en el array
+array_to_string(tag_leido, 4, str);
+uid_string = str;
+}
+}
+//*****************************************************************************************//
+
+void cpid(MFRC522::Uid *id){
+memset(id, 0, sizeof(MFRC522::Uid));
+memcpy(id->uidByte, mfrc522.uid.uidByte, mfrc522.uid.size);
+id->size = mfrc522.uid.size;
+id->sak = mfrc522.uid.sak;
 }
 
+void loop(){
+MFRC522::MIFARE_Key key;
+for (byte i = 0; i < 6; i++) key.keyByte[i] = 0xFF;
+MFRC522::StatusCode status;
+
+if ( !mfrc522.PICC_IsNewCardPresent()) {
+return;
+}
+if ( !mfrc522.PICC_ReadCardSerial()) {
+return;
+}
+uint8_t buf_len=4;
+cpid(&id);
+PrintHex(id.uidByte, id.size);
+Serial.println(uid_string);
+
+while(true)
+{
+control=0;
+for(int i=0; i<3; i++)
+{
+if(!mfrc522.PICC_IsNewCardPresent())
+{
+if(mfrc522.PICC_ReadCardSerial())
+{
+//Serial.print('a');
+control |= 0x16;
+}
+if(mfrc522.PICC_ReadCardSerial())
+{
+//Serial.print('b');
+control |= 0x16;
+}
+//Serial.print('c');
+control += 0x1;
+}
+//Serial.print('d');
+control += 0x4;
+}
+
+//Serial.println(control);
+if(control == 13 || control == 14)
+{
+  if(!estado)
+  {
+    Serial.println("Entro el perro");
+    enviarEntroPerro("entrada");
+    estado = 1;
+  }
+}
+else
+{
+break;
+}
+}
+Serial.println("Salio el perro");
+enviarEntroPerro("salida");
+estado = 0;
+mfrc522.PICC_HaltA();
+mfrc522.PCD_StopCrypto1();
+}
+
+int enviarEntroPerro(String inout)
+{
+  //leido = leer_uid();
+
+    if (true)
+    {
+        String resultado_uid, datos_post;
+        resultado_uid = uid_string;
+        digitalWrite(ON_Board_LED, LOW);
+        HTTPClient http;
+
+        datos_post = "UIDresultado=" + resultado_uid + "&ingreso=" + inout;
+
+        String url, link;
+        url = "datosESP_PHP.php";
+        link = host + url;
+        http.begin(link);
+        http.addHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        int codigo_http = http.POST(datos_post);
+        String dato_recibido = http.getString();
+        http.end();
+        /*Serial.print("UID: ");
+        Serial.println(resultado_uid);*/
+
+        //--- Recibir datos desde el servidor cuando se detecta el RFID
+        if (resultado_uid || inout == "salida")
+        {
+            HTTPClient http;
+            String url, link, data;
+            int id = 0;
+            url = "datosPHP_ESP.php";
+            link = host + url;
+            data = "ID=" + String(id);
+            http.begin(link);
+            http.addHeader("Content-Type", "application/x-www-form-urlencoded");
+            int codigo_httpGet = http.POST(data);
+            String dato_recibidoGet = http.getString();
+            Serial.println(dato_recibidoGet);
+
+            // Separar datos en strings
+            int delimitador, delimitador1, delimitador2;
+            delimitador = dato_recibidoGet.indexOf("&");
+            delimitador1 = dato_recibidoGet.indexOf("&", delimitador + 1);
+            delimitador2 = dato_recibidoGet.indexOf("&", delimitador1 +1);
+
+            String dato_gramos = dato_recibidoGet.substring(delimitador + 1, delimitador1);
+            /*String dato2 = dato_recibidoGet.substring(delimitador1 + 1, delimitador2);*/
+            
+            enviarArduino(dato_gramos);
+           
+            if (dato_gramos.toInt() == 1){
+              recibirArduino();
+            }
+        }
+
+        http.end();
+        delay(1000);
+        digitalWrite(ON_Board_LED, HIGH);
+    }
+}
 //----------------------------------------Obtener UID del llavero o tarjeta-----------------------------------------------------------------------------------------------------------------//
 
 int leer_uid()
 {
-    if (!mfrc522.PICC_IsNewCardPresent())
+    /*if (!mfrc522.PICC_IsNewCardPresent())
     {
         return 0;
-    }
+    }*/
     if (!mfrc522.PICC_ReadCardSerial())
     {
         return 0;
@@ -140,6 +281,7 @@ void array_to_string(byte array[], unsigned int len, char buffer[])
 void enviarArduino(String mensaje)
 {
   esp_serial.println(mensaje);
+  
 }
 
 //----------------------------------------Enviar codigo UID al servidor--------------------------------------------------------------------------------------------------------------------------//
