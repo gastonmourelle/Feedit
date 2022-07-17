@@ -189,7 +189,7 @@ int enviarEntroPerro(String inout)
         digitalWrite(ON_Board_LED, LOW);
         HTTPClient http;
 
-        datos_post = "UIDresultado=" + resultado_uid + "&ingreso=" + inout;
+        datos_post = "UIDresultado=" + resultado_uid + "&situacion=" + inout;
 
         String url, link;
         url = "datosESP_PHP.php";

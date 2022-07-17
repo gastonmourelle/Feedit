@@ -1,0 +1,1 @@
+<?php $situacion='salida'; echo $situacion; ?>

@@ -1,8 +1,9 @@
 <?php
+session_start();
 include 'db.php';
 include 'uid.php';
 include 'tiempo.php';
-include 'ingreso.php';
+include 'situacion.php';
 include "config.php";
 
 $tiempoActualUnix = time() - 10800;
@@ -25,6 +26,7 @@ $result = $conex->query($sql2);
 $logs =  $result->fetch_assoc();
 
 $nombre = ($datos['nombre']);
+$identificador = ($datos['identificador']);
 $id = ($datos['id']);
 $racion = ($datos['racion']);
 $turnos = ($datos['turnos']);
@@ -37,7 +39,7 @@ $entro = ($datos['entro']);
 $diferenciaTiempoUnix = $tiempoActualUnix - $ultimaSalidaUnix;
 $cooldownUnix = 10; /* <--- cambiarlo por $cooldown*3600 */
 
-if ($ingreso == "entrada" and $turnos >= $veces and $diferenciaTiempoUnix >= $cooldownUnix) {
+if ($entro == 0 and $situacion == "entrada" and $turnos >= $veces and $diferenciaTiempoUnix >= $cooldownUnix) {
     // Entro a comer (dispensar comida)
     echo "&" . $unaRacion . "&";
 
@@ -46,7 +48,7 @@ if ($ingreso == "entrada" and $turnos >= $veces and $diferenciaTiempoUnix >= $co
 
     $query2 = "UPDATE perros SET entro = 1 WHERE id = '$UIDresultado'";
     mysqli_query($conex, $query2);
-} else if ($ingreso == "salida") {
+} else if ($entro == 1 and $situacion == "salida") {
     // Termino de comer
     echo "&1&";
 
