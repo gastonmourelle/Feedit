@@ -2,6 +2,7 @@
 #include <SoftwareSerial.h>
 SoftwareSerial arduino_serial(2, 3);
 int dato_recibido = 0;
+float g;
 
 /*---------------Motor paso a paso-----------------*/
 #include <Stepper.h>
@@ -14,13 +15,17 @@ Stepper motor(pasos_vuelta, 8, 6, 9, 7);
 #include <HX711_ADC.h> // Librerias
 #include <Wire.h>
 HX711_ADC celda(10, 11); // DT | SCK
-int peso; // variable peso para pasarle el dato que saco de la celda
+float peso; // variable peso para pasarle el dato que saco de la celda
 
 /*---------------Ultrasonido-----------------*/
 const int ultra_trigger = 4;   //Pin digital 4 para el Trigger del sensor
 const int ultra_echo = 5;   //Pin digital 5 para el Echo del sensor
 long ultra_tiempo; //timepo que demora en llegar el eco
 long ultra_distancia; //distancia en centimetros
+
+/*---------------Bocina-----------------*/
+int bocina = 12;
+
 
 void setup() {
   //--- Serial
@@ -61,19 +66,32 @@ void loop()
     
     if (dato_recibido > 3){
       vuelta(calcularVueltas(dato_recibido));
+      g = dato_recibido;
     }
     else if (dato_recibido == 1){
       ultrasonido();
       Serial.print("&");Serial.print(peso);Serial.print("&");Serial.print(ultra_distancia);Serial.print("&");
       arduino_serial.print("&");arduino_serial.print(peso);arduino_serial.print("&");arduino_serial.print(ultra_distancia);arduino_serial.print("&");
+      int porcentaje = (100 * (peso)) / g;
+      if (porcentaje > 25){
+        tone(bocina, 100, 100);
+        delay(100);
+        tone(bocina, 100, 100);
+      }
+      g = 0;
     }
   }
 }
 
 void vuelta(float vueltas)
 {
-  for(long i = 0; i < (pasos_vuelta*vueltas); i++)
-    motor.step(1);
+  if(vueltas > (peso/gramos_vuelta)){
+    for(long i = 0; i < ((pasos_vuelta*vueltas) - ((pasos_vuelta)*(peso/gramos_vuelta))); i++)
+      motor.step(1);
+  }
+  else{
+    tone(bocina, 100, 1000);
+  }
 }
 
 float calcularVueltas(float gramos)
