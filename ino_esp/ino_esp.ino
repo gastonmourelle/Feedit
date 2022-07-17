@@ -41,7 +41,6 @@ uint8_t control = 0x00;
 bool bandera = 0;
 String perro_actual = "";
 
-int leido;
 byte tag_leido[4];
 char str[32] = "";
 String uid_string;
@@ -224,7 +223,7 @@ int enviarEntroPerro(String inout)
             delimitador1 = dato_recibidoGet.indexOf("&", delimitador + 1);
             delimitador2 = dato_recibidoGet.indexOf("&", delimitador1 +1);
 
-            String dato_gramos = dato_recibidoGet.substring(delimitador + 1, delimitador1);
+            String dato_gramos = dato_recibidoGet.substring(delimitador + 1, dato_recibidoGet.length() - 1);
             /*String dato2 = dato_recibidoGet.substring(delimitador1 + 1, delimitador2);*/
             
             enviarArduino(dato_gramos);
@@ -238,28 +237,6 @@ int enviarEntroPerro(String inout)
         delay(1000);
         digitalWrite(ON_Board_LED, HIGH);
     }
-}
-//----------------------------------------Obtener UID del llavero o tarjeta-----------------------------------------------------------------------------------------------------------------//
-
-int leer_uid()
-{
-    /*if (!mfrc522.PICC_IsNewCardPresent())
-    {
-        return 0;
-    }*/
-    if (!mfrc522.PICC_ReadCardSerial())
-    {
-        return 0;
-    }
-
-    for (int i = 0; i < 4; i++)
-    {
-        tag_leido[i] = mfrc522.uid.uidByte[i]; // guardar UID en el array
-        array_to_string(tag_leido, 4, str);
-        uid_string = str;
-    }
-    mfrc522.PICC_HaltA();
-    return 1;
 }
 
 //----------------------------------------Cambiar el UID a string---------------------------------------------------------------------------------------------------------------------------//
@@ -281,84 +258,6 @@ void array_to_string(byte array[], unsigned int len, char buffer[])
 void enviarArduino(String mensaje)
 {
   esp_serial.println(mensaje);
-  
-}
-
-//----------------------------------------Enviar codigo UID al servidor--------------------------------------------------------------------------------------------------------------------------//
-
-void enviarRfid()
-{
-    leido = leer_uid();
-
-    if (leido)
-    {
-        String resultado_uid, datos_post;
-        resultado_uid = uid_string;
-        
-        if(bandera)
-          {
-            if(resultado_uid == perro_actual)
-              bandera = 0;
-          }
-          else
-          {
-            bandera = 1;
-            perro_actual = resultado_uid;
-          }
-          if(bandera && resultado_uid != perro_actual)
-            return;
-        digitalWrite(ON_Board_LED, LOW);
-        HTTPClient http;
-
-        datos_post = "UIDresultado=" + resultado_uid;
-
-        String url, link;
-        url = "datosESP_PHP.php";
-        link = host + url;
-        http.begin(link);
-        http.addHeader("Content-Type", "application/x-www-form-urlencoded");
-
-        int codigo_http = http.POST(datos_post);
-        String dato_recibido = http.getString();
-
-        /*Serial.print("UID: ");
-        Serial.println(resultado_uid);*/
-
-        //--- Recibir datos desde el servidor cuando se detecta el RFID
-        if (resultado_uid)
-        {
-            HTTPClient http;
-            String url, link, data;
-            int id = 0;
-            url = "datosPHP_ESP.php";
-            link = host + url;
-            data = "ID=" + String(id);
-            http.begin(link);
-            http.addHeader("Content-Type", "application/x-www-form-urlencoded");
-            int codigo_httpGet = http.POST(data);
-            String dato_recibidoGet = http.getString();
-            Serial.println(dato_recibidoGet);
-
-            // Separar datos en strings
-            int delimitador, delimitador1, delimitador2;
-            delimitador = dato_recibidoGet.indexOf("&");
-            delimitador1 = dato_recibidoGet.indexOf("&", delimitador + 1);
-            delimitador2 = dato_recibidoGet.indexOf("&", delimitador1 +1);
-
-            String dato_gramos = dato_recibidoGet.substring(delimitador + 1, delimitador1);
-            /*String dato2 = dato_recibidoGet.substring(delimitador1 + 1, delimitador2);*/
-            
-            enviarArduino(dato_gramos);
-           
-            if (dato_gramos.toInt() == 1){
-              recibirArduino();
-            }
-        }
-
-        http.end();
-        delay(1000);
-        digitalWrite(ON_Board_LED, HIGH);
-    }
 }
 
 //-------------------------------------Recibir datos de Arduino desde el serial-------------------------------------------------------------------------------------------------------------//

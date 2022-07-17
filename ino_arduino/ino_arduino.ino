@@ -44,6 +44,7 @@ void setup() {
   pinMode(ultra_trigger, OUTPUT); //pin como salida
   pinMode(ultra_echo, INPUT);  //pin como entrada
   digitalWrite(ultra_trigger, LOW);//Inicializamos el pin con 0
+
 }
 
 void loop() 
@@ -74,11 +75,8 @@ void loop()
       arduino_serial.print("&");arduino_serial.print(peso);arduino_serial.print("&");arduino_serial.print(ultra_distancia);arduino_serial.print("&");
       int porcentaje = (100 * (peso)) / g;
       if (porcentaje > 25){
-        tone(bocina, 100, 100);
-        delay(100);
-        tone(bocina, 100, 100);
+        tone(bocina, 100, 300);
       }
-      g = 0;
     }
   }
 }
@@ -90,7 +88,7 @@ void vuelta(float vueltas)
       motor.step(1);
   }
   else{
-    tone(bocina, 100, 1000);
+    tone(bocina, 100, 1500);
   }
 }
 
