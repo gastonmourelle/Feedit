@@ -35,7 +35,6 @@ if(isset($_POST['login_submit'])){
     }
 }
 else{
-    $_SESSION['error'] = "Tienes que iniciar sesión para visitar la página";
     header("Location: login.php");
     exit(0);
 }
