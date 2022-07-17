@@ -64,7 +64,7 @@ $query1 = $conex->query($sql1);
                 } else if ($veces >= $turnos) {
                     $color = "color:#D30000";
                     $tooltip = "Ya usó todos sus turnos";
-                  } else {
+                } else {
                     $color = "color:#00AE25";
                     $tooltip = "Turno disponible";
                 }
@@ -251,8 +251,8 @@ $query1 = $conex->query($sql1);
                             <tr>
                                 <th>#</th>
                                 <th>Nombre</th>
-                                <th>Ración por turno</th>
-                                <th>Comida restante</th>
+                                <th>Ración</th>
+                                <th>Restante</th>
                                 <th>Tiempo comiendo</th>
                                 <th>Hora de entrada</th>
                                 <th>Hora de salida</th>
@@ -273,7 +273,7 @@ $query1 = $conex->query($sql1);
                                     <tr style="vertical-align: middle;">
                                         <td><b><?php echo $row['identificador'] ?></b></a></td>
                                         <td><b><?php echo $row['nombre'] ?></b></a></td>
-                                        <td><?php echo $unaRacion ?>g</td>
+                                        <td><?php echo $row['dispensado'] ?>g</td>
                                         <td><?php echo $row['peso'] ?>g</td>
                                         <td><?php echo $tiempoDiferencia ?></td>
                                         <td><?php echo $row['horaEntrada'] ?></td>

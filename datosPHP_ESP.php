@@ -75,6 +75,9 @@ if ($entro == 0 and $situacion == "entrada" and $turnos >= $veces and $diferenci
     // Cooldown activo
     echo "&3&";
 }
+else{
+    echo "&0&";
+}
 
 
 

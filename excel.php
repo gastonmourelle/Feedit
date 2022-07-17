@@ -15,8 +15,9 @@ if (isset($_POST['descargar_excel'])) {
         <table><tr>
             <th>ID</th>
             <th>Nombre</th>
+            <th>Ración</th>
+            <th>Restante</th>
             <th>Tiempo comiendo</th>
-            <th>Comida restante</th>
             <th>Hora de entrada</th>
             <th>Hora de salida</th>
             </tr>
@@ -30,8 +31,9 @@ if (isset($_POST['descargar_excel'])) {
         <tr>
         <td>" . $row['identificador'] . "</td>
         <td>" . $row['nombre'] . "</td>
-        <td>" . $tiempoDiferencia . "</td>
+        <td>" . $row['dispensado'] . "g</td>
         <td>" . $row['peso'] . "g</td>
+        <td>" . $tiempoDiferencia . "</td>
         <td>" . $row['horaEntrada'] . "</td>
         <td>" . $row['horaSalida'] . "</td>
         </tr>
