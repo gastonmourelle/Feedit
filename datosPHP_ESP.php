@@ -78,18 +78,6 @@ if ($entro == 0 and $situacion == "entrada" and $turnos >= $veces and $diferenci
     echo "&0&";
 }
 
-
-
-
-
-/* HABILITAR LOGS */
-function c($data)
-{
-    $output = $data;
-    if (is_array($output))
-        $output = implode(',', $output);
-
-    echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
-}
-
 Base::disconnect();
+
+?>
