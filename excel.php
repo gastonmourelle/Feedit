@@ -31,7 +31,7 @@ if (isset($_POST['descargar_excel'])) {
         <tr>
         <td>" . $row['identificador'] . "</td>
         <td>" . $row['nombre'] . "</td>
-        <td>" . $row['dispensado'] . "g</td>
+        <td>" . $row['comido'] . "g / " . $row['dispensado'] . "g</td>
         <td>" . $row['peso'] . "g</td>
         <td>" . $tiempoDiferencia . "</td>
         <td>" . $row['horaEntrada'] . "</td>

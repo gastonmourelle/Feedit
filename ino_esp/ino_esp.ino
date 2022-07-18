@@ -223,7 +223,7 @@ int enviarEntroPerro(String inout)
             delimitador1 = dato_recibidoGet.indexOf("&", delimitador + 1);
             delimitador2 = dato_recibidoGet.indexOf("&", delimitador1 +1);
 
-            String dato_gramos = dato_recibidoGet.substring(delimitador + 1, dato_recibidoGet.length() - 1);
+            String dato_gramos = dato_recibidoGet.substring(delimitador + 1, delimitador1);
             /*String dato2 = dato_recibidoGet.substring(delimitador1 + 1, delimitador2);*/
             
             enviarArduino(dato_gramos);

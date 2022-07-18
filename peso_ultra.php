@@ -17,6 +17,13 @@ $row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC);
 $racion = $row2['racion'];
 $turnos = $row2['turnos'];
 $unaRacion = ($racion / $turnos);
+$comido;
+if (($unaRacion - $peso) > 0) {
+    $comido = ($unaRacion - $peso);
+}
+else{
+    $comido = 0;
+}
 
 $query1 = "UPDATE almacenamiento SET ultrasonido = '$ultrasonido'";
 mysqli_query($conex, $query1);
@@ -27,4 +34,5 @@ mysqli_query($conex, $query2);
 $query3 = "UPDATE logs SET dispensado = '$unaRacion' WHERE identificador = '$ultimoid' AND rfid = '$UIDresultado'";
 mysqli_query($conex, $query3);
 
-?>
+$query4 = "UPDATE logs SET comido = '$comido' WHERE identificador = '$ultimoid' AND rfid = '$UIDresultado'";
+mysqli_query($conex, $query4);

@@ -41,6 +41,8 @@ $query1 = $conex->query($sql1);
         if ($query1->num_rows > 0) {
             while ($row = $query1->fetch_assoc()) {
                 $tiempoActualUnix = time() - 10800;
+                $tiempoActual = gmdate('Y-m-d H:i:s', $tiempoActualUnix);
+                $diaActual = gmdate('Y-m-d', $tiempoActualUnix);
                 $ultimaSalidaUnix = strtotime(($row['ultimaSalida'])) + 7200;
                 $diferenciaTiempoUnix = $tiempoActualUnix - $ultimaSalidaUnix;
                 $cooldownUnix = 10; /* <--- cambiarlo por $cooldown*3600 */
@@ -50,8 +52,14 @@ $query1 = $conex->query($sql1);
                 $racion = intval($row['racion']);
                 $veces = intval($row['veces']);
                 $turnos = intval($row['turnos']);
+
+                $rfid = $row["id"];
+                $sql5 = "SELECT SUM(comido) as sumatoria FROM logs WHERE rfid = '$rfid' AND horaSalida BETWEEN '$diaActual 00:00:01' AND '$diaActual 23:59:59'";
+                $result5 = $conex->query($sql5);
+                $raciones =  $result5->fetch_assoc();
+
                 $unaRacion = ($racion / $turnos) | 0;
-                $cantidadHoy = $unaRacion * $veces;
+                $cantidadHoy = $raciones['sumatoria'];
                 $diferenciaCantidad = $racion - $cantidadHoy;
                 $estado = $row['entro'];
                 $mensaje = "";
@@ -252,7 +260,6 @@ $query1 = $conex->query($sql1);
                                 <th>#</th>
                                 <th>Nombre</th>
                                 <th>Ración</th>
-                                <th>Restante</th>
                                 <th>Tiempo comiendo</th>
                                 <th>Hora de entrada</th>
                                 <th>Hora de salida</th>
@@ -261,7 +268,7 @@ $query1 = $conex->query($sql1);
                         <tbody>
                             <?php
                             $rfid = $row["id"];
-                            $sql2 = "SELECT * FROM logs WHERE rfid = '$rfid'  ORDER BY identificador DESC";
+                            $sql2 = "SELECT * FROM logs WHERE rfid = '$rfid' ORDER BY identificador DESC";
                             $query2 = mysqli_query($conex, $sql2);
                             if (mysqli_num_rows($query2) > 0) {
                                 foreach ($query2 as $row) {
@@ -273,8 +280,11 @@ $query1 = $conex->query($sql1);
                                     <tr style="vertical-align: middle;">
                                         <td><b><?php echo $row['identificador'] ?></b></a></td>
                                         <td><b><?php echo $row['nombre'] ?></b></a></td>
-                                        <td><?php echo $row['dispensado'] ?>g</td>
-                                        <td><?php echo $row['peso'] ?>g</td>
+                                        <td>
+                                            <span role="button" tabindex="0" data-toggle="tooltip" title="<?php echo $row['peso']; ?>g restantes">
+                                                <?php echo $row['comido'] ?>g<b> / <?php echo $row['dispensado'] ?>g</b>
+                                            </span>
+                                        </td>
                                         <td><?php echo $tiempoDiferencia ?></td>
                                         <td><?php echo $row['horaEntrada'] ?></td>
                                         <td><?php echo $row['horaSalida'] ?></td>

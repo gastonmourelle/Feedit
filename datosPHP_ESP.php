@@ -74,8 +74,7 @@ if ($entro == 0 and $situacion == "entrada" and $turnos >= $veces and $diferenci
 } else if ($diferenciaTiempoUnix < $cooldownUnix) {
     // Cooldown activo
     echo "&3&";
-}
-else{
+} else {
     echo "&0&";
 }
 

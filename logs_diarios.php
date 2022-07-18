@@ -67,7 +67,6 @@ $diaActual = gmdate('Y-m-d', $tiempoActualUnix);
                     <th>#</th>
                     <th>Nombre</th>
                     <th>Ración</th>
-                    <th>Restante</th>
                     <th>Tiempo comiendo</th>
                     <th>Hora de entrada</th>
                     <th>Hora de salida</th>
@@ -92,8 +91,11 @@ $diaActual = gmdate('Y-m-d', $tiempoActualUnix);
                                 <tr style="vertical-align: middle;">
                                     <td><b><?php echo $row['identificador'] ?></b></td>
                                     <td><b><?php echo $row['nombre'] ?></b></td>
-                                    <td><?php echo $row['dispensado'] ?>g</td>
-                                    <td><?php echo $row['peso'] ?>g</td>
+                                    <td>
+                                        <span role="button" tabindex="0" data-toggle="tooltip" title="<?php echo $row['peso']; ?>g restantes">
+                                            <?php echo $row['comido'] ?>g<b> / <?php echo $row['dispensado'] ?>g</b>
+                                        </span>
+                                    </td>
                                     <td><?php echo $tiempoDiferencia ?></td>
                                     <td><?php echo $row['horaEntrada'] ?></td>
                                     <td><?php echo $row['horaSalida'] ?></td>
@@ -130,8 +132,11 @@ $diaActual = gmdate('Y-m-d', $tiempoActualUnix);
                             <tr style="vertical-align: middle;">
                                 <td><b><?php echo $row['identificador'] ?></b></td>
                                 <td><b><?php echo $row['nombre'] ?></b></td>
-                                <td><?php echo $row['dispensado'] ?>g</td>
-                                <td><?php echo $row['peso'] ?>g</td>
+                                <td>
+                                    <span role="button" tabindex="0" data-toggle="tooltip" title="<?php echo $row['peso']; ?>g restantes">
+                                        <?php echo $row['comido'] ?>g<b> / <?php echo $row['dispensado'] ?>g</b>
+                                    </span>
+                                </td>
                                 <td><?php echo $tiempoDiferencia ?></td>
                                 <td><?php echo $row['horaEntrada'] ?></td>
                                 <td><?php echo $row['horaSalida'] ?></td>

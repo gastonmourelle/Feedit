@@ -89,6 +89,8 @@ include 'autenticacion.php';
       $sql = 'SELECT * FROM perros ORDER BY nombre ASC';
       foreach ($pdo->query($sql) as $row) {
         $tiempoActualUnix = time() - 10800;
+        $tiempoActual = gmdate('Y-m-d H:i:s', $tiempoActualUnix);
+        $diaActual = gmdate('Y-m-d', $tiempoActualUnix);
         $ultimaSalidaUnix = strtotime(($row['ultimaSalida'])) + 7200;
         $diferenciaTiempoUnix = $tiempoActualUnix - $ultimaSalidaUnix;
         $cooldownUnix = 10; /* <--- cambiarlo por $cooldown*3600 */
@@ -98,8 +100,14 @@ include 'autenticacion.php';
         $racion = intval($row['racion']);
         $veces = intval($row['veces']);
         $turnos = intval($row['turnos']);
+
+        $rfid = $row["id"];
+        $sql5 = "SELECT SUM(comido) as sumatoria FROM logs WHERE rfid = '$rfid' AND horaSalida BETWEEN '$diaActual 00:00:01' AND '$diaActual 23:59:59'";
+        $result5 = $conex->query($sql5);
+        $raciones =  $result5->fetch_assoc();
+
         $unaRacion = ($racion / $turnos) | 0;
-        $cantidadHoy = $unaRacion * $veces;
+        $cantidadHoy = $raciones['sumatoria'];
         $diferenciaCantidad = $racion - $cantidadHoy;
         $estado = $row['entro'];
         $mensaje = "";
