@@ -37,11 +37,11 @@ $ultimaSalidaUnix = strtotime(($datos['ultimaSalida'])) + 7200;
 $ultimaEntrada = gmdate('Y-m-d H:i:s', (strtotime(($datos['ultimaEntrada'])) + 7200));
 $entro = ($datos['entro']);
 $diferenciaTiempoUnix = $tiempoActualUnix - $ultimaSalidaUnix;
-$cooldownUnix = 10; /* <--- cambiarlo por $cooldown*3600 */
+$cooldownUnix = ($datos['cooldown'] * 10); /* <--- cambiarlo por $cooldown*3600 */
 
 if ($entro == 0 and $situacion == "entrada" and $turnos >= $veces and $diferenciaTiempoUnix >= $cooldownUnix) {
     // Entro a comer (dispensar comida)
-    echo "&" . $unaRacion . "&";
+    echo "&" . $unaRacion;
 
     $query1 = "UPDATE perros SET ultimaEntrada = NOW() WHERE id = '$UIDresultado'";
     mysqli_query($conex, $query1);
@@ -50,7 +50,7 @@ if ($entro == 0 and $situacion == "entrada" and $turnos >= $veces and $diferenci
     mysqli_query($conex, $query2);
 } else if ($entro == 1 and $situacion == "salida") {
     // Termino de comer
-    echo "&1&";
+    echo "&1";
 
     $query1 = "UPDATE perros SET ultimaSalida = NOW() WHERE id = '$UIDresultado'";
     mysqli_query($conex, $query1);
@@ -70,12 +70,12 @@ if ($entro == 0 and $situacion == "entrada" and $turnos >= $veces and $diferenci
     } */
 } else if ($turnos < $veces) {
     // Ya uso todos sus turnos
-    echo "&2&";
+    echo "&2";
 } else if ($diferenciaTiempoUnix < $cooldownUnix) {
     // Cooldown activo
-    echo "&3&";
+    echo "&3";
 } else {
-    echo "&0&";
+    echo "&0";
 }
 
 Base::disconnect();

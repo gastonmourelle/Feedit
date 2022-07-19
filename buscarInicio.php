@@ -22,7 +22,7 @@ if ($result->num_rows > 0) {
     $tiempoActualUnix = time() - 10800;
     $ultimaSalidaUnix = strtotime(($row['ultimaSalida'])) + 7200;
     $diferenciaTiempoUnix = $tiempoActualUnix - $ultimaSalidaUnix;
-    $cooldownUnix = 10; /* <--- cambiarlo por $cooldown*3600 */
+    $cooldownUnix = intval($row['cooldown'] * 10); /* <--- cambiarlo por $cooldown*3600 */
     $tiempoEsperaUnix = $cooldownUnix - $diferenciaTiempoUnix;
     $tiempoEspera = gmdate("H:i:s", $tiempoEsperaUnix);
     $ultimaComida = date('d/m H:i', strtotime($row['ultimaEntrada']));

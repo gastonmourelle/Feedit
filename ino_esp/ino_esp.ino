@@ -264,7 +264,7 @@ void enviarArduino(String mensaje)
 
 void recibirArduino()
 {
-  guardarSerial = esp_serial.readString();
+  guardarSerial = esp_serial.readStringUntil('\n');
   
   int delimitador, delimitador1, delimitador2;
   delimitador = guardarSerial.indexOf("&");

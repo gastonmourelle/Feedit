@@ -37,7 +37,7 @@ if ($result->num_rows > 0) {
     </thead>
     <tbody>";
   while ($row = $result->fetch_assoc()) {
-    $cooldownUnix = 10; /* <--- cambiarlo por $cooldown*3600 */
+    $cooldownUnix = intval($row['cooldown'] * 10); /* <--- cambiarlo por $cooldown*3600 */
     $tiempoActualUnix = time() - 10800;
     $ultimaSalidaUnix = strtotime(($row['ultimaSalida'])) + 7200;
     $diferenciaTiempoUnix = $tiempoActualUnix - $ultimaSalidaUnix;

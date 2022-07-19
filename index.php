@@ -31,6 +31,9 @@ include 'autenticacion.php';
   $ultrasonido =  $result2->fetch_assoc();
 
   $almacenamiento = 100 - ((100 * ($ultrasonido['ultrasonido'])) / 25);
+  if ($almacenamiento < 0){
+    $almacenamiento = 0;
+  }
   $kg = ($almacenamiento * 50) / 100;
 
   ?>
@@ -93,7 +96,7 @@ include 'autenticacion.php';
         $diaActual = gmdate('Y-m-d', $tiempoActualUnix);
         $ultimaSalidaUnix = strtotime(($row['ultimaSalida'])) + 7200;
         $diferenciaTiempoUnix = $tiempoActualUnix - $ultimaSalidaUnix;
-        $cooldownUnix = 10; /* <--- cambiarlo por $cooldown*3600 */
+        $cooldownUnix = intval($row['cooldown'] * 10); /* <--- cambiarlo por $cooldown*3600 */
         $tiempoEsperaUnix = $cooldownUnix - $diferenciaTiempoUnix;
         $tiempoEspera = gmdate("H:i:s", $tiempoEsperaUnix);
         $ultimaComida = date('d/m H:i', strtotime($row['ultimaEntrada']));

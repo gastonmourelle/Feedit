@@ -55,7 +55,7 @@ void loop()
   
   if(arduino_serial.available() > 0)
   {
-    dato_recibido = arduino_serial.readString().toInt();
+    dato_recibido = arduino_serial.readStringUntil('\n').toInt();
     Serial.println(dato_recibido);
     
     /*-----------------------------------------------------------------------

@@ -65,7 +65,7 @@ include 'autenticacion.php';
         $pdo = Base::connect();
         $sql = 'SELECT * FROM perros ORDER BY nombre ASC';
         foreach ($pdo->query($sql) as $row) {
-          $cooldownUnix = 10; /* <--- cambiarlo por $cooldown*3600 */
+          $cooldownUnix = intval($row['cooldown'] * 10); /* <--- cambiarlo por $cooldown*3600 */
           $tiempoActualUnix = time() - 10800;
           $ultimaSalidaUnix = strtotime(($row['ultimaSalida'])) + 7200;
           $diferenciaTiempoUnix = $tiempoActualUnix - $ultimaSalidaUnix;
