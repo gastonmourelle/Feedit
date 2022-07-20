@@ -36,3 +36,5 @@ mysqli_query($conex, $query3);
 
 $query4 = "UPDATE logs SET comido = '$comido' WHERE identificador = '$ultimoid' AND rfid = '$UIDresultado'";
 mysqli_query($conex, $query4);
+
+?>
