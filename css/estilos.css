@@ -1,7 +1,8 @@
 :root {
   --negro: #1e2125;
-  --gris: rgb(100, 100, 100);
-  --principal: rgb(68, 18, 160);
+  --gris: #686868;
+  --principal: #eb7d47;
+  --hover: #c0673b;
   --bordes_tablas: #5f5f5f20;
   --fondo_tablas: #fff;
   --fondo: rgb(239, 241, 252);
@@ -79,6 +80,16 @@ a:hover{
 
 #nav_mobile{
   display: none;background-color: white; padding: 20px 0;
+}
+
+.btn-dark{
+  background-color:var(--principal);
+  border-color: var(--principal);
+}
+
+.btn-dark:hover{
+  background-color: var(--hover);
+  border-color: var(--hover);
 }
 
 .img_index{
@@ -224,16 +235,20 @@ a:hover{
 
 .tarjetas{
   background-color:white;
-  border-left: var(--negro) 7px solid;
+  border-left: var(--principal) 7px solid;
   box-shadow: 0px 15px 30px 0px rgba(0,0,0,0.10);
 }
 
 .tarjetas_body{
-  color:var(--negro);
   padding: 20px;
 }
 
+.tarjetas_body i{
+  color:var(--principal);
+}
+
 .tarjetas_body h1{
+  color:var(--negro);
   font-size: 32px;
 }
 

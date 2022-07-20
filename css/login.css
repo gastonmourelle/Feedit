@@ -3,12 +3,32 @@ body {
   height: 100%;
 }
 
+:root {
+  --negro: #1e2125;
+  --gris: #686868;
+  --principal: #eb7d47;
+  --hover: #c0673b;
+  --bordes_tablas: #5f5f5f20;
+  --fondo_tablas: #fff;
+  --fondo: rgb(239, 241, 252);
+}
+
 body {
   display: flex;
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #f5f5f5;
+}
+
+.btn-primary{
+  background-color:var(--principal);
+  border-color: var(--principal);
+}
+
+.btn-primary:hover{
+  background-color:var(--hover);
+  border-color: var(--hover);
 }
 
 .form-signin {
