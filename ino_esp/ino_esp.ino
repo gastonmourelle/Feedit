@@ -27,13 +27,9 @@ SoftwareSerial esp_serial (D2, D3);
 
 ESP8266WebServer server(80);
 
-/* const char *ssid = "arroz con atun";
-const char *password = "gastonmourelle99";
-const char *host = "http://192.168.0.105/dispensadorm2/"; */
-
-const char *ssid = "iPhone de Gaston";
-const char *password = "gastonmourelle";
-const char *host = "http://172.20.10.7/dispensadorm2/";
+const char *ssid = "*SSID*";
+const char *password = "*PASS*";
+const char *host = "http://*IP*/dispensadorm2/";
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
