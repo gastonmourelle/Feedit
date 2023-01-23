@@ -5,7 +5,7 @@ include 'uid.php';
 include 'tiempo.php';
 include 'situacion.php';
 include "config.php";
-
+/* hola */
 $tiempoActualUnix = time() - 10800;
 $tiempoActual = gmdate('Y-m-d H:i:s', $tiempoActualUnix);
 $diaActual = gmdate('Y-m-d', $tiempoActualUnix);
