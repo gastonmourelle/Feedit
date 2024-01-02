@@ -2,7 +2,7 @@
 
 	class Base
 	{
-		private static $db = 'dispensadorm2' ;
+		private static $db = 'feedit' ;
 		private static $dbHost = 'localhost' ;
 		private static $dbUser = 'root';
 		private static $dbUserPass = '';

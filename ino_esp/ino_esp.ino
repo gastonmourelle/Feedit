@@ -30,7 +30,7 @@ ESP8266WebServer server(80);
 //Cambiar datos de conexión
 const char *ssid = "*SSID*";
 const char *password = "*PASS*";
-const char *host = "http://*IP*/dispensadorm2/";
+const char *host = "http://*IP*/feedit/";
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 

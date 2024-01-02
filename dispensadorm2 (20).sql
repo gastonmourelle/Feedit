@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `dispensadorm2`
+-- Base de datos: `feedit`
 --
 
 -- --------------------------------------------------------
@@ -152,7 +152,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `user`, `email`, `pass`, `rol`, `estado`, `creado`) VALUES
-(1, 'gaston', 'gastonmourelle99@gmail.com', 'dispensadorm2', 1, 0, '2022-07-03 06:23:19'),
+(1, 'gaston', 'gastonmourelle99@gmail.com', 'feedit', 1, 0, '2022-07-03 06:23:19'),
 (14, 'luis', 'luis@kjasd.com', 'luis', 0, 0, '2022-07-04 23:02:28'),
 (15, 'mourelle', 'gbhf@gmail.com', 'mourelle', 0, 0, '2022-07-12 01:25:28'),
 (16, 'multimedia', 'multimedia@prueba.com', 'multimedia', 0, 0, '2022-07-18 20:41:16'),
